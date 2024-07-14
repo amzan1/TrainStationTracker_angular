@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 export class UserService {
   private CheckUserApi = 'https://localhost:7159/api/Login/CheckUsername';
   private registerUserApi = 'https://localhost:7159/api/Login/Register';
+  private loginUserApi = 'https://localhost:7159/api/Login/Login';
   isAvailable:boolean = true;
   constructor(private http: HttpClient) {}
 
@@ -21,4 +22,9 @@ export class UserService {
 
   register(user: any): Observable<any> {
     return this.http.post<any>(this.registerUserApi, user);
-  }}
+  }
+
+  login(credentials: { userName: string; Password: string }): Observable<string> {
+    return this.http.post<string>(this.loginUserApi, credentials, { responseType: 'text' as 'json' });
+  }  
+};

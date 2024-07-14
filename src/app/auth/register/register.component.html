@@ -1,4 +1,4 @@
-<div class="container">
+<div class="register-container">
   <div class="row justify-content-center">
     <div class="col-md-8">
       <mat-card>
@@ -12,13 +12,13 @@
               <mat-step [stepControl]="firstFormGroup">
                 <form [formGroup]="firstFormGroup">
                   <ng-template matStepLabel>Step 1: Personal Information</ng-template>
-                  <mat-form-field class="full-width">
+                  <mat-form-field appearance="outline" class="full-width">
                     <mat-label>First Name</mat-label>
                     <input matInput formControlName="firstname" required pattern="[a-zA-Z ]*">
                     <mat-error *ngIf="firstFormGroup.get('firstname')?.hasError('required')">First Name is required</mat-error>
                     <mat-error *ngIf="firstFormGroup.get('firstname')?.hasError('pattern')">First Name cannot contain numbers or special characters</mat-error>
                   </mat-form-field>
-                  <mat-form-field class="full-width">
+                  <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Last Name</mat-label>
                     <input matInput formControlName="lastname" required>
                     <mat-error *ngIf="firstFormGroup.get('lastname')?.hasError('required')">Last Name is required</mat-error>
@@ -33,13 +33,13 @@
               <mat-step [stepControl]="secondFormGroup">
                 <form [formGroup]="secondFormGroup">
                   <ng-template matStepLabel>Step 2: Account Details</ng-template>
-                  <mat-form-field class="full-width">
+                  <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Email</mat-label>
                     <input matInput formControlName="email" required email>
                     <mat-error *ngIf="secondFormGroup.get('email')?.hasError('required')">Email is required</mat-error>
                     <mat-error *ngIf="secondFormGroup.get('email')?.hasError('email')">Invalid email format</mat-error>
                   </mat-form-field>
-                  <mat-form-field class="full-width">
+                  <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Username</mat-label>
                     <input matInput formControlName="username" required>
                     <mat-error *ngIf="secondFormGroup.get('username')?.hasError('required')">Username is required</mat-error>
@@ -57,7 +57,7 @@
               <mat-step [stepControl]="thirdFormGroup">
                 <form [formGroup]="thirdFormGroup">
                   <ng-template matStepLabel>Step 3: Password</ng-template>
-                  <mat-form-field class="full-width">
+                  <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Password</mat-label>
                     <input matInput type="password" formControlName="password" required>
                     <mat-error *ngIf="thirdFormGroup.get('password')?.hasError('required')">Password is required</mat-error>
