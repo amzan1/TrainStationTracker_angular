@@ -20,9 +20,7 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule,
-    BrowserAnimationsModule,
-    AuthModule
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

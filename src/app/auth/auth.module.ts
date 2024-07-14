@@ -20,7 +20,6 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   imports: [
     CommonModule,
-    AuthRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -28,7 +27,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    AuthRoutingModule
   ],
   exports:[
     RegisterComponent
