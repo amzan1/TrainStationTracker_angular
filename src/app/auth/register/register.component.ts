@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/Services/user.service';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,10 +11,10 @@ export class RegisterComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
-  isAvailable: boolean = true; // Initialize as boolean
 
   constructor(
     private _formBuilder: FormBuilder,
+    public userService: UserService
   ) {
     this.firstFormGroup = this._formBuilder.group({
       firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
@@ -28,7 +29,12 @@ export class RegisterComponent implements OnInit {
     });
   }
   
-  ngOnInit() {}
+  ngOnInit() {
+    // Subscribe to username changes for real-time availability check
+    this.secondFormGroup.get('username')?.valueChanges.subscribe(value => {
+      this.checkUsername();
+    });
+  }
 
   onSubmit() {
     if (this.firstFormGroup.valid && this.secondFormGroup.valid && this.thirdFormGroup.valid) {
@@ -45,7 +51,20 @@ export class RegisterComponent implements OnInit {
   }
 
   checkUsername() {
-    
+    const username = this.secondFormGroup.get('username')?.value;
+    if (username) {
+      this.userService.checkUsernameAvailability(username)
+        .subscribe(isAvailable => {
+          this.userService.isAvailable = isAvailable;
+          if (isAvailable) {
+            this.secondFormGroup.get('username')?.setErrors({ taken: true });
+          } else {
+            this.secondFormGroup.get('username')?.setErrors(null);
+          }
+        }, error => {
+          console.error('Error checking username availability:', error);
+          // Handle error (e.g., show error message)
+        });
     }
-  
   }
+}
