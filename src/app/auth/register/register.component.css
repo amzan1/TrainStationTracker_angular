@@ -1,0 +1,16 @@
+/* register.component.css */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  mat-card {
+    width: 100%;
+  }
+  
+  mat-form-field.full-width {
+    width: 100%;
+  }
+  

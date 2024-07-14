@@ -20,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: 'security',
-    loadChildren: ()=>AuthModule
+    loadChildren: () => import('./auth/auth.module').then(mod => mod.AuthModule)
+    
   }
 ];
 
