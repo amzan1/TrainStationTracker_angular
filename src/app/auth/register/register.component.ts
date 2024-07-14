@@ -36,19 +36,32 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    if (this.firstFormGroup.valid && this.secondFormGroup.valid && this.thirdFormGroup.valid) {
-      const user = {
-        ...this.firstFormGroup.value,
-        ...this.secondFormGroup.value,
-        ...this.thirdFormGroup.value
-      };
-      console.log('User:', user);
-      // Add your registration logic here, e.g., call a service to submit the form data
-    } else {
-      // Handle form validation errors if needed
-    }
-  }
+      onSubmit() {
+        if (this.firstFormGroup.valid && this.secondFormGroup.valid && this.thirdFormGroup.valid) {
+          const user = {
+            ...this.firstFormGroup.value,
+            ...this.secondFormGroup.value,
+            ...this.thirdFormGroup.value
+          };
+          console.log('User:', user);
+          
+          this.userService.register(user)
+            .subscribe(
+              response => {
+                console.log('Registration successful:', response);
+                // Optionally, you can redirect to another page or show a success message
+              },
+              error => {
+                console.error('Error registering user:', error);
+                // Handle registration error (e.g., show error message)
+              }
+            );
+        } else {
+          // Handle form validation errors if needed
+        }
+      }
+    
+    
 
   checkUsername() {
     const username = this.secondFormGroup.get('username')?.value;
