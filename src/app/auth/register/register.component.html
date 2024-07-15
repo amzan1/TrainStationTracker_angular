@@ -1,1 +1,80 @@
-<p>register works!</p>
+<div class="register-container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Register</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+            <mat-stepper linear>
+              <!-- Step 1: Personal Information -->
+              <mat-step [stepControl]="firstFormGroup">
+                <form [formGroup]="firstFormGroup">
+                  <ng-template matStepLabel>Step 1: Personal Information</ng-template>
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="firstname" required pattern="[a-zA-Z ]*">
+                    <mat-error *ngIf="firstFormGroup.get('firstname')?.hasError('required')">First Name is required</mat-error>
+                    <mat-error *ngIf="firstFormGroup.get('firstname')?.hasError('pattern')">First Name cannot contain numbers or special characters</mat-error>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lastname" required>
+                    <mat-error *ngIf="firstFormGroup.get('lastname')?.hasError('required')">Last Name is required</mat-error>
+                  </mat-form-field>
+                  <div>
+                    <button mat-button matStepperNext>Next</button>
+                  </div>
+                </form>
+              </mat-step>
+
+              <!-- Step 2: Account Details -->
+              <mat-step [stepControl]="secondFormGroup">
+                <form [formGroup]="secondFormGroup">
+                  <ng-template matStepLabel>Step 2: Account Details</ng-template>
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" required email>
+                    <mat-error *ngIf="secondFormGroup.get('email')?.hasError('required')">Email is required</mat-error>
+                    <mat-error *ngIf="secondFormGroup.get('email')?.hasError('email')">Invalid email format</mat-error>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username" required>
+                    <mat-error *ngIf="secondFormGroup.get('username')?.hasError('required')">Username is required</mat-error>
+                    <!-- Add error for taken username -->
+                    <mat-error *ngIf="secondFormGroup.get('username')?.hasError('taken')">Username is already taken</mat-error>
+                  </mat-form-field>
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button matStepperNext (click)="checkUsername()">Next</button>
+                  </div>
+                </form>
+              </mat-step>
+
+              <!-- Step 3: Password -->
+              <mat-step [stepControl]="thirdFormGroup">
+                <form [formGroup]="thirdFormGroup">
+                  <ng-template matStepLabel>Step 3: Password</ng-template>
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password" required>
+                    <mat-error *ngIf="thirdFormGroup.get('password')?.hasError('required')">Password is required</mat-error>
+                  </mat-form-field>
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-raised-button (click)="onSubmit()" color="primary" type="submit" [disabled]="registerForm.form.invalid">Register</button>
+                  </div>
+                </form>
+              </mat-step>
+            </mat-stepper>
+          </form>
+        </mat-card-content>
+      </mat-card>
+      <p class="text-center mt-3">
+        Already a member? <a routerLink="/login">Login here</a>
+      </p>
+    </div>
+  </div>
+</div>

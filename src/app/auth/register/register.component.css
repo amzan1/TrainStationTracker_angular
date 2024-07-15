@@ -1,0 +1,46 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f5f5f5;
+}
+
+mat-card {
+  width: 100%;
+  max-width: 800px; /* Increased max-width for larger card */
+  padding: 30px; /* Increased padding for better spacing */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+mat-form-field.full-width {
+  width: 100%;
+  margin-top: 20px; /* Adjusted margin-bottom for spacing between fields */
+}
+
+.register-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px; /* Increased margin-top */
+}
+
+.register-footer span {
+  font-size: 14px;
+  color: #757575;
+}
+
+.register-footer a {
+  color: #3f51b5;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-footer a:hover {
+  text-decoration: underline;
+}
+
+button[mat-raised-button] {
+  width: 100%;
+  margin-top: 30px; /* Increased margin-top */
+}
