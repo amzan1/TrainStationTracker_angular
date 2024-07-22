@@ -13,6 +13,7 @@ import { HomeComponent } from './Landing/home/home.component';
 import { ContactComponent } from './Landing/contact/contact.component';
 import { AboutComponent } from './Landing/about/about.component';
 import { UserModule } from './user/user.module';
+import { UsersFilterPipe } from './Pipes/users-filter.pipe';
 
 @NgModule({
   declarations: [

@@ -7,21 +7,28 @@ import { SharedModule } from '../shared/shared.module';
 import { AppModule } from '../app.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { UsersFilterPipe } from '../Pipes/users-filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    SidebarComponent
+    SidebarComponent,
+    UsersFilterPipe,
+
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     SharedModule,
     HttpClientModule,
+    FormsModule,  // Add FormsModule to imports
+
   ],
   exports: [
-    DashboardComponent
+    DashboardComponent,
+    UsersFilterPipe,
      // Export if it needs to be used outside this module
   ]
 })
