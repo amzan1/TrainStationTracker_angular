@@ -4,6 +4,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -16,12 +17,16 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     RouterModule,
     HttpClientModule,
+    MatDialogModule
+
     
   ],
   exports:[
     NavbarComponent,
     FooterComponent,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+
   ]
 
 })

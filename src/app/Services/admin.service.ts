@@ -49,7 +49,7 @@ export class AdminService {
   getAllUsersUrl = 'https://localhost:7159/api/Login/GetAllUsers';
   getAllTripsUrl = 'https://localhost:7159/api/Trips/GetAllTrips';
   getAllStationsUrl = 'https://localhost:7159/api/TrainStation/GetAllTrainStations';
-
+  deleteTripUrl = 'https://localhost:7159/api/Trips/DeleteTrip/';
   getTrips(): Observable<Trip[]> {
     return forkJoin({
       trips: this.http.get<Trip[]>(this.getAllTripsUrl),
@@ -102,5 +102,16 @@ export class AdminService {
 
   getTotalRevinue(): Observable<number> {
     return this.http.get<number>(this.totalRevinueUrl);
+  }
+
+  DeleteTrip(id:number){
+    this.http.delete(this.deleteTripUrl+id).subscribe((res)=>{
+      console.log('Deleted');
+      window.location.reload();
+      this.getTrips();
+    },
+    err=>{
+      console.log("Error:"+err.status);
+    })
   }
 }
