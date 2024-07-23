@@ -70,7 +70,7 @@
                                                     <td>{{ trip.availableseats }}</td>
                                                     <td>{{ trip.price }} $</td>
                                                     <td><button class="btn btn-primary me-2" (click)="openDeleteDialog(trip.tripid)">Delete</button>
-                                                        <button class="btn btn-danger" (click)="openUpdateDailog(trip)">Update</button></td>
+                                                        <button class="btn btn-danger" (click)="openUpdateDialog(trip)">Update</button></td>
                                                 </tr>
                                                 <tr *ngIf="Upcoming.length === 0">
                                                     <td colspan="8">No upcoming trips found.</td>
@@ -101,7 +101,7 @@
                                     </div>
                                     <div class="table-responsive mt-4">
                                         <table class="table table-striped table-bordered custom-table"
-                                            *ngIf="(Upcoming | tripsFilter:PrevtripSearch).length > 0; else noResultsPrev">
+                                            *ngIf="(PrevTrips | tripsFilter:PrevtripSearch).length > 0; else noResultsPrev">
                                             <thead>
                                                 <tr>
                                                     <th class="custom-column">Leaving From</th>
@@ -110,7 +110,6 @@
                                                     <th class="custom-column">Arrival Time</th>
                                                     <th class="custom-column">Available Seats</th>
                                                     <th class="custom-column">Ticket Price</th>
-                                                    <th class="custom-column">Manage</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -121,10 +120,8 @@
                                                     <td>{{ trip.arrivalTime | date:'short' }}</td>
                                                     <td>{{ trip.availableseats }}</td>
                                                     <td>{{ trip.price }} $</td>
-                                                    <td><button class="btn btn-primary me-2" (click)="openDeleteDialog(trip.tripid)">Delete</button>
-                                                        <button class="btn btn-danger" (click)="openUpdateDailog(trip)">Update</button></td>
                                                 </tr>
-                                                <tr *ngIf="Upcoming.length === 0">
+                                                <tr *ngIf="PrevTrips.length === 0">
                                                     <td colspan="8">No upcoming trips found.</td>
                                                 </tr>
                                             </tbody>
@@ -161,3 +158,62 @@
     </div>
 </ng-template>
 
+<ng-template #updateDialog>
+    <div mat-dialog-content>
+    <h2 mat-dialog-title>Create New Train Station</h2>
+        <form class="example-form" [formGroup]='updateForm'>
+            <mat-form-field class="example-full-width">
+              <mat-label>Train Station Origin</mat-label>
+              <input type="text" matInput formControlName="originstationid" [(ngModel)]="pData.originstationid">
+              <mat-error *ngIf="updateForm.controls['originstationid'].hasError('required')">
+                Trip Origin Station Name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field class="example-full-width">
+                <mat-label>Train Station Destination</mat-label>
+                <input type="text" matInput formControlName="destinationstationid" [(ngModel)]="pData.destinationstationid">
+                <mat-error *ngIf="updateForm.controls['destinationstationid'].hasError('required')">
+                    Trip Destination Station Name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+    
+            <mat-form-field class="example-full-width">
+                <mat-label>Trip Depature Date</mat-label>
+                <input type="text" matInput formControlName="departuretime" [(ngModel)]="pData.departuretime">
+                <mat-error *ngIf="updateForm.controls['departuretime'].hasError('required')">
+                    Trip Depature Date is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Trip Duration</mat-label>
+                <input type="text" matInput formControlName="duratointime" [(ngModel)]="pData.duratointime">
+                <mat-error *ngIf="updateForm.controls['duratointime'].hasError('required')">
+                  Trip Duration Time in minutes id <strong> required </strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Trip Available Seats</mat-label>
+                <input type="text" matInput formControlName="availableseats" [(ngModel)]="pData.availableseats">
+                <mat-error *ngIf="updateForm.controls['availableseats'].hasError('required')">
+                  Trip Available Seats is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Trip Price</mat-label>
+                <input type="text" matInput formControlName="price" [(ngModel)]="pData.price">
+                <mat-error *ngIf="updateForm.controls['price'].hasError('required')">
+                  Trip Price is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+    
+          </form>
+    <mat-dialog-actions align="center">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updateTrip()">Update</button>
+    </mat-dialog-actions>  
+    </div>              
+</ng-template>
