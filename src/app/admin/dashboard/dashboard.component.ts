@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AdminService, User } from 'src/app/Services/admin.service';
+import { AdminService, Trip, User } from 'src/app/Services/admin.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +14,11 @@ export class DashboardComponent {
   numberOfUsers!: number;
   totalRevinue!: number;
   users: User[] = [];
-  searchTerm: string = '';  // Initialize the searchTerm property
+  searchTerm: string = '';
+  tripSearch:string = '';
+  trips: Trip[] = [];
+  upcomingTrips: any[] = [];
+  stations: { [key: number]: string } = {};
 
   ngOnInit(): void {
     this.AdminService.getNumberOfBookedTrips().subscribe(data => this.numberOfBookedTrips = data);
@@ -23,7 +27,18 @@ export class DashboardComponent {
     this.AdminService.getNumberOfUsers().subscribe(data => this.numberOfUsers = data);
     this.AdminService.getTotalRevinue().subscribe(data => this.totalRevinue = data);
     this.loadUsers();
+
+    this.AdminService.getTrips().subscribe(data => {
+      this.trips = data.filter(trip => new Date(trip.departuretime) > new Date());
+    });
   }
+
+
+  getStationName(id: number): string {
+    return this.stations[id] || 'Unknown';
+  }
+  
+
   loadUsers() {
     this.AdminService.getAllUsers().subscribe(
       (data: User[]) => {

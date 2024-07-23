@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { UsersFilterPipe } from '../Pipes/users-filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { TripsFilterPipe } from '../Pipes/trips-filter.pipe';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     SidebarComponent,
     UsersFilterPipe,
+    TripsFilterPipe
 
   ],
   imports: [
@@ -29,6 +31,7 @@ import { FormsModule } from '@angular/forms';
   exports: [
     DashboardComponent,
     UsersFilterPipe,
+    TripsFilterPipe
      // Export if it needs to be used outside this module
   ]
 })

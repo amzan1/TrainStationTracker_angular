@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { forkJoin, map, Observable, tap } from 'rxjs';
 export interface User {
   userid: number;
   username: string;
@@ -14,17 +14,71 @@ export interface User {
   bookings: any[];
   testimonials: any[];
 }
+export interface Station {
+  stationid: number;
+  stationname: string;
+  latitude: number;
+  longitude: number;
+  createdat: string;
+}
+export interface Trip {
+  tripid: number;
+  originstationid: number;
+  destinationstationid: number;
+  departuretime: string; // ISO string
+  duratointime: number; // in minutes
+  availableseats: number;
+  createdat: string;
+  price: number;
+  destinationstation: string | null;
+  originstation: string | null;
+  arrivalTime?: string; // Add this field to store calculated arrival time
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   numOfBookedTripsUrl = 'https://localhost:7159/api/Statistics/GetNumberOfBookedTrips';
-  numOfTrainStationsUrl ='https://localhost:7159/api/Statistics/GetNumberOfTrainStations';
+  numOfTrainStationsUrl = 'https://localhost:7159/api/Statistics/GetNumberOfTrainStations';
   numOfActiveTripsUrl = 'https://localhost:7159/api/Statistics/GetNumberOfTrips';
   numOfUsersUrl = 'https://localhost:7159/api/Statistics/GetNumberOfUsers';
   totalRevinueUrl = 'https://localhost:7159/api/Statistics/GetTotalPrice';
   getAllUsersUrl = 'https://localhost:7159/api/Login/GetAllUsers';
+  getAllTripsUrl = 'https://localhost:7159/api/Trips/GetAllTrips';
+  getAllStationsUrl = 'https://localhost:7159/api/TrainStation/GetAllTrainStations';
+
+  getTrips(): Observable<Trip[]> {
+    return forkJoin({
+      trips: this.http.get<Trip[]>(this.getAllTripsUrl),
+      stations: this.http.get<any[]>(this.getAllStationsUrl)
+    }).pipe(
+      map(({ trips, stations }) => {
+        const stationMap = this.createStationMap(stations);
+        return trips.map(trip => ({
+          ...trip,
+          originstation: stationMap[trip.originstationid] || 'Unknown',
+          destinationstation: stationMap[trip.destinationstationid] || 'Unknown',
+          arrivalTime: this.calculateArrivalTime(trip.departuretime, trip.duratointime)
+        }));
+      })
+    );
+  }
+
+  private createStationMap(stations: any[]): { [key: number]: string } {
+    return stations.reduce((map, station) => {
+      map[station.stationid] = station.stationname;
+      return map;
+    }, {} as { [key: number]: string });
+  }
+
+  private calculateArrivalTime(departureTime: string, duration: number): string {
+    const departureDate = new Date(departureTime);
+    departureDate.setMinutes(departureDate.getMinutes() + duration);
+    return departureDate.toISOString();
+  }
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.getAllUsersUrl);
