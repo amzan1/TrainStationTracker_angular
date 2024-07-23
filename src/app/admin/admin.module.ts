@@ -10,6 +10,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { UsersFilterPipe } from '../Pipes/users-filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { TripsFilterPipe } from '../Pipes/trips-filter.pipe';
+import { TripsComponent } from './trips/trips.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { TripsFilterPipe } from '../Pipes/trips-filter.pipe';
     DashboardComponent,
     SidebarComponent,
     UsersFilterPipe,
-    TripsFilterPipe
+    TripsFilterPipe,
+    TripsComponent
 
   ],
   imports: [

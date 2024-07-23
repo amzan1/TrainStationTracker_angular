@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+signOut() {
+throw new Error('Method not implemented.');
+}
 
 }
