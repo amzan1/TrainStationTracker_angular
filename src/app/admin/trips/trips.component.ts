@@ -80,13 +80,20 @@ export class TripsComponent implements OnInit {
     dialogResult.afterOpened().subscribe(() => {
       this.updateForm.controls['tripid'].setValue(this.pData.tripid);
       this.updateForm.controls['createdat'].setValue(this.pData.createdat);
+      this.updateForm.controls['originstationid'].setValue(this.pData.originstationid);
+      this.updateForm.controls['destinationstationid'].setValue(this.pData.destinationstationid);
+      this.updateForm.controls['departuretime'].setValue(this.pData.departuretime);
+      this.updateForm.controls['duratointime'].setValue(this.pData.duratointime);
+      this.updateForm.controls['availableseats'].setValue(this.pData.availableseats);
+      this.updateForm.controls['price'].setValue(this.pData.price);
+      this.filterStations(); // Call filterStations to update options based on the initial data
       console.log("Trip ID set to:", this.pData.tripid);
     });
   }
 
   updateTrip() {
     console.log(this.updateForm.value);
-    
+    this.AdminService.updateTrip(this.updateForm.value);
   }
 
   openDeleteDialog(id: number) {

@@ -159,7 +159,7 @@
 </ng-template>
 <ng-template #updateDialog>
     <div mat-dialog-content>
-      <h2 mat-dialog-title>Create New Train Station</h2>
+      <h2 mat-dialog-title>Update Trip</h2>
       <form class="example-form" [formGroup]="updateForm">
         <mat-form-field class="example-full-width">
             <mat-label>Train Station Origin</mat-label>
@@ -168,6 +168,7 @@
                 {{ station.stationname }}
               </mat-option>
             </mat-select>
+            <mat-hint align="end"></mat-hint>
             <mat-error *ngIf="updateForm.controls['originstationid'].hasError('required')">
               Trip Origin Station is <strong>required</strong>
             </mat-error>
@@ -180,6 +181,7 @@
                 {{ station.stationname }}
               </mat-option>
             </mat-select>
+            <mat-hint align="end"></mat-hint>
             <mat-error *ngIf="updateForm.controls['destinationstationid'].hasError('required')">
               Trip Destination Station is <strong>required</strong>
             </mat-error>

@@ -48,6 +48,7 @@ export class AdminService {
   totalRevinueUrl = 'https://localhost:7159/api/Statistics/GetTotalPrice';
   getAllUsersUrl = 'https://localhost:7159/api/Login/GetAllUsers';
   getAllTripsUrl = 'https://localhost:7159/api/Trips/GetAllTrips';
+  UpdateTripUrl ='https://localhost:7159/api/Trips/UpdateTrip';
   getAllStationsUrl = 'https://localhost:7159/api/TrainStation/GetAllTrainStations';
   deleteTripUrl = 'https://localhost:7159/api/Trips/DeleteTrip/';
   getTrips(): Observable<Trip[]> {
@@ -83,6 +84,23 @@ export class AdminService {
   getAllTrainStation(){
     return this.http.get(this.getAllStationsUrl)
   }
+  updateTrip(body:any){
+    console.log('Updated');
+    this.http.put(this.UpdateTripUrl,body).subscribe(res => {
+      console.log("Updated");
+      window.location.reload();
+      
+    },
+  err=>{
+    console.log("Failed");
+    console.log(err);
+    
+    
+  })
+  }
+
+    
+  
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.getAllUsersUrl);
   }
