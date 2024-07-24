@@ -29,25 +29,52 @@ export class TripsComponent implements OnInit {
   PrevTrips: Trip[] = [];
   Upcoming: Trip[] = [];
   stations: { [key: number]: string } = {};
+  stations1:any;
+  filteredStationsForOrigin: any = [];
+  filteredStationsForDestination: any = [];
   ngOnInit(): void {
     this.AdminService.getTrips().subscribe(data => {
       this.Upcoming = data.filter(trip => new Date(trip.departuretime) > new Date());
       this.PrevTrips = data.filter(trip => new Date(trip.departuretime) < new Date());
       console.log(this.Upcoming);
       console.log(this.PrevTrips);
-      
-      
     });
-  }    
+      this.AdminService.getAllTrainStation().subscribe(data => {
+        this.stations1 = data;
+        this.filteredStationsForOrigin = data;
+        this.filteredStationsForDestination = data;
+      });
+
+      this.updateForm.controls['originstationid'].valueChanges.subscribe(value => {
+        this.filterStations();
+      });
+  
+      this.updateForm.controls['destinationstationid'].valueChanges.subscribe(value => {
+        this.filterStations();
+      });
+  } 
+  filterStations() {
+    const originStationId = this.updateForm.controls['originstationid'].value;
+    const destinationStationId = this.updateForm.controls['destinationstationid'].value;
+
+    this.filteredStationsForOrigin = this.stations1.filter((stations1: { stationid: any; }) => stations1.stationid !== destinationStationId);
+    this.filteredStationsForDestination = this.stations1.filter((stations1: { stationid: any; }) => stations1.stationid !== originStationId);
+  }   
   getStationName(id: number): string {
     return this.stations[id] || 'Unknown';
   }
   openUpdateDailog(Trip: any) {
     console.log('Trip:', Trip);
     
-    const dialogResult = this.dialog.open(this.CallUpdateDialog);
+    const dialogResult = this.dialog.open(this.CallUpdateDialog, {
+      panelClass: 'custom-dialog',
+      width: '80vw', // Optional: you can set the width here as well
+      height: '80vh' // Optional: you can set the height here as well
+    });
     this.pData = Trip;
     console.log("PData:", Trip);
+    console.log(this.stations);
+    
 
     // Ensure the form control update happens after the dialog is opened
     dialogResult.afterOpened().subscribe(() => {

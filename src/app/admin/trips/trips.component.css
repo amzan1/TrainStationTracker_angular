@@ -29,3 +29,19 @@
 }
 
 /* Add more column-specific styles if necessary */
+.example-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 25px; /* Adjust the gap between items as needed */
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  
+  .custom-dialog {
+    max-width: 80vw; /* Adjust the width as needed */
+    height: 80vh; /* Adjust the height as needed */
+    width: 100%; /* Ensure the width is fully utilized */
+  }

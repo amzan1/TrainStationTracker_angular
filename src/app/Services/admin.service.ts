@@ -80,6 +80,9 @@ export class AdminService {
     return departureDate.toISOString();
   }
 
+  getAllTrainStation(){
+    return this.http.get(this.getAllStationsUrl)
+  }
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.getAllUsersUrl);
   }
