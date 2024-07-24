@@ -40,6 +40,7 @@ export interface Trip {
   providedIn: 'root'
 })
 export class AdminService {
+  
   constructor(private http: HttpClient) { }
   numOfBookedTripsUrl = 'https://localhost:7159/api/Statistics/GetNumberOfBookedTrips';
   numOfTrainStationsUrl = 'https://localhost:7159/api/Statistics/GetNumberOfTrainStations';
@@ -51,6 +52,7 @@ export class AdminService {
   UpdateTripUrl ='https://localhost:7159/api/Trips/UpdateTrip';
   getAllStationsUrl = 'https://localhost:7159/api/TrainStation/GetAllTrainStations';
   deleteTripUrl = 'https://localhost:7159/api/Trips/DeleteTrip/';
+  createTripUrl ='https://localhost:7159/api/Trips/CreateTrip';
   getTrips(): Observable<Trip[]> {
     return forkJoin({
       trips: this.http.get<Trip[]>(this.getAllTripsUrl),
@@ -93,8 +95,17 @@ export class AdminService {
     },
   err=>{
     console.log("Failed");
-    console.log(err);
-    
+    console.log(err); 
+  })
+  }
+  createTrip(body: any) {
+    console.log(body);
+    this.http.post(this.createTripUrl,body).subscribe(res => {
+      console.log("Created");
+      
+    },
+  err=>{
+    console.log("Failed"+err);
     
   })
   }

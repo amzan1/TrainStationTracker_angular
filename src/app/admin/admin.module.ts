@@ -11,6 +11,7 @@ import { UsersFilterPipe } from '../Pipes/users-filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { TripsFilterPipe } from '../Pipes/trips-filter.pipe';
 import { TripsComponent } from './trips/trips.component';
+import { CreateTripsComponent } from './create-trips/create-trips.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { TripsComponent } from './trips/trips.component';
     SidebarComponent,
     UsersFilterPipe,
     TripsFilterPipe,
-    TripsComponent
+    TripsComponent,
+    CreateTripsComponent
 
   ],
   imports: [
@@ -32,9 +34,9 @@ import { TripsComponent } from './trips/trips.component';
   ],
   exports: [
     DashboardComponent,
+    CreateTripsComponent,
     UsersFilterPipe,
     TripsFilterPipe
-     // Export if it needs to be used outside this module
   ]
 })
 export class AdminModule { }

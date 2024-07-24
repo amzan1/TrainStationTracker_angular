@@ -44,4 +44,15 @@
     max-width: 80vw; /* Adjust the width as needed */
     height: 80vh; /* Adjust the height as needed */
     width: 100%; /* Ensure the width is fully utilized */
+    margin-top:'80px',
   }
+  /* styles.css or component-specific CSS file */
+/* styles.css or component-specific CSS file */
+.custom-dialog .mat-dialog-container, mat-dialog-title{
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
