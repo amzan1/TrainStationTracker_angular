@@ -51,6 +51,7 @@ export class AdminService {
   getAllTripsUrl = 'https://localhost:7159/api/Trips/GetAllTrips';
   UpdateTripUrl ='https://localhost:7159/api/Trips/UpdateTrip';
   getAllStationsUrl = 'https://localhost:7159/api/TrainStation/GetAllTrainStations';
+  deleteTrainUrl ='https://localhost:7159/api/TrainStation/DeleteTrainstation/';
   deleteTripUrl = 'https://localhost:7159/api/Trips/DeleteTrip/';
   createTripUrl ='https://localhost:7159/api/Trips/CreateTrip';
   getTrips(): Observable<Trip[]> {
@@ -141,6 +142,17 @@ export class AdminService {
       console.log('Deleted');
       window.location.reload();
       this.getTrips();
+    },
+    err=>{
+      console.log("Error:"+err.status);
+    })
+  }
+
+  DeleteTrain(id:number){
+    this.http.delete(this.deleteTrainUrl+id).subscribe((res)=>{
+      console.log('Deleted');
+      window.location.reload();
+      this.getAllTrainStation();
     },
     err=>{
       console.log("Error:"+err.status);

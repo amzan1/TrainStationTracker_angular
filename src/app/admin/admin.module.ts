@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { TripsFilterPipe } from '../Pipes/trips-filter.pipe';
 import { TripsComponent } from './trips/trips.component';
 import { CreateTripsComponent } from './create-trips/create-trips.component';
+import { TrainStationsComponent } from './train-stations/train-stations.component';
+import { StationFilterPipe } from '../Pipes/station-filter.pipe';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { CreateTripsComponent } from './create-trips/create-trips.component';
     UsersFilterPipe,
     TripsFilterPipe,
     TripsComponent,
-    CreateTripsComponent
+    CreateTripsComponent,
+    TrainStationsComponent,
+    StationFilterPipe
 
   ],
   imports: [
@@ -36,7 +40,8 @@ import { CreateTripsComponent } from './create-trips/create-trips.component';
     DashboardComponent,
     CreateTripsComponent,
     UsersFilterPipe,
-    TripsFilterPipe
+    TripsFilterPipe,
+    StationFilterPipe
   ]
 })
 export class AdminModule { }
