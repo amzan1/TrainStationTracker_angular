@@ -1,0 +1,40 @@
+/* Style for the table */
+.custom-table {
+    width: 100%; /* Full width of the container */
+    border-collapse: collapse; /* Ensures borders are collapsed */
+}
+
+/* Style for table headers and data cells */
+.custom-table th, .custom-table td {
+    padding: 12px; /* Add padding for better readability */
+    text-align: left; /* Align text to the left */
+}
+
+/* Define column widths if needed */
+.custom-column {
+    width: 150px; /* Adjust the width as needed */
+}
+
+/* Example of overriding width for specific columns */
+.custom-table th:nth-child(1), .custom-table td:nth-child(1) {
+    width: 80px;
+}
+
+.custom-table th:nth-child(2), .custom-table td:nth-child(2) {
+    width: 150px;
+}
+
+.custom-table th:nth-child(3), .custom-table td:nth-child(3) {
+    width: 150px;
+}
+
+/* Add more column-specific styles if necessary */
+.example-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 25px; /* Adjust the gap between items as needed */
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }

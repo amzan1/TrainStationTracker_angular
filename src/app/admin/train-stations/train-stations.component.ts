@@ -59,7 +59,9 @@ export class TrainStationsComponent implements OnInit {
   }
 
   updateTrainStation() {
-    //this.adminService.(this.updateForm.value);
+    this.adminService.updateTrainStation(this.updateForm.value);
+    console.log(this.updateForm.value);
+    
     console.log("API HIT ");
 
   }
