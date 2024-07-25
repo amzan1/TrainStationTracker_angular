@@ -4,9 +4,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
-
-
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -16,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     RouterModule,
     HttpClientModule,
-    
   ],
   exports:[
     NavbarComponent,
