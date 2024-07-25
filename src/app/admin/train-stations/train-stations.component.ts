@@ -69,7 +69,7 @@ export class TrainStationsComponent implements OnInit {
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     const diares = this.dialog.open(CreateTrainComponent, {
-      width: '80vw', // Optional: you can set the width here as well
+      width: '60vw', // Optional: you can set the width here as well
       height: '80vh', // Optional: you can set the height here as well
       enterAnimationDuration,
       exitAnimationDuration,

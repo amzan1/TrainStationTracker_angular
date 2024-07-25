@@ -42,46 +42,41 @@
                             <div class="card card-rounded">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center mb-4">
-                                        <h4 class="card-title">Train Stations Details</h4>
+                                        <h4 class="card-title">Reports</h4>
                                     </div>
-                                    <button mat-raised-button class="mb-4" (click)="openDialog('0ms', '0ms')">Create New Train Station</button>
                                     <!-- Search input -->
                                     <div class="mb-4">
-                                        <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="_stationFilter">
+                                        <input type="text" class="form-control" placeholder="Search by name" [(ngModel)]="ReportsFilter">
                                     </div>
                                     <div class="table-responsive mt-4">
                                         <table class="table table-striped table-bordered"
-                                        *ngIf="(trainStations | stationFilter:_stationFilter).length > 0; else noResults">
+                                        *ngIf="(Reports | usersFilter:ReportsFilter).length > 0; else noResults">
+                                        
                                             <thead>
                                                 <tr>
-                                                    <th>Station Name</th>
-                                                    <th>Latitude</th>
-                                                    <th>Longitude</th>
-                                                    <th>Image</th>
-                                                    <th>Created at</th>
-                                                    <th>Manage</th>
+                                                    <th>UserName</th>
+                                                    <th>origin station</th>
+                                                    <th>destination station</th>
+                                                    <th>Price</th>
+                                                    <th>Booked At</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr *ngFor="let obj of trainStations | stationFilter:_stationFilter">
+                                                <tr *ngFor="let obj of Reports | stationFilter:ReportsFilter">
                                                     <td>{{ obj.stationname }}</td>
                                                     <td>{{ obj.latitude }}</td>
                                                     <td>{{ obj.longitude }}</td>
                                                     <td>---</td> <!-- Assuming you have an image property -->
                                                     <td>{{ obj.createdat ? (obj.createdat | date:'short') : 'N/A' }}</td>
-                                                    <td>
-                                                        <button class="btn btn-primary me-2" (click)="openDeleteDialog(obj.stationid)">Delete</button>
-                                                        <button class="btn btn-danger" (click)="openUpdateDailog(obj)">Update</button>
-                                                    </td>
                                                 </tr>
-                                                <tr *ngIf="trainStations.length === 0">
-                                                    <td colspan="6">No Train Stations found.</td>
+                                                <tr *ngIf="Reports.length === 0">
+                                                    <td colspan="6">No Reports found.</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                         <ng-template #noResults>
                                             <div class="alert alert-info" role="alert">
-                                                No trips found matching your search criteria.
+                                                No Reports found matching your search criteria.
                                             </div>
                                         </ng-template>
                                     </div>
@@ -99,51 +94,3 @@
         <!-- page-body-wrapper ends -->
     </div>
 </body>
-<ng-template #deleteDialog>
-    <h1 mat-dialog-title>Delete Train Station</h1>
-    <div mat-dialog-content>
-      Would you like to delete this Train Station?
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button mat-dialog-close="no">No</button>
-      <button mat-button mat-dialog-close="yes" cdkFocusInitial>Yes</button>
-    </div>
-</ng-template>
-
-<ng-template #updateDialog>
-    <div mat-dialog-content>
-    <h2 mat-dialog-title>Update Train Station</h2>
-        <form class="example-form" [formGroup]='updateForm'>
-
-    
-            <mat-form-field class="example-full-width">
-              <mat-label>Train Station Name</mat-label>
-              <input type="text" matInput formControlName="stationname" [(ngModel)]="pData.stationname">
-              <mat-error *ngIf="updateForm.controls['stationname'].hasError('required')">
-                Train Station name is <strong>required</strong>
-              </mat-error>
-            </mat-form-field>
-    
-            <mat-form-field class="example-full-width">
-                <mat-label>Train Station Latitude</mat-label>
-                <input type="text" matInput formControlName="latitude" [(ngModel)]="pData.latitude">
-                <mat-error *ngIf="updateForm.controls['latitude'].hasError('required')">
-                  Train Station Latitude is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-    
-            <mat-form-field class="example-full-width">
-                <mat-label>Train Station longitude</mat-label>
-                <input type="text" matInput formControlName="longitude" [(ngModel)]="pData.longitude">
-                <mat-error *ngIf="updateForm.controls['longitude'].hasError('required')">
-                  Train Station Latitude is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-    
-          </form>
-    <mat-dialog-actions align="center">
-      <button mat-button mat-dialog-close>Cancel</button>
-      <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updateTrainStation()">Update</button>
-    </mat-dialog-actions>  
-    </div>              
-</ng-template>

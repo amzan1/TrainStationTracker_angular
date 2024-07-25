@@ -51,7 +51,7 @@
                               <h3 class="rate-percentage">{{numberOfTrainStations}}</h3>
                             </div>
                             <div>
-                              <p class="statistics-title">All Trips</p>
+                              <p class="statistics-title">Booked Trips</p>
                               <h3 class="rate-percentage">{{numberOfBookedTrips}}</h3>
                             </div>
                             <div class="d-none d-md-block">
@@ -73,7 +73,8 @@
                                     <input type="text" class="form-control" placeholder="Search by name or email" [(ngModel)] ="searchTerm">
                                   </div>
                                   <div class="table-responsive mt-4">
-                                    <table class="table table-striped table-bordered">
+                                    <table class="table table-striped table-bordered"
+                                    *ngIf="(trips | usersFilter:searchTerm).length > 0; else noResults2">
                                         <thead>
                                           <tr>
                                             <th>ID</th>
@@ -90,6 +91,9 @@
                                             <td>{{ user.username }}</td>
                                             <td>{{ user.email }}</td>
                                             <td>{{ user.createdat | date: 'yyyy-MM-dd' }}</td>
+                                          </tr>
+                                          <tr *ngIf="users.length === 0">
+                                            <td colspan="7">No upcoming trips found.</td>
                                           </tr>
                                         </tbody>
                                       </table>
@@ -146,6 +150,11 @@
                                       <ng-template #noResults>
                                         <div class="alert alert-info" role="alert">
                                           No trips found matching your search criteria.
+                                        </div>
+                                      </ng-template>
+                                      <ng-template #noResults2>
+                                        <div class="alert alert-info" role="alert">
+                                          No Users found matching your search criteria.
                                         </div>
                                       </ng-template>
                                   </div>
