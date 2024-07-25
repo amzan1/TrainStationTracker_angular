@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from 'src/app/Services/admin.service';
+import { CreateTrainComponent } from '../create-train/create-train.component';
 
 @Component({
   selector: 'app-train-stations',
@@ -66,5 +67,30 @@ export class TrainStationsComponent implements OnInit {
 
   }
 
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    const diares = this.dialog.open(CreateTrainComponent, {
+      width: '80vw', // Optional: you can set the width here as well
+      height: '80vh', // Optional: you can set the height here as well
+      enterAnimationDuration,
+      exitAnimationDuration,
+    }).afterClosed().subscribe((res)=>{
+      if(res != undefined)
+      {
+        if(res == 'yes')
+        {
 
+        }
+        else 
+        {
+          console.log("Thank u");
+          
+        }
+      }
+      else 
+      {
+        console.log('Err');
+      }
+      
+    })
+  }
 }

@@ -55,6 +55,7 @@ export class AdminService {
   deleteTripUrl = 'https://localhost:7159/api/Trips/DeleteTrip/';
   createTripUrl = 'https://localhost:7159/api/Trips/CreateTrip';
   updateTrainStationUrl = 'https://localhost:7159/api/TrainStation/UpdateTrainstation';
+  createTrainStationUrl ='https://localhost:7159/api/TrainStation/CreateTrainstation';
   getTrips(): Observable<Trip[]> {
     return forkJoin({
       trips: this.http.get<Trip[]>(this.getAllTripsUrl),
@@ -170,6 +171,18 @@ export class AdminService {
       err => {
         console.log("Failed");
         console.log(err);
+      })
+  }
+
+  createTrainStation(body: any) {
+    console.log(body);
+    this.http.post(this.createTrainStationUrl, body).subscribe(res => {
+      console.log("Created");
+
+    },
+      err => {
+        console.log("Failed" + err);
+
       })
   }
 }

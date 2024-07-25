@@ -1,0 +1,32 @@
+<div mat-dialog-content class="create-train-dialog">
+    <h2 mat-dialog-title class="dialog-title">Create New Train Station</h2>
+    <form [formGroup]="upForm" class="train-form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Train Station Name</mat-label>
+            <input type="text" matInput formControlName="stationname">
+            <mat-error *ngIf="upForm.controls['stationname'].hasError('required')">
+                Train Station name is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Train Station Latitude</mat-label>
+            <input type="text" matInput formControlName="latitude">
+            <mat-error *ngIf="upForm.controls['latitude'].hasError('required')">
+                Train Station Latitude is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Train Station Longitude</mat-label>
+            <input type="text" matInput formControlName="longitude">
+            <mat-error *ngIf="upForm.controls['longitude'].hasError('required')">
+                Train Station Longitude is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    </form>
+    <mat-dialog-actions align="center" class="dialog-actions">
+        <button mat-button mat-dialog-close class="cancel-button">Cancel</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()" class="create-button">Create</button>
+    </mat-dialog-actions>
+</div>
