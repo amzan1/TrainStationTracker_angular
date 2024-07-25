@@ -1,0 +1,58 @@
+/* Style for the table */
+.custom-table {
+    width: 100%; /* Full width of the container */
+    border-collapse: collapse; /* Ensures borders are collapsed */
+}
+
+/* Style for table headers and data cells */
+.custom-table th, .custom-table td {
+    padding: 12px; /* Add padding for better readability */
+    text-align: left; /* Align text to the left */
+}
+
+/* Define column widths if needed */
+.custom-column {
+    width: 150px; /* Adjust the width as needed */
+}
+
+/* Example of overriding width for specific columns */
+.custom-table th:nth-child(1), .custom-table td:nth-child(1) {
+    width: 80px;
+}
+
+.custom-table th:nth-child(2), .custom-table td:nth-child(2) {
+    width: 150px;
+}
+
+.custom-table th:nth-child(3), .custom-table td:nth-child(3) {
+    width: 150px;
+}
+
+/* Add more column-specific styles if necessary */
+.example-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 25px; /* Adjust the gap between items as needed */
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  
+  .custom-dialog {
+    max-width: 80vw; /* Adjust the width as needed */
+    height: 80vh; /* Adjust the height as needed */
+    width: 100%; /* Ensure the width is fully utilized */
+    margin-top:'80px',
+  }
+  /* styles.css or component-specific CSS file */
+/* styles.css or component-specific CSS file */
+.custom-dialog .mat-dialog-container, mat-dialog-title{
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  

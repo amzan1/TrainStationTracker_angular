@@ -28,11 +28,36 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/Admin/assets/vendors/feather/feather.css",
+              "src/assets/Admin/assets/vendors/mdi/css/materialdesignicons.min.css",
+              "src/assets/Admin/assets/vendors/ti-icons/css/themify-icons.css",
+              "src/assets/Admin/assets/vendors/font-awesome/css/font-awesome.min.css",
+              "src/assets/Admin/assets/vendors/typicons/typicons.css",
+              "src/assets/Admin/assets/vendors/simple-line-icons/css/simple-line-icons.css",
+              "src/assets/Admin/assets/vendors/css/vendor.bundle.base.css",
+              "src/assets/Admin/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css",
+              "src/assets/Admin/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css",
+              "src/assets/Admin/assets/js/select.dataTables.min.css",
+              "src/assets/Admin/assets/css/style.css",
               "src/assets/home/css/styles.css"
+
             ],
             "scripts": [
+              "src/assets/Admin/assets/vendors/js/vendor.bundle.base.js",
+              "src/assets/Admin/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js",
+              "src/assets/Admin/assets/vendors/chart.js/chart.umd.js",
+              "src/assets/Admin/assets/vendors/progressbar.js/progressbar.min.js",
+              "src/assets/Admin/assets/js/off-canvas.js",
+              "src/assets/Admin/assets/js/template.js",
+              "src/assets/Admin/assets/js/settings.js",
+              "src/assets/Admin/assets/js/hoverable-collapse.js",
+              "src/assets/Admin/assets/js/todolist.js",
+              "src/assets/Admin/assets/js/jquery.cookie.js",
+              "src/assets/Admin/assets/js/dashboard.js",
               "src/assets/home/js/scripts.js"
-            ]
+
+            ],
+            
           },
           "configurations": {
             "production": {
