@@ -15,6 +15,7 @@ import {MatSelectModule} from '@angular/material/select';
 
 
 
+
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -24,6 +25,7 @@ import {MatSelectModule} from '@angular/material/select';
     CommonModule,
     RouterModule,
     HttpClientModule,
+
     MatDialogModule,
     MatButtonModule,
     ReactiveFormsModule,
@@ -33,6 +35,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatCardModule,
     MatOptionModule,
     MatSelectModule
+
   ],
   exports:[
     NavbarComponent,
