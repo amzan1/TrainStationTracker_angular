@@ -14,6 +14,8 @@ import { ContactComponent } from './Landing/contact/contact.component';
 import { AboutComponent } from './Landing/about/about.component';
 import { UserModule } from './user/user.module';
 import { UsersFilterPipe } from './Pipes/users-filter.pipe';
+import { DateRangeFilterPipe } from './Pipes/date-range-filter.pipe';
+import { DateTripFilterPipe } from './Pipes/date-trip-filter.pipe';
 
 @NgModule({
   declarations: [

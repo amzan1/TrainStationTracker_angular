@@ -16,6 +16,10 @@ import { TrainStationsComponent } from './train-stations/train-stations.componen
 import { StationFilterPipe } from '../Pipes/station-filter.pipe';
 import { CreateTrainComponent } from './create-train/create-train.component';
 import { ReportsComponent } from './reports/reports.component';
+import { DateRangeFilterPipe } from '../Pipes/date-range-filter.pipe';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DateTripFilterPipe } from '../Pipes/date-trip-filter.pipe';
 
 
 @NgModule({
@@ -29,7 +33,9 @@ import { ReportsComponent } from './reports/reports.component';
     TrainStationsComponent,
     StationFilterPipe,
     CreateTrainComponent,
-    ReportsComponent
+    ReportsComponent,
+    DateRangeFilterPipe,
+    DateTripFilterPipe
 
   ],
   imports: [
@@ -38,6 +44,8 @@ import { ReportsComponent } from './reports/reports.component';
     SharedModule,
     HttpClientModule,
     FormsModule,  // Add FormsModule to imports
+    MatDatepickerModule,
+    MatNativeDateModule,
 
   ],
   exports: [
@@ -45,7 +53,8 @@ import { ReportsComponent } from './reports/reports.component';
     CreateTripsComponent,
     UsersFilterPipe,
     TripsFilterPipe,
-    StationFilterPipe
+    StationFilterPipe,
+    DateRangeFilterPipe
   ]
 })
 export class AdminModule { }

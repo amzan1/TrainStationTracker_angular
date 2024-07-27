@@ -13,6 +13,8 @@ export class TripsComponent implements OnInit {
   constructor(private AdminService: AdminService,public dialog: MatDialog) { }
   @ViewChild('deleteDialog') CallDeleteDialog!: TemplateRef<any>;
   @ViewChild('updateDialog') CallUpdateDialog!: TemplateRef<any>;
+  startDate!: Date;
+  endDate!: Date;
   tripSearch: string = '';
   PrevtripSearch: string = '';
   pData:any;

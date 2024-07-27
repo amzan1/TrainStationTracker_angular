@@ -56,6 +56,7 @@ export class AdminService {
   createTripUrl = 'https://localhost:7159/api/Trips/CreateTrip';
   updateTrainStationUrl = 'https://localhost:7159/api/TrainStation/UpdateTrainstation';
   createTrainStationUrl ='https://localhost:7159/api/TrainStation/CreateTrainstation';
+  getAllReportsUrl ='https://localhost:7159/api/Report/Report';
   getTrips(): Observable<Trip[]> {
     return forkJoin({
       trips: this.http.get<Trip[]>(this.getAllTripsUrl),
@@ -137,6 +138,9 @@ export class AdminService {
 
   getTotalRevinue(): Observable<number> {
     return this.http.get<number>(this.totalRevinueUrl);
+  }
+  getInitialReport(){
+    return this.http.get(this.getAllReportsUrl);
   }
 
   DeleteTrip(id: number) {
