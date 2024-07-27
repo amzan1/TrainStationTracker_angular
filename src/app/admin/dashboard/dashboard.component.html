@@ -70,41 +70,46 @@
                                   <h4 class="card-title">User Details</h4>
                                   <!-- Search input -->
                                   <div class="mb-4">
-                                    <input type="text" class="form-control" placeholder="Search by name or email" [(ngModel)] ="searchTerm">
+                                    <input type="text" class="form-control" placeholder="Search by Username or email" [(ngModel)]="searchTerm">
                                   </div>
                                   <div class="table-responsive mt-4">
                                     <table class="table table-striped table-bordered"
-                                    *ngIf="(trips | usersFilter:searchTerm).length > 0; else noResults2">
-                                        <thead>
-                                          <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Username</th>
-                                            <th>Email</th>
-                                            <th>Joined At</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr *ngFor="let user of users | usersFilter:searchTerm">
-                                            <td>{{ user.userid }}</td>
-                                            <td>{{ user.firstname }} {{ user.lastname }}</td>
-                                            <td>{{ user.username }}</td>
-                                            <td>{{ user.email }}</td>
-                                            <td>{{ user.createdat | date: 'yyyy-MM-dd' }}</td>
-                                          </tr>
-                                          <tr *ngIf="users.length === 0">
-                                            <td colspan="7">No upcoming trips found.</td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
+                                      *ngIf="(users | usersFilter:searchTerm).length > 0; else noResults2">
+                                      <thead>
+                                        <tr>
+                                          <th>ID</th>
+                                          <th>Name</th>
+                                          <th>Username</th>
+                                          <th>Email</th>
+                                          <th>Joined At</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr *ngFor="let user of users | usersFilter:searchTerm">
+                                          <td>{{ user.userid }}</td>
+                                          <td>{{ user.firstname }} {{ user.lastname }}</td>
+                                          <td>{{ user.username }}</td>
+                                          <td>{{ user.email }}</td>
+                                          <td>{{ user.createdat | date: 'yyyy-MM-dd' }}</td>
+                                        </tr>
+                                        <tr *ngIf="(users | usersFilter:searchTerm).length === 0">
+                                          <td colspan="5">No users found.</td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                    <ng-template #noResults2>
+                                      <div class="alert alert-info" role="alert">
+                                        No users found matching your search criteria.
+                                      </div>
+                                    </ng-template>
                                   </div>
                                 </div>
                               </div>
-                              
                             </div>
                           </div>
                         </div>
                       </div>
+                      
                       <div class="row">
                         <div class="col-lg-12 d-flex flex-column">
                           <div class="row flex-grow">
@@ -151,12 +156,7 @@
                                         <div class="alert alert-info" role="alert">
                                           No trips found matching your search criteria.
                                         </div>
-                                      </ng-template>
-                                      <ng-template #noResults2>
-                                        <div class="alert alert-info" role="alert">
-                                          No Users found matching your search criteria.
-                                        </div>
-                                      </ng-template>
+                                      </ng-template>                     
                                   </div>
                                 </div>
                               </div>
