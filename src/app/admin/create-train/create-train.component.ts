@@ -15,6 +15,7 @@ export class CreateTrainComponent {
       stationname: new FormControl('', [Validators.required]),
       latitude: new FormControl('', [Validators.required]),
       longitude: new FormControl('', [Validators.required]),
+      Imagename: new FormControl('',[Validators.required])
     });
   }
 
@@ -23,5 +24,16 @@ export class CreateTrainComponent {
       this.adminService.createTrainStation(this.upForm.value);
       window.location.reload();
     }
+  }
+
+  uploadImage(file:any){
+    if(file.length ==0)
+      return;
+
+    let fileToUpload = <File> file[0];
+
+    const formData = new FormData();
+    formData.append('file' , fileToUpload,fileToUpload.name);
+    this.adminService.uploadImage(formData);
   }
 }

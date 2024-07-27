@@ -24,6 +24,19 @@
                 Train Station Longitude is <strong>required</strong>
             </mat-error>
         </mat-form-field>
+
+        <!-- <mat-form-field class="example-full-width">
+            <mat-label>Train Station Image</mat-label>
+            <input type="file" formControlName="Imagename" #file (change)="uploadImage(file.files)">
+            <mat-error *ngIf="upForm.controls['Image'].hasError('required')">
+                Train Station Image is <strong>required</strong>
+            </mat-error>
+        </mat-form-field> -->
+        <div>
+            <input type="file" formControlName="Imagename" #file (change)="uploadImage(file.files)">
+        </div>
+
+
     </form>
     <mat-dialog-actions align="center" class="dialog-actions">
         <button mat-button mat-dialog-close class="cancel-button">Cancel</button>

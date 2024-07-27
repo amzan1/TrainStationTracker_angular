@@ -67,7 +67,7 @@
                                                     <td>{{ obj.stationname }}</td>
                                                     <td>{{ obj.latitude }}</td>
                                                     <td>{{ obj.longitude }}</td>
-                                                    <td>---</td> <!-- Assuming you have an image property -->
+                                                    <td><img src="../../../assets/image/{{obj.image}}" alt=""></td> <!-- Assuming you have an image property -->
                                                     <td>{{ obj.createdat ? (obj.createdat | date:'short') : 'N/A' }}</td>
                                                     <td>
                                                         <button class="btn btn-primary me-2" (click)="openDeleteDialog(obj.stationid)">Delete</button>
@@ -140,6 +140,10 @@
                 </mat-error>
             </mat-form-field>
     
+            <div>
+                <input type="file" formControlName="Imagename" #file (change)="uploadImage(file.files)">
+            </div>
+            
           </form>
     <mat-dialog-actions align="center">
       <button mat-button mat-dialog-close>Cancel</button>

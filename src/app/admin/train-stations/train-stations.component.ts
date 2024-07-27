@@ -22,6 +22,7 @@ export class TrainStationsComponent implements OnInit {
     stationname: new FormControl('', [Validators.required]),
     latitude: new FormControl('', [Validators.required]),
     longitude: new FormControl('', [Validators.required]),
+    Imagename: new FormControl('',[Validators.required])
   })
 
   ngOnInit(): void {
@@ -92,5 +93,16 @@ export class TrainStationsComponent implements OnInit {
       }
       
     })
+  }
+
+  uploadImage(file:any){
+    if(file.length ==0)
+      return;
+
+    let fileToUpload = <File> file[0];
+
+    const formData = new FormData();
+    formData.append('file' , fileToUpload,fileToUpload.name);
+    this.adminService.uploadImage(formData);
   }
 }

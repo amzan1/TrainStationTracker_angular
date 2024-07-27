@@ -20,6 +20,7 @@ export interface Station {
   latitude: number;
   longitude: number;
   createdat: string;
+  image:string;
 }
 export interface Trip {
   tripid: number;
@@ -162,19 +163,21 @@ export class AdminService {
   }
 
   updateTrainStation(body: any) {
-    console.log('Updated');
+    body.Image=this.displayImage;
+    console.log(body);
     this.http.put(this.updateTrainStationUrl, body).subscribe(res => {
       console.log("Updated");
       window.location.reload();
 
     },
       err => {
-        console.log("Failed");
+        console.log("Updated Failed");
         console.log(err);
       })
   }
 
   createTrainStation(body: any) {
+    body.Image=this.displayImage;
     console.log(body);
     this.http.post(this.createTrainStationUrl, body).subscribe(res => {
       console.log("Created");
@@ -184,5 +187,17 @@ export class AdminService {
         console.log("Failed" + err);
 
       })
+  }
+
+
+  displayImage:any;
+  uploadImage(image:FormData){
+    this.http.post('https://localhost:7159/api/UploadImage',image).subscribe((res:any)=>{
+      this.displayImage= res.image;
+      console.log(res);
+    },err=>{
+      console.log('uplodImage error'+err);
+    })
+
   }
 }
