@@ -57,6 +57,9 @@ export class AdminService {
   updateTrainStationUrl = 'https://localhost:7159/api/TrainStation/UpdateTrainstation';
   createTrainStationUrl ='https://localhost:7159/api/TrainStation/CreateTrainstation';
   getAllReportsUrl ='https://localhost:7159/api/Report/Report';
+  getTestimonialsUrl='https://localhost:7159/api/Testimonial/GetAllTestimonial';
+  acceptTestimonialUrl='https://localhost:7159/api/Testimonial/AcceptTestimonial/';
+  rejectTestimonialUrl ='https://localhost:7159/api/Testimonial/RejectTestimonial/';
   getTrips(): Observable<Trip[]> {
     return forkJoin({
       trips: this.http.get<Trip[]>(this.getAllTripsUrl),
@@ -155,6 +158,35 @@ export class AdminService {
       })
     );
   }
+
+  getTestimonials(): Observable<any[]> {
+    return forkJoin({
+      testimonials: this.http.get<any[]>(this.getTestimonialsUrl),
+      users: this.http.get<any[]>(this.getAllUsersUrl)
+    }).pipe(
+      map(({ testimonials, users }) => {
+        // Create a map of userId to username
+        const userMap = users.reduce((acc, user) => {
+          acc[user.id] = user.username; // Assuming the user object has a 'username' field
+          return acc;
+        }, {});
+  
+        // Map through testimonials to add username
+        return testimonials.map(testimonial => ({
+          ...testimonial,
+          username: userMap[testimonial.userId] || 'Unknown'
+        }));
+      })
+    );
+  }
+  approveTestimonial(id: number): Observable<any> {
+    return this.http.put(this.acceptTestimonialUrl + id, {});
+  }
+
+  rejectTestimonial(id: number): Observable<any> {
+    return this.http.put(this.rejectTestimonialUrl + id, {});
+  }
+  
 
   DeleteTrip(id: number) {
     this.http.delete(this.deleteTripUrl + id).subscribe((res) => {
