@@ -48,8 +48,8 @@
                                             <tbody>
                                                 <tr *ngFor="let obj of Reports | dateRangeFilter:startDate:endDate">
                                                     <td>{{ obj.username }}</td>
-                                                    <td>{{ obj.originstationid }}</td>
-                                                    <td>{{ obj.destinationstationid }}</td>
+                                                    <td>{{ obj.originstation }}</td>
+                                                    <td>{{ obj.destinationstation }}</td>
                                                     <td>{{ obj.price }}</td>
                                                     <td>{{ obj.bookingtime ? (obj.bookingtime | date:'short') : 'N/A' }}</td>
                                                 </tr>

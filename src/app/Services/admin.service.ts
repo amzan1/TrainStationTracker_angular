@@ -139,8 +139,21 @@ export class AdminService {
   getTotalRevinue(): Observable<number> {
     return this.http.get<number>(this.totalRevinueUrl);
   }
-  getInitialReport(){
-    return this.http.get(this.getAllReportsUrl);
+  
+  getInitialReport(): Observable<any[]> {
+    return forkJoin({
+      Reports: this.http.get<any[]>(this.getAllReportsUrl),
+      stations: this.http.get<any[]>(this.getAllStationsUrl)
+    }).pipe(
+      map(({ Reports, stations }) => {
+        const stationMap = this.createStationMap(stations);
+        return Reports.map(Reports => ({
+          ...Reports,
+          originstation: stationMap[Reports.originstationid] || 'Unknown',
+          destinationstation: stationMap[Reports.destinationstationid] || 'Unknown',
+        }));
+      })
+    );
   }
 
   DeleteTrip(id: number) {
