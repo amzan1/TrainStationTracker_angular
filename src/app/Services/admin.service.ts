@@ -66,6 +66,18 @@ export class AdminService {
   getHomeContentUrl ='https://localhost:7159/api/HomePage/GetAllHomePage';
   updateHomeContentUrl = 'https://localhost:7159/api/HomePage/UpdateHomePage';
 
+  getAboutUsContentUrl ='https://localhost:7159/api/AboutUs/GetAllAboutUsPage';
+  updateAboutUsUrl ='https://localhost:7159/api/AboutUs/UpdateAboutUsPage';
+
+
+  getAboutusPage(): Observable<any[]> {
+    return this.http.get<any[]>(this.getAboutUsContentUrl);
+  }
+
+  updateAboutUsContent(body: any): Observable<any> {
+    return this.http.put(this.updateAboutUsUrl, body);
+  }
+
   getHomeContent(): Observable<any[]> {
     return this.http.get<any[]>(this.getHomeContentUrl);
   }
@@ -73,6 +85,8 @@ export class AdminService {
   updateHomeContent(body: any): Observable<any> {
     return this.http.put(this.updateHomeContentUrl, body);
   }
+
+
 
   getTrips(): Observable<Trip[]> {
     return forkJoin({

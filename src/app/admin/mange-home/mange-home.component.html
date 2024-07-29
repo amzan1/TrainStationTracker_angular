@@ -27,38 +27,38 @@
 
       <div class="container-fluid page-body-wrapper">
           <app-sidebar></app-sidebar>
-          <div class="container">
-            <h1 class="page-title">Home Page Content</h1>
-            <div class="content-card" *ngIf="homeContent">
-              <img [src]="homeContent?.image" alt="Content Image">
-              <h2>{{ homeContent?.title }}</h2>
-              <p>{{ homeContent?.content }}</p>
-              <button mat-raised-button color="primary" (click)="openUpdateDialog(homeContent)">Edit</button>
-            </div>
-            <ng-template #updateDialog>
-              <h1 mat-dialog-title>Update Content</h1>
-              <div mat-dialog-content>
-                <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
-                  <mat-form-field appearance="fill">
-                    <mat-label>Title</mat-label>
-                    <input matInput formControlName="title">
-                  </mat-form-field>
-                  <mat-form-field appearance="fill">
-                    <mat-label>Content</mat-label>
-                    <textarea matInput formControlName="content"></textarea>
-                  </mat-form-field>
-                  <mat-form-field appearance="fill">
-                    <mat-label>Image URL</mat-label>
-                    <input matInput formControlName="image">
-                  </mat-form-field>
-                  <div mat-dialog-actions>
-                    <button mat-button mat-dialog-close>Cancel</button>
-                    <button mat-raised-button color="primary" type="submit">Update</button>
-                  </div>
-                </form>
-              </div>
-            </ng-template>
-          </div>
+      <div class="container">
+        <h1 class="page-title">Home Page Content</h1>
+        <div class="content-card" *ngIf="homeContent">
+          <img [src]="homeContent?.image" alt="Content Image">
+          <h2>{{ homeContent?.title }}</h2>
+          <p>{{ homeContent?.content }}</p>
+          <button mat-raised-button color="primary" (click)="openUpdateDialog(homeContent)">Edit</button>
         </div>
+        <ng-template #updateDialog>
+          <h1 mat-dialog-title>Update Content</h1>
+          <div mat-dialog-content>
+            <form [formGroup]="updateForm" (ngSubmit)="onSubmit()" class="update-form">
+              <mat-form-field appearance="fill">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="title">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Content</mat-label>
+                <textarea matInput formControlName="content"></textarea>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Image</mat-label>
+                <input matInput formControlName="image">
+              </mat-form-field>
+              <div mat-dialog-actions>
+                <button mat-button mat-dialog-close>Cancel</button>
+                <button mat-raised-button color="primary" type="submit">Update</button>
+              </div>
+            </form>
+          </div>
+        </ng-template>
       </div>
-    </body>
+    </div>
+  </div>
+</body>

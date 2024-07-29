@@ -28,4 +28,37 @@
 
 button {
   margin-top: 15px;
+}/* Ensure the dialog has enough space and padding */
+.custom-dialog-container {
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* Style the dialog title */
+.mat-dialog-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Style form fields to be displayed vertically */
+.update-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 16px; /* Space between form fields */
+}
+
+/* Add some padding to the content area */
+.mat-dialog-content {
+  padding: 20px 0; /* Adjust vertical padding as needed */
+}
+
+/* Style dialog actions */
+.mat-dialog-actions {
+  padding: 16px;
+  display: flex;
+  justify-content: flex-end; /* Align buttons to the end */
 }

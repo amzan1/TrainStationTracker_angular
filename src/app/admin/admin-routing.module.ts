@@ -6,6 +6,7 @@ import { TrainStationsComponent } from './train-stations/train-stations.componen
 import { ReportsComponent } from './reports/reports.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { MangeHomeComponent } from './mange-home/mange-home.component';
+import { MangeAboutusComponent } from './mange-aboutus/mange-aboutus.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path:'home',
     component:MangeHomeComponent
+  },
+  {
+    path:'aboutus',
+    component:MangeAboutusComponent
   },
   {
     path:'testimonials',
