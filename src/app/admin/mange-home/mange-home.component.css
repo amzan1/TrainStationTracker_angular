@@ -1,7 +1,16 @@
+/* Container */
+.container {
+  padding: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .page-title {
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #333;
 }
 
 .content-card {
