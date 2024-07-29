@@ -23,6 +23,7 @@ import { DateTripFilterPipe } from '../Pipes/date-trip-filter.pipe';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { MangeHomeComponent } from './mange-home/mange-home.component';
 import { MangeAboutusComponent } from './mange-aboutus/mange-aboutus.component';
+import { MangeContactusComponent } from './mange-contactus/mange-contactus.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { MangeAboutusComponent } from './mange-aboutus/mange-aboutus.component';
     DateTripFilterPipe,
     TestimonialsComponent,
     MangeHomeComponent,
-    MangeAboutusComponent
+    MangeAboutusComponent,
+    MangeContactusComponent
 
   ],
   imports: [

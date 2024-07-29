@@ -7,6 +7,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { MangeHomeComponent } from './mange-home/mange-home.component';
 import { MangeAboutusComponent } from './mange-aboutus/mange-aboutus.component';
+import { MangeContactusComponent } from './mange-contactus/mange-contactus.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path:'aboutus',
     component:MangeAboutusComponent
+  },
+  {
+    path:'contactus',
+    component:MangeContactusComponent
   },
   {
     path:'testimonials',

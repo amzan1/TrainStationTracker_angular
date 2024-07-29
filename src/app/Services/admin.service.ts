@@ -69,6 +69,18 @@ export class AdminService {
   getAboutUsContentUrl ='https://localhost:7159/api/AboutUs/GetAllAboutUsPage';
   updateAboutUsUrl ='https://localhost:7159/api/AboutUs/UpdateAboutUsPage';
 
+  getContactUsUrl ='https://localhost:7159/api/Contact/GetAllContactUsPage';
+  updateContactUsUrl ='https://localhost:7159/api/Contact/UpdateContactUsPage';
+
+
+
+  getContactusPage(): Observable<any[]> {
+    return this.http.get<any[]>(this.getContactUsUrl);
+  }
+
+  updateContactUsContent(body: any): Observable<any> {
+    return this.http.put(this.updateContactUsUrl, body);
+  }
 
   getAboutusPage(): Observable<any[]> {
     return this.http.get<any[]>(this.getAboutUsContentUrl);
