@@ -60,6 +60,20 @@ export class AdminService {
   getTestimonialsUrl='https://localhost:7159/api/Testimonial/GetAllTestimonial';
   acceptTestimonialUrl='https://localhost:7159/api/Testimonial/AcceptTestimonial/';
   rejectTestimonialUrl ='https://localhost:7159/api/Testimonial/RejectTestimonial/';
+
+
+  // Pages Management 
+  getHomeContentUrl ='https://localhost:7159/api/HomePage/GetAllHomePage';
+  updateHomeContentUrl = 'https://localhost:7159/api/HomePage/UpdateHomePage';
+
+  getHomeContent(): Observable<any[]> {
+    return this.http.get<any[]>(this.getHomeContentUrl);
+  }
+
+  updateHomeContent(body: any): Observable<any> {
+    return this.http.put(this.updateHomeContentUrl, body);
+  }
+
   getTrips(): Observable<Trip[]> {
     return forkJoin({
       trips: this.http.get<Trip[]>(this.getAllTripsUrl),

@@ -1,0 +1,31 @@
+.page-title {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.content-card {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.content-card img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.content-card h2 {
+  margin: 15px 0;
+  font-size: 22px;
+}
+
+.content-card p {
+  font-size: 16px;
+}
+
+button {
+  margin-top: 15px;
+}

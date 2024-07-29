@@ -21,6 +21,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { DateTripFilterPipe } from '../Pipes/date-trip-filter.pipe';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
+import { MangeHomeComponent } from './mange-home/mange-home.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
     ReportsComponent,
     DateRangeFilterPipe,
     DateTripFilterPipe,
-    TestimonialsComponent
+    TestimonialsComponent,
+    MangeHomeComponent
 
   ],
   imports: [
