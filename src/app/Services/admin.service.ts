@@ -72,6 +72,21 @@ export class AdminService {
   getContactUsUrl ='https://localhost:7159/api/Contact/GetAllContactUsPage';
   updateContactUsUrl ='https://localhost:7159/api/Contact/UpdateContactUsPage';
 
+  uploadImageUrl = 'https://localhost:7159/api/UploadImage';
+  displayImg:any;
+// Upload images
+uploadAttachments(img: FormData) {
+  this.http.post(this.uploadImageUrl, img, { responseType: 'text' }).subscribe({
+    next: (res: string) => {
+      this.displayImg = res; // Directly assign the plain text response
+      console.log(this.displayImg);
+    },
+    error: (err) => {
+      console.error('Error uploading image:', err);
+    }
+  });
+}
+
 
 
   getContactusPage(): Observable<any[]> {
@@ -87,6 +102,7 @@ export class AdminService {
   }
 
   updateAboutUsContent(body: any): Observable<any> {
+    body.image = this.displayImg;
     return this.http.put(this.updateAboutUsUrl, body);
   }
 
@@ -95,6 +111,7 @@ export class AdminService {
   }
 
   updateHomeContent(body: any): Observable<any> {
+    body.image = this.displayImg;
     return this.http.put(this.updateHomeContentUrl, body);
   }
 

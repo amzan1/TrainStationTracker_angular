@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService } from 'src/app/Services/admin.service';
+import { HomeService } from 'src/app/Services/home.service';
 
 @Component({
   selector: 'app-mange-home',
@@ -14,7 +15,7 @@ export class MangeHomeComponent implements OnInit {
   currentContent: any;
   @ViewChild('updateDialog') updateDialog!: TemplateRef<any>;
 
-  constructor(public dialog: MatDialog, private fb: FormBuilder, private adminService: AdminService) {
+  constructor(public dialog: MatDialog, private fb: FormBuilder, private adminService: AdminService, private HomeService:HomeService) {
     this.updateForm = this.fb.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
@@ -34,6 +35,14 @@ export class MangeHomeComponent implements OnInit {
     });
   }
 
+  uploadImage(file:any) {
+    if(file.length == 0)
+      return;
+  let fileToUpload = <File> file[0];
+    const FormD = new FormData();
+    FormD.append('file', fileToUpload, fileToUpload.name);
+    this.adminService.uploadAttachments(FormD);
+  }
   openUpdateDialog(content: any): void {
     this.currentContent = content;
     this.updateForm.setValue({

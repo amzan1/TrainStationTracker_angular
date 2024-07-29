@@ -30,7 +30,7 @@
         <div class="container">
           <h1 class="page-title">About us Page Content</h1>
           <div class="content-card" *ngIf="homeContent">
-            <img [src]="getImageUrl(homeContent?.image)" alt="Content Image">
+            <img src="../../../assets/image/{{homeContent?.image}}" alt="Content Image">
             <h2>{{ homeContent?.title }}</h2>
             <p>{{ homeContent?.content }}</p>
             <button mat-raised-button color="primary" (click)="openUpdateDialog(homeContent)">Edit</button>
@@ -47,10 +47,9 @@
                   <mat-label>Content</mat-label>
                   <textarea matInput formControlName="content"></textarea>
                 </mat-form-field>
-                <mat-form-field appearance="fill">
-                  <mat-label>Image</mat-label>
-                  <input matInput formControlName="image">
-                </mat-form-field>
+                <div>
+                  <input type="file" formControlName="image" #file (change)="uploadImage(file.files)">
+                </div>  
                 <div mat-dialog-actions>
                   <button mat-button mat-dialog-close>Cancel</button>
                   <button mat-raised-button color="primary" type="submit">Update</button>

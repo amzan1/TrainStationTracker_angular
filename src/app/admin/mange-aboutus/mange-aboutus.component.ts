@@ -33,10 +33,6 @@ export class MangeAboutusComponent  implements OnInit {
       }
     });
   }
-  getImageUrl(imageName: string): string {
-    const basePath = 'src/assets/image/'; // Adjust this path if needed
-    return imageName ? `${basePath}${imageName}` : 'assets/image/placeholder.png'; // Provide a default or placeholder image if necessary
-  }
   openUpdateDialog(content: any): void {
     this.currentContent = content;
     this.updateForm.setValue({
@@ -48,6 +44,14 @@ export class MangeAboutusComponent  implements OnInit {
        width: '600px', // Increase the width
       panelClass: 'custom-dialog-container'
     });
+  }
+  uploadImage(file:any) {
+    if(file.length == 0)
+      return;
+  let fileToUpload = <File> file[0];
+    const FormD = new FormData();
+    FormD.append('file', fileToUpload, fileToUpload.name);
+    this.adminService.uploadAttachments(FormD);
   }
 
   onSubmit(): void {
