@@ -1,153 +1,94 @@
 <app-navbar></app-navbar>
 
-<header class="masthead">
+<header class="hero-section text-center" >
+    <div class="container">
+    <h1 class="hero-title">Experience the Future of Technology</h1>
 
-    <div class="container">
-        <div class="masthead-subheading">Welcome To Train Station</div>
-        <div class="masthead-heading text-uppercase"></div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="#About">Tell Me More</a>
+    <p class="hero-subtitle">Innovative solutions that redefine what's possible.</p>
+    <a  routerLink="/about"  class="btn btn-primary btn-lg">Learn More</a>
     </div>
-</header>
-
-<!-- Services-->
-<section class="page-section" id="About">
+    </header>
+     
+<div class="about-content py-5">
     <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading text-uppercase">About </h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-        </div>
-        <div class="row text-center">
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                    <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="my-3">Travel Safe</h4>
-                <img class="img-fluid" src="../assets/image/Train5.jpg" alt="..." />
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
-                    architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                    <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="my-3">Laxury Transportations</h4>
-                <img class="img-fluid" src="../assets/image/Train4.jpg" alt="..." />
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
-                    architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                    <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="my-3">Economy Transportations</h4>
-                <img class="img-fluid" src="../assets/image/Train3.jpg" alt="..." />
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam
-                    architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Portfolio Grid-->
-<section class="page-section bg-light" id="Tesimonials">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading text-uppercase">Testimonials</h2>
-            <h3 class="section-subheading text-muted">Our cutomer opinion</h3>
-        </div>
         <div class="row">
-            <div class="col-lg-4 col-sm-6 mb-4">
-                <!-- Portfolio item 1-->
-                <div class="portfolio-item">
-                    <a class="portfolio-link" data-bs-toggle="modal" href="#Tesimonials">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="assets/img/portfolio/1.jpg" alt="..." />
-                    </a>
-                    <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">Threads</div>
-                        <div class="portfolio-caption-subheading text-muted">Illustration</div>
-                    </div>
-                </div>
+            <div class="col-md-6">
+                <h2 class="about-title">Who We Are</h2>
+                <p class="about-text">We are a passionate team dedicated to crafting innovative technology solutions that make a difference. With a rich history of excellence, we pride ourselves on our commitment to quality and our drive for continuous improvement.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="../assets/image/Train3.jpg" alt="Our Team" class="about-image">
             </div>
         </div>
+        
     </div>
-</section>
+  </div>
 
-<!-- Contact-->
-<section class="page-section" id="contact">
+  <div class="testimonial_section layout_padding">
     <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading text-uppercase">Contact Us</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+      <div id="costum_slider" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+
+          <div *ngFor="let testimonial of testimonials; let i = index" [class.active]="i === currentSlide" class="carousel-item">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="testimonial_taital">Testimonial</h1>
+                <div class="testimonial_section_2">
+                  <h2 class="client_name_text">{{ testimonial.author }}
+                    <span style="float: right;"><img src="../assets/image/quick-icon.png"></span>
+                  </h2>
+                  <p class="textimonial_text">{{ testimonial.text }}</p>
+                </div>
+                
+             
+              </div>
+              
+            </div>
+            
+          </div>
+          <button class="carousel-control-prev" role="button" (click)="prevSlide()">
+            <i class="fa fa-angle-left"></i>
+        </button>
+        <button class="carousel-control-next" role="button" (click)="nextSlide()">
+            <i class="fa fa-angle-right"></i>
+        </button>
+        
         </div>
-        <!-- * * * * * * * * * * * * * * *-->
-        <!-- * * SB Forms Contact Form * *-->
-        <!-- * * * * * * * * * * * * * * *-->
-        <!-- This form is pre-integrated with SB Forms.-->
-        <!-- To make this form functional, sign up at-->
-        <!-- https://startbootstrap.com/solution/contact-forms-->
-        <!-- to get an API token!-->
-        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-            <div class="row align-items-stretch mb-5">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <!-- Name input-->
-                        <input class="form-control" id="name" type="text" placeholder="Your Name *"
-                            data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                    </div>
-                    <div class="form-group">
-                        <!-- Email address input-->
-                        <input class="form-control" id="email" type="email" placeholder="Your Email *"
-                            data-sb-validations="required,email" />
-                        <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                        <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                    </div>
-                    <div class="form-group mb-md-0">
-                        <!-- Phone number input-->
-                        <input class="form-control" id="phone" type="tel" placeholder="Your Phone *"
-                            data-sb-validations="required" />
-                        <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group form-group-textarea mb-md-0">
-                        <!-- Message input-->
-                        <textarea class="form-control" id="message" placeholder="Your Message *"
-                            data-sb-validations="required"></textarea>
-                        <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                    </div>
-                </div>
-            </div>
-            <!-- Submit success message-->
-            <!---->
-            <!-- This is what your users will see when the form-->
-            <!-- has successfully submitted-->
-            <div class="d-none" id="submitSuccessMessage">
-                <div class="text-center text-white mb-3">
-                    <div class="fw-bolder">Form submission successful!</div>
-                    To activate this form, sign up at
-                    <br />
-                    <a
-                        href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                </div>
-            </div>
-            <!-- Submit error message-->
-            <!---->
-            <!-- This is what your users will see when there is-->
-            <!-- an error submitting the form-->
-            <div class="d-none" id="submitErrorMessage">
-                <div class="text-center text-danger mb-3">Error sending message!</div>
-            </div>
-            <!-- Submit Button-->
-            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase disabled" id="submitButton"
-                    type="submit">Send Message</button></div>
-        </form>
+        
+      </div>
     </div>
-</section>
-<app-footer></app-footer>
+  </div>
+  
+ <!-- testimonial section end -->
+
+  
+  
+ 
+  
+    <section class="contact py-5">
+        <div class="container">
+            <h2 class="contact-title text-center">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </section>
+      
+   <app-footer></app-footer>
+ 

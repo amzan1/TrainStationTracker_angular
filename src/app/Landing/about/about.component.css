@@ -1,0 +1,38 @@
+/* app-about.component.css */
+.about-content {
+  padding: 5rem 0;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.about-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.about-text {
+  font-size: 1.125rem;
+  color: #333333;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.about-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-values {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.125rem;
+  color: #555555;
+}
+
+.about-values li {
+  margin-bottom: 1rem;
+}

@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { HomeComponent } from './Landing/home/home.component';
+import { AboutComponent } from './Landing/about/about.component';
+import { ContactComponent } from './Landing/contact/contact.component';
 
 const routes: Routes = [
  
@@ -20,6 +22,14 @@ const routes: Routes = [
     path:'',
     component:HomeComponent
   },
+  {
+    path:'about',
+    component:AboutComponent
+  },
+  {
+    path:'contact',
+    component:ContactComponent
+  }
   
 ];
 

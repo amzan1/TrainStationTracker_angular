@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatStepperModule } from '@angular/material/stepper';
 import { UserService } from '../Services/user.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatFormFieldModule,
     AuthRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
     ],
   exports: [
     RegisterComponent,
