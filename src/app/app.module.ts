@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -14,17 +15,22 @@ import { ContactComponent } from './Landing/contact/contact.component';
 import { AboutComponent } from './Landing/about/about.component';
 import { UserModule } from './user/user.module';
 import { UsersFilterPipe } from './Pipes/users-filter.pipe';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from 'src/Intersptor/token.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ContactComponent,
-    AboutComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
     SharedModule,
+    NgxSpinnerModule,
+    ToastrModule.forRoot(),
+    ToastNoAnimationModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -33,7 +39,13 @@ import { UsersFilterPipe } from './Pipes/users-filter.pipe';
     AdminModule,
     UserModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,37 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from 'src/app/Services/user.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthService } from 'src/app/Services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   loginForm: FormGroup;
-
-  constructor(private fb: FormBuilder, private userService: UserService) {
+ 
+ 
+  constructor(private fb: FormBuilder, public auth: AuthService, private spinner:NgxSpinnerService) {
     this.loginForm = this.fb.group({
       userName: ['', Validators.required],
       Password: ['', Validators.required]
     });
   }
-
-  ngOnInit(): void {}
-
+ 
   onSubmit() {
+    this.spinner.show();
+    setTimeout(()=>{
+      this.spinner.hide();
+    },3000);
+
     if (this.loginForm.valid) {
       const credentials = this.loginForm.value;
-      this.userService.login(credentials)
-        .subscribe(response => {
-          console.log('Login successful. Token:', response);
-          // Handle successful login, e.g., store token in local storage
-        }, error => {
-          console.error('Login error:', error);
-          // Handle login error, e.g., display error message
-        });
-    } else {
-      // Handle form validation errors if needed
+      this.auth.Login(credentials)
     }
   }
 }
+ 
+
+

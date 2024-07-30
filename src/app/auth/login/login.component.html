@@ -1,32 +1,31 @@
 <div class="login-container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Login</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-              <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Username</mat-label>
-                <input matInput formControlName="userName" required>
-                <mat-error *ngIf="loginForm.get('userName')?.hasError('required')">Username is required</mat-error>
-              </mat-form-field>
-              <mat-form-field class="full-width" appearance="outline">
-                <mat-label>Password</mat-label>
-                <input matInput type="password" formControlName="Password" required>
-                <mat-error *ngIf="loginForm.get('Password')?.hasError('required')">Password is required</mat-error>
-              </mat-form-field>
-              <div class="text-center">
-                <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
-              </div>
-            </form>
-          </mat-card-content>
-        </mat-card>
-        <p class="text-center mt-3">
-          New user? <a routerLink="/register">Register here</a>
-        </p>
-      </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input matInput formControlName="userName" required>
+              <mat-error *ngIf="loginForm.get('userName')?.hasError('required')">Username is required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="Password" required>
+              <mat-error *ngIf="loginForm.get('Password')?.hasError('required')">Password is required</mat-error>
+            </mat-form-field>
+            <div class="text-center">
+              <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" (click)="onSubmit">Login</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+      <p class="text-center mt-3">
+        New user? <a routerLink="/register">Register here</a>
+      </p>
     </div>
   </div>
-  
+</div>

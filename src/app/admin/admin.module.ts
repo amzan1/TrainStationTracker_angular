@@ -16,6 +16,7 @@ import { TrainStationsComponent } from './train-stations/train-stations.componen
 import { StationFilterPipe } from '../Pipes/station-filter.pipe';
 import { CreateTrainComponent } from './create-train/create-train.component';
 import { ReportsComponent } from './reports/reports.component';
+import { MapComponent } from './map/map.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ReportsComponent } from './reports/reports.component';
     TrainStationsComponent,
     StationFilterPipe,
     CreateTrainComponent,
-    ReportsComponent
+    ReportsComponent,
+    MapComponent
 
   ],
   imports: [

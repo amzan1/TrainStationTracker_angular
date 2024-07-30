@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { forkJoin, map, Observable, tap } from 'rxjs';
 export interface User {
   userid: number;
@@ -42,7 +43,7 @@ export interface Trip {
 })
 export class AdminService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastr:ToastrService) { }
   numOfBookedTripsUrl = 'https://localhost:7159/api/Statistics/GetNumberOfBookedTrips';
   numOfTrainStationsUrl = 'https://localhost:7159/api/Statistics/GetNumberOfTrainStations';
   numOfActiveTripsUrl = 'https://localhost:7159/api/Statistics/GetNumberOfTrips';
@@ -88,17 +89,20 @@ export class AdminService {
   }
 
   getAllTrainStation() {
-    return this.http.get(this.getAllStationsUrl)
+    return this.http.get(this.getAllStationsUrl) 
   }
   updateTrip(body: any) {
     console.log('Updated');
     this.http.put(this.UpdateTripUrl, body).subscribe(res => {
       console.log("Updated");
+      this.toastr.success('Update successful!');
+
       window.location.reload();
 
     },
       err => {
         console.log("Failed");
+        this.toastr.error('Update failed. Please try again.');
         console.log(err);
       })
   }
@@ -106,10 +110,14 @@ export class AdminService {
     console.log(body);
     this.http.post(this.createTripUrl, body).subscribe(res => {
       console.log("Created");
+      this.toastr.success('Create successful!');
+
 
     },
       err => {
         console.log("Failed" + err);
+        this.toastr.error('Create failed. Please try again.');
+
 
       })
   }
@@ -143,22 +151,29 @@ export class AdminService {
   DeleteTrip(id: number) {
     this.http.delete(this.deleteTripUrl + id).subscribe((res) => {
       console.log('Deleted');
+      this.toastr.success('Delete successful! The item has been removed.');
+
       window.location.reload();
       this.getTrips();
     },
       err => {
         console.log("Error:" + err.status);
+        this.toastr.error('Delete failed. Please try again.');
+
       })
   }
 
   DeleteTrain(id: number) {
     this.http.delete(this.deleteTrainUrl + id).subscribe((res) => {
       console.log('Deleted');
+      this.toastr.success('Delete successful! The item has been removed.');
       window.location.reload();
       this.getAllTrainStation();
     },
       err => {
         console.log("Error:" + err.status);
+        this.toastr.error('Delete failed. Please try again.');
+
       })
   }
 
@@ -167,12 +182,15 @@ export class AdminService {
     console.log(body);
     this.http.put(this.updateTrainStationUrl, body).subscribe(res => {
       console.log("Updated");
+      this.toastr.success('Update successful!');
       window.location.reload();
 
     },
       err => {
         console.log("Updated Failed");
         console.log(err);
+        this.toastr.error('Update failed. Please try again.');
+
       })
   }
 
@@ -181,10 +199,13 @@ export class AdminService {
     console.log(body);
     this.http.post(this.createTrainStationUrl, body).subscribe(res => {
       console.log("Created");
+      this.toastr.success('Create successful!');
+
 
     },
       err => {
         console.log("Failed" + err);
+        this.toastr.error('Create failed. Please try again.');
 
       })
   }
