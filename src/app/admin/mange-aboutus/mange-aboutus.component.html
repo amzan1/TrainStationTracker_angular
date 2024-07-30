@@ -1,0 +1,63 @@
+<body class="with-welcome-text">
+    <div class="container-scroller">
+        <div class="row p-0 m-0 proBanner" id="proBanner">
+            <div class="col-md-12 p-0 m-0"></div>
+        </div>
+  
+        <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+                <div class="me-3">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
+                        <span class="icon-menu"></span>
+                    </button>
+                </div>
+                <div>
+                    <a class="navbar-brand brand-logo" routerLink="/admin/dashboard">Train Tracker</a>
+                </div>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-top">
+                <ul class="navbar-nav">
+                    <li class="nav-item fw-semibold d-none d-lg-block ms-0">
+                        <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">John Doe</span></h1>
+                        <h3 class="welcome-sub-text">Your performance summary this week</h3>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+  
+        <div class="container-fluid page-body-wrapper">
+            <app-sidebar></app-sidebar>
+        <div class="container">
+          <h1 class="page-title">About us Page Content</h1>
+          <div class="content-card" *ngIf="homeContent">
+            <img src="../../../assets/image/{{homeContent?.image}}" alt="Content Image">
+            <h2>{{ homeContent?.title }}</h2>
+            <p>{{ homeContent?.content }}</p>
+            <button mat-raised-button color="primary" (click)="openUpdateDialog(homeContent)">Edit</button>
+          </div>
+          <ng-template #updateDialog>
+            <h1 mat-dialog-title>Update Content</h1>
+            <div mat-dialog-content>
+              <form [formGroup]="updateForm" (ngSubmit)="onSubmit()" class="update-form">
+                <mat-form-field appearance="fill">
+                  <mat-label>Title</mat-label>
+                  <input matInput formControlName="title">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                  <mat-label>Content</mat-label>
+                  <textarea matInput formControlName="content"></textarea>
+                </mat-form-field>
+                <div>
+                  <input type="file" formControlName="image" #file (change)="uploadImage(file.files)">
+                </div>  
+                <div mat-dialog-actions>
+                  <button mat-button mat-dialog-close>Cancel</button>
+                  <button mat-raised-button color="primary" type="submit">Update</button>
+                </div>
+              </form>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </body>
