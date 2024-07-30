@@ -6,6 +6,7 @@ import { AdminModule } from './admin/admin.module';
 import { HomeComponent } from './Landing/home/home.component';
 import { AboutComponent } from './Landing/about/about.component';
 import { ContactComponent } from './Landing/contact/contact.component';
+import { authorizationGuard } from './authorization.guard';
 
 const routes: Routes = [
  
@@ -15,8 +16,14 @@ const routes: Routes = [
     loadChildren: ()=>AuthModule
   },
   {
+    path:'',
+    component:HomeComponent
+  },
+  {
     path:'admin',
-    loadChildren:()=>AdminModule
+    loadChildren:()=>AdminModule,
+    canActivate:[authorizationGuard]
+
   },
   {
     path:'',
@@ -29,6 +36,7 @@ const routes: Routes = [
   {
     path:'contact',
     component:ContactComponent
+
   }
   
 ];

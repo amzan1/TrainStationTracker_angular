@@ -14,6 +14,18 @@ import { TripsComponent } from './trips/trips.component';
 import { CreateTripsComponent } from './create-trips/create-trips.component';
 import { TrainStationsComponent } from './train-stations/train-stations.component';
 import { StationFilterPipe } from '../Pipes/station-filter.pipe';
+import { CreateTrainComponent } from './create-train/create-train.component';
+import { ReportsComponent } from './reports/reports.component';
+import { MapComponent } from './map/map.component';
+import { DateRangeFilterPipe } from '../Pipes/date-range-filter.pipe';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { DateTripFilterPipe } from '../Pipes/date-trip-filter.pipe';
+import { TestimonialsComponent } from './testimonials/testimonials.component';
+import { MangeHomeComponent } from './mange-home/mange-home.component';
+import { MangeAboutusComponent } from './mange-aboutus/mange-aboutus.component';
+import { MangeContactusComponent } from './mange-contactus/mange-contactus.component';
+
 
 
 @NgModule({
@@ -25,7 +37,16 @@ import { StationFilterPipe } from '../Pipes/station-filter.pipe';
     TripsComponent,
     CreateTripsComponent,
     TrainStationsComponent,
-    StationFilterPipe
+    StationFilterPipe,
+    CreateTrainComponent,
+    ReportsComponent,
+    MapComponent,
+    DateRangeFilterPipe,
+    DateTripFilterPipe,
+    TestimonialsComponent,
+    MangeHomeComponent,
+    MangeAboutusComponent,
+    MangeContactusComponent
 
   ],
   imports: [
@@ -34,6 +55,8 @@ import { StationFilterPipe } from '../Pipes/station-filter.pipe';
     SharedModule,
     HttpClientModule,
     FormsModule,  // Add FormsModule to imports
+    MatDatepickerModule,
+    MatNativeDateModule,
 
   ],
   exports: [
@@ -41,7 +64,8 @@ import { StationFilterPipe } from '../Pipes/station-filter.pipe';
     CreateTripsComponent,
     UsersFilterPipe,
     TripsFilterPipe,
-    StationFilterPipe
+    StationFilterPipe,
+    DateRangeFilterPipe
   ]
 })
 export class AdminModule { }

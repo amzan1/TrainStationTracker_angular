@@ -40,6 +40,9 @@ export class CreateTripsComponent implements OnInit{
         this.updateForm.controls['destinationstationid'].valueChanges.subscribe(value => {
           this.filterStations();
         });
+
+        console.log(this.filteredStationsForDestination);
+        
     } 
     filterStations() {
       const originStationId = this.updateForm.controls['originstationid'].value;

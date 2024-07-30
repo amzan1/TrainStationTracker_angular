@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { forkJoin, map, Observable, tap } from 'rxjs';
 export interface User {
   userid: number;
@@ -20,6 +21,7 @@ export interface Station {
   latitude: number;
   longitude: number;
   createdat: string;
+  image:string;
 }
 export interface Trip {
   tripid: number;
@@ -41,7 +43,7 @@ export interface Trip {
 })
 export class AdminService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastr:ToastrService) { }
   numOfBookedTripsUrl = 'https://localhost:7159/api/Statistics/GetNumberOfBookedTrips';
   numOfTrainStationsUrl = 'https://localhost:7159/api/Statistics/GetNumberOfTrainStations';
   numOfActiveTripsUrl = 'https://localhost:7159/api/Statistics/GetNumberOfTrips';
@@ -55,6 +57,68 @@ export class AdminService {
   deleteTripUrl = 'https://localhost:7159/api/Trips/DeleteTrip/';
   createTripUrl = 'https://localhost:7159/api/Trips/CreateTrip';
   updateTrainStationUrl = 'https://localhost:7159/api/TrainStation/UpdateTrainstation';
+  createTrainStationUrl ='https://localhost:7159/api/TrainStation/CreateTrainstation';
+  getAllReportsUrl ='https://localhost:7159/api/Report/Report';
+  getTestimonialsUrl='https://localhost:7159/api/Testimonial/GetAllTestimonial';
+  acceptTestimonialUrl='https://localhost:7159/api/Testimonial/AcceptTestimonial/';
+  rejectTestimonialUrl ='https://localhost:7159/api/Testimonial/RejectTestimonial/';
+
+
+  // Pages Management 
+  getHomeContentUrl ='https://localhost:7159/api/HomePage/GetAllHomePage';
+  updateHomeContentUrl = 'https://localhost:7159/api/HomePage/UpdateHomePage';
+
+  getAboutUsContentUrl ='https://localhost:7159/api/AboutUs/GetAllAboutUsPage';
+  updateAboutUsUrl ='https://localhost:7159/api/AboutUs/UpdateAboutUsPage';
+
+  getContactUsUrl ='https://localhost:7159/api/Contact/GetAllContactUsPage';
+  updateContactUsUrl ='https://localhost:7159/api/Contact/UpdateContactUsPage';
+
+  uploadImageUrl = 'https://localhost:7159/api/UploadImage';
+  displayImg:any;
+// Upload images
+uploadAttachments(img: FormData) {
+  this.http.post(this.uploadImageUrl, img, { responseType: 'text' }).subscribe({
+    next: (res: string) => {
+      this.displayImg = res; // Directly assign the plain text response
+      console.log(this.displayImg);
+    },
+    error: (err) => {
+      console.error('Error uploading image:', err);
+    }
+  });
+}
+
+
+
+  getContactusPage(): Observable<any[]> {
+    return this.http.get<any[]>(this.getContactUsUrl);
+  }
+
+  updateContactUsContent(body: any): Observable<any> {
+    return this.http.put(this.updateContactUsUrl, body);
+  }
+
+  getAboutusPage(): Observable<any[]> {
+    return this.http.get<any[]>(this.getAboutUsContentUrl);
+  }
+
+  updateAboutUsContent(body: any): Observable<any> {
+    body.image = this.displayImg;
+    return this.http.put(this.updateAboutUsUrl, body);
+  }
+
+  getHomeContent(): Observable<any[]> {
+    return this.http.get<any[]>(this.getHomeContentUrl);
+  }
+
+  updateHomeContent(body: any): Observable<any> {
+    body.image = this.displayImg;
+    return this.http.put(this.updateHomeContentUrl, body);
+  }
+
+
+
   getTrips(): Observable<Trip[]> {
     return forkJoin({
       trips: this.http.get<Trip[]>(this.getAllTripsUrl),
@@ -86,17 +150,20 @@ export class AdminService {
   }
 
   getAllTrainStation() {
-    return this.http.get(this.getAllStationsUrl)
+    return this.http.get(this.getAllStationsUrl) 
   }
   updateTrip(body: any) {
     console.log('Updated');
     this.http.put(this.UpdateTripUrl, body).subscribe(res => {
       console.log("Updated");
+      this.toastr.success('Update successful!');
+
       window.location.reload();
 
     },
       err => {
         console.log("Failed");
+        this.toastr.error('Update failed. Please try again.');
         console.log(err);
       })
   }
@@ -104,10 +171,14 @@ export class AdminService {
     console.log(body);
     this.http.post(this.createTripUrl, body).subscribe(res => {
       console.log("Created");
+      this.toastr.success('Create successful!');
+
 
     },
       err => {
         console.log("Failed" + err);
+        this.toastr.error('Create failed. Please try again.');
+
 
       })
   }
@@ -137,39 +208,123 @@ export class AdminService {
   getTotalRevinue(): Observable<number> {
     return this.http.get<number>(this.totalRevinueUrl);
   }
+  
+  getInitialReport(): Observable<any[]> {
+    return forkJoin({
+      Reports: this.http.get<any[]>(this.getAllReportsUrl),
+      stations: this.http.get<any[]>(this.getAllStationsUrl)
+    }).pipe(
+      map(({ Reports, stations }) => {
+        const stationMap = this.createStationMap(stations);
+        return Reports.map(Reports => ({
+          ...Reports,
+          originstation: stationMap[Reports.originstationid] || 'Unknown',
+          destinationstation: stationMap[Reports.destinationstationid] || 'Unknown',
+        }));
+      })
+    );
+  }
+
+  getTestimonials(): Observable<any[]> {
+    return forkJoin({
+      testimonials: this.http.get<any[]>(this.getTestimonialsUrl),
+      users: this.http.get<any[]>(this.getAllUsersUrl)
+    }).pipe(
+      map(({ testimonials, users }) => {
+        // Create a map of userId to username
+        const userMap = users.reduce((acc, user) => {
+          acc[user.id] = user.username; // Assuming the user object has a 'username' field
+          return acc;
+        }, {});
+  
+        // Map through testimonials to add username
+        return testimonials.map(testimonial => ({
+          ...testimonial,
+          username: userMap[testimonial.userId] || 'Unknown'
+        }));
+      })
+    );
+  }
+  approveTestimonial(id: number): Observable<any> {
+    return this.http.put(this.acceptTestimonialUrl + id, {});
+  }
+
+  rejectTestimonial(id: number): Observable<any> {
+    return this.http.put(this.rejectTestimonialUrl + id, {});
+  }
+  
 
   DeleteTrip(id: number) {
     this.http.delete(this.deleteTripUrl + id).subscribe((res) => {
       console.log('Deleted');
+      this.toastr.success('Delete successful! The item has been removed.');
+
       window.location.reload();
       this.getTrips();
     },
       err => {
         console.log("Error:" + err.status);
+        this.toastr.error('Delete failed. Please try again.');
+
       })
   }
 
   DeleteTrain(id: number) {
     this.http.delete(this.deleteTrainUrl + id).subscribe((res) => {
       console.log('Deleted');
+      this.toastr.success('Delete successful! The item has been removed.');
       window.location.reload();
       this.getAllTrainStation();
     },
       err => {
         console.log("Error:" + err.status);
+        this.toastr.error('Delete failed. Please try again.');
+
       })
   }
 
   updateTrainStation(body: any) {
-    console.log('Updated');
+    body.Image=this.displayImage;
+    console.log(body);
     this.http.put(this.updateTrainStationUrl, body).subscribe(res => {
       console.log("Updated");
+      this.toastr.success('Update successful!');
       window.location.reload();
 
     },
       err => {
-        console.log("Failed");
+        console.log("Updated Failed");
         console.log(err);
+        this.toastr.error('Update failed. Please try again.');
+
       })
+  }
+
+  createTrainStation(body: any) {
+    body.Image=this.displayImage;
+    console.log(body);
+    this.http.post(this.createTrainStationUrl, body).subscribe(res => {
+      console.log("Created");
+      this.toastr.success('Create successful!');
+
+
+    },
+      err => {
+        console.log("Failed" + err);
+        this.toastr.error('Create failed. Please try again.');
+
+      })
+  }
+
+
+  displayImage:any;
+  uploadImage(image:FormData){
+    this.http.post('https://localhost:7159/api/UploadImage',image).subscribe((res:any)=>{
+      this.displayImage= res.image;
+      console.log(res);
+    },err=>{
+      console.log('uplodImage error'+err);
+    })
+
   }
 }

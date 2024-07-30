@@ -1,0 +1,74 @@
+/* Container */
+.container {
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .content-card {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .content-card img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  
+  .content-card h2 {
+    margin: 15px 0;
+    font-size: 22px;
+  }
+  
+  .content-card p {
+    font-size: 16px;
+  }
+  
+  button {
+    margin-top: 15px;
+  }/* Ensure the dialog has enough space and padding */
+  .custom-dialog-container {
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  /* Style the dialog title */
+  .mat-dialog-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  /* Style form fields to be displayed vertically */
+  .update-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 16px; /* Space between form fields */
+  }
+  
+  /* Add some padding to the content area */
+  .mat-dialog-content {
+    padding: 20px 0; /* Adjust vertical padding as needed */
+  }
+  
+  /* Style dialog actions */
+  .mat-dialog-actions {
+    padding: 16px;
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the end */
+  }
+  

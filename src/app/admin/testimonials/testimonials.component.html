@@ -1,0 +1,36 @@
+<body class="with-welcome-text">
+    <div class="container-scroller">
+        <!-- Navbar and other components -->
+
+        <div class="container-fluid page-body-wrapper">
+            <app-sidebar></app-sidebar>
+            <div class="row gy-5">
+                <div *ngFor="let testimonial of testimonials" class="col-md-4">
+                  <div class="testimonial-card">
+                    <div class="testimonial-content">
+                      <div class="testimonial-header">
+                        <div>{{ testimonial.username }}</div>
+                        <div [ngClass]="{'approved': testimonial.status === 'Approve', 'not-approved': testimonial.status !== 'Approve'}" class="status">
+                          {{ testimonial.status }}
+                        </div>
+                      </div>
+                      <h3 class="testimonial-text">
+                        {{ testimonial.content }}
+                      </h3>
+                      <div class="testimonial-date">
+                        {{ testimonial.createdat | date: 'short' }}
+                      </div>
+                      <form (ngSubmit)="handleTestimonialAction(testimonial.testimonialid, testimonial.status)" class="testimonial-form">
+                        <button type="submit" [ngClass]="{
+                          'approve-btn': testimonial.status !== 'Approve',
+                          'reject-btn': testimonial.status === 'Approve'
+                        }">
+                          {{ testimonial.status === 'Approve' ? 'Delete From Home Page' : 'Add To Home Page' }}
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
