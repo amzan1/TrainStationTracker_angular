@@ -58,6 +58,67 @@ export class AdminService {
   createTripUrl = 'https://localhost:7159/api/Trips/CreateTrip';
   updateTrainStationUrl = 'https://localhost:7159/api/TrainStation/UpdateTrainstation';
   createTrainStationUrl ='https://localhost:7159/api/TrainStation/CreateTrainstation';
+  getAllReportsUrl ='https://localhost:7159/api/Report/Report';
+  getTestimonialsUrl='https://localhost:7159/api/Testimonial/GetAllTestimonial';
+  acceptTestimonialUrl='https://localhost:7159/api/Testimonial/AcceptTestimonial/';
+  rejectTestimonialUrl ='https://localhost:7159/api/Testimonial/RejectTestimonial/';
+
+
+  // Pages Management 
+  getHomeContentUrl ='https://localhost:7159/api/HomePage/GetAllHomePage';
+  updateHomeContentUrl = 'https://localhost:7159/api/HomePage/UpdateHomePage';
+
+  getAboutUsContentUrl ='https://localhost:7159/api/AboutUs/GetAllAboutUsPage';
+  updateAboutUsUrl ='https://localhost:7159/api/AboutUs/UpdateAboutUsPage';
+
+  getContactUsUrl ='https://localhost:7159/api/Contact/GetAllContactUsPage';
+  updateContactUsUrl ='https://localhost:7159/api/Contact/UpdateContactUsPage';
+
+  uploadImageUrl = 'https://localhost:7159/api/UploadImage';
+  displayImg:any;
+// Upload images
+uploadAttachments(img: FormData) {
+  this.http.post(this.uploadImageUrl, img, { responseType: 'text' }).subscribe({
+    next: (res: string) => {
+      this.displayImg = res; // Directly assign the plain text response
+      console.log(this.displayImg);
+    },
+    error: (err) => {
+      console.error('Error uploading image:', err);
+    }
+  });
+}
+
+
+
+  getContactusPage(): Observable<any[]> {
+    return this.http.get<any[]>(this.getContactUsUrl);
+  }
+
+  updateContactUsContent(body: any): Observable<any> {
+    return this.http.put(this.updateContactUsUrl, body);
+  }
+
+  getAboutusPage(): Observable<any[]> {
+    return this.http.get<any[]>(this.getAboutUsContentUrl);
+  }
+
+  updateAboutUsContent(body: any): Observable<any> {
+    body.image = this.displayImg;
+    return this.http.put(this.updateAboutUsUrl, body);
+  }
+
+  getHomeContent(): Observable<any[]> {
+    return this.http.get<any[]>(this.getHomeContentUrl);
+  }
+
+  updateHomeContent(body: any): Observable<any> {
+    body.image = this.displayImg;
+    return this.http.put(this.updateHomeContentUrl, body);
+  }
+
+
+
   getTrips(): Observable<Trip[]> {
     return forkJoin({
       trips: this.http.get<Trip[]>(this.getAllTripsUrl),
@@ -147,6 +208,51 @@ export class AdminService {
   getTotalRevinue(): Observable<number> {
     return this.http.get<number>(this.totalRevinueUrl);
   }
+  
+  getInitialReport(): Observable<any[]> {
+    return forkJoin({
+      Reports: this.http.get<any[]>(this.getAllReportsUrl),
+      stations: this.http.get<any[]>(this.getAllStationsUrl)
+    }).pipe(
+      map(({ Reports, stations }) => {
+        const stationMap = this.createStationMap(stations);
+        return Reports.map(Reports => ({
+          ...Reports,
+          originstation: stationMap[Reports.originstationid] || 'Unknown',
+          destinationstation: stationMap[Reports.destinationstationid] || 'Unknown',
+        }));
+      })
+    );
+  }
+
+  getTestimonials(): Observable<any[]> {
+    return forkJoin({
+      testimonials: this.http.get<any[]>(this.getTestimonialsUrl),
+      users: this.http.get<any[]>(this.getAllUsersUrl)
+    }).pipe(
+      map(({ testimonials, users }) => {
+        // Create a map of userId to username
+        const userMap = users.reduce((acc, user) => {
+          acc[user.id] = user.username; // Assuming the user object has a 'username' field
+          return acc;
+        }, {});
+  
+        // Map through testimonials to add username
+        return testimonials.map(testimonial => ({
+          ...testimonial,
+          username: userMap[testimonial.userId] || 'Unknown'
+        }));
+      })
+    );
+  }
+  approveTestimonial(id: number): Observable<any> {
+    return this.http.put(this.acceptTestimonialUrl + id, {});
+  }
+
+  rejectTestimonial(id: number): Observable<any> {
+    return this.http.put(this.rejectTestimonialUrl + id, {});
+  }
+  
 
   DeleteTrip(id: number) {
     this.http.delete(this.deleteTripUrl + id).subscribe((res) => {

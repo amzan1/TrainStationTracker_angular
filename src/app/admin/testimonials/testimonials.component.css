@@ -1,0 +1,117 @@
+/* Container for the testimonial cards */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  /* Individual testimonial card */
+  .testimonial-card {
+    max-width: 350px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Hover effect for the card */
+  .testimonial-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Content inside the card */
+  .testimonial-content {
+    padding: 20px;
+  }
+  
+  /* Header of the card */
+  .testimonial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  /* User info link */
+  .testimonial-header a {
+    color: #333;
+    font-size: 16px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* Status badge */
+  .testimonial-header div.status {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  /* Approved badge styling */
+  .testimonial-header div.approved {
+    background-color: #d4edda;
+    color: #155724;
+  }
+  
+  /* Not approved badge styling */
+  .testimonial-header div.not-approved {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  /* Text of the testimonial */
+  .testimonial-text {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  /* Date of the testimonial */
+  .testimonial-date {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 20px;
+  }
+  
+  /* Form for action buttons */
+  .testimonial-form {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Action button */
+  .testimonial-form button {
+    font-size: 14px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Approve button styling */
+  .approve-btn {
+    background-color: #28a745;
+  }
+  
+  /* Approve button hover effect */
+  .approve-btn:hover {
+    background-color: #218838;
+    transform: scale(1.02);
+  }
+  
+  /* Reject button styling */
+  .reject-btn {
+    background-color: #dc3545;
+  }
+  
+  /* Reject button hover effect */
+  .reject-btn:hover {
+    background-color: #c82333;
+    transform: scale(1.02);
+  }
+  

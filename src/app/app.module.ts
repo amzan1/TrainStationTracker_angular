@@ -17,6 +17,8 @@ import { UserModule } from './user/user.module';
 import { UsersFilterPipe } from './Pipes/users-filter.pipe';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/Intersptor/token.interceptor';
+import { DateRangeFilterPipe } from './Pipes/date-range-filter.pipe';
+import { DateTripFilterPipe } from './Pipes/date-trip-filter.pipe';
 
 @NgModule({
   declarations: [
