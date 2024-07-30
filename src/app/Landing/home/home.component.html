@@ -1,1 +1,94 @@
-<p>home works!</p>
+<app-navbar></app-navbar>
+
+<header class="hero-section text-center" >
+    <div class="container">
+    <h1 class="hero-title">Experience the Future of Technology</h1>
+
+    <p class="hero-subtitle">Innovative solutions that redefine what's possible.</p>
+    <a  routerLink="/about"  class="btn btn-primary btn-lg">Learn More</a>
+    </div>
+    </header>
+     
+<div class="about-content py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="about-title">Who We Are</h2>
+                <p class="about-text">We are a passionate team dedicated to crafting innovative technology solutions that make a difference. With a rich history of excellence, we pride ourselves on our commitment to quality and our drive for continuous improvement.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="../assets/image/Train3.jpg" alt="Our Team" class="about-image">
+            </div>
+        </div>
+        
+    </div>
+  </div>
+
+  <div class="testimonial_section layout_padding">
+    <div class="container">
+      <div id="costum_slider" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+
+          <div *ngFor="let testimonial of testimonials; let i = index" [class.active]="i === currentSlide" class="carousel-item">
+            <div class="row">
+              <div class="col-md-12">
+                <h1 class="testimonial_taital">Testimonial</h1>
+                <div class="testimonial_section_2">
+                  <h2 class="client_name_text">{{ testimonial.author }}
+                    <span style="float: right;"><img src="../assets/image/quick-icon.png"></span>
+                  </h2>
+                  <p class="textimonial_text">{{ testimonial.text }}</p>
+                </div>
+                
+             
+              </div>
+              
+            </div>
+            
+          </div>
+          <button class="carousel-control-prev" role="button" (click)="prevSlide()">
+            <i class="fa fa-angle-left"></i>
+        </button>
+        <button class="carousel-control-next" role="button" (click)="nextSlide()">
+            <i class="fa fa-angle-right"></i>
+        </button>
+        
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+ <!-- testimonial section end -->
+
+  
+  
+ 
+  
+    <section class="contact py-5">
+        <div class="container">
+            <h2 class="contact-title text-center">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </section>
+      
+   <app-footer></app-footer>
+ 

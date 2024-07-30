@@ -1,0 +1,152 @@
+/* landing-page.component.css */
+.hero-section {
+  background: url('src/assets/image/Train1.jpg') no-repeat center center/cover; 
+  color: #ffffff;
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20rem;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+}
+.hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  border-radius: 25px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.testimonial_section {
+  width: 100%;
+  float: left;
+  background-color: #333;
+  height: auto;
+  padding: 90px 0px 150px 0px;
+  background-size: 100%;
+}
+
+.testimonial_taital {
+  width: 100%;
+  float: left;
+  font-size: 40px;
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+}
+.client_name_text {
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.textimonial_text {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 40px;
+  color: #0d0d0d;
+  margin: 0px;
+  text-align: left;
+  border-radius: 4px;
+}
+
+#costum_slider a.carousel-control-next {
+  right: -60px;
+  left: 0px;
+  top: 500px;
+}
+
+#costum_slider a.carousel-control-prev {
+  left: -60px;
+  right: 0px;
+  top: 500px;
+  color: #fff;
+  background-color: #fda417;
+}
+
+#costum_slider .carousel-control-next,
+#costum_slider .carousel-control-prev {
+  width: 55px;
+  height: 55px;
+  background: #ffffff;
+  opacity: 1;
+  font-size: 30px;
+  color: #252525;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 100px;
+}
+
+#costum_slider .carousel-control-next:focus,
+#costum_slider .carousel-control-next:hover,
+#costum_slider .carousel-control-prev:focus,
+#costum_slider .carousel-control-prev:hover {
+  color: #fff;
+  background-color: #fda417;
+}
+
+
+/* testimonial section end  */
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+/* app-about.component.css */
+.about-content {
+  padding: 5rem 0;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.about-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.about-text {
+  font-size: 1.125rem;
+  color: #333333;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.about-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.about-values {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.125rem;
+  color: #555555;
+}
+
+.about-values li {
+  margin-bottom: 1rem;
+}
