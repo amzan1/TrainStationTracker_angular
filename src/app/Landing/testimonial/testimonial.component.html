@@ -1,0 +1,45 @@
+<div class="testimonial_section layout_padding">
+    <!-- <div class="container">
+      <div id="costum_slider" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+
+          <div >
+            <div class="row">
+              <div class="col-md-12" >
+                <h1 class="testimonial_taital">TESTIMONIALS</h1>
+                <div class="testimonial_section_2" *ngFor="let testimonial of testimonials">
+                  <h2 class="client_name_text">{{ testimonial.username }}
+                    <span style="float: right;"><img src="../assets/image/quick-icon.png"></span>
+                  </h2>
+                  <p class="textimonial_text">{{ testimonial.content }}</p>
+                </div>
+                
+             
+              </div>
+              
+            </div>
+            
+          </div>
+          <button class="carousel-control-prev" role="button" (click)="prevSlide()">
+            <i class="fa fa-angle-left"></i>
+        </button>
+        <button class="carousel-control-next" role="button" (click)="nextSlide()">
+            <i class="fa fa-angle-right"></i>
+        </button>
+        
+        </div>
+        
+      </div>
+    </div>
+  </div>  -->
+  
+ <!-- testimonial section end -->
+
+ <div class="testimonial-slider">
+  <div class="testimonial" *ngFor="let testimonial of testimonials; let i = index" [class.active]="i === activeIndex">
+    <p class="testimonial-text">{{ testimonial.username }}</p>
+    <p class="testimonial-author">{{ testimonial.content }}</p>
+  </div>
+  <button class="prev" (click)="prevSlide()">&#10094;</button>
+  <button class="next" (click)="nextSlide()">&#10095;</button>
+</div>

@@ -19,13 +19,15 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/Intersptor/token.interceptor';
 import { DateRangeFilterPipe } from './Pipes/date-range-filter.pipe';
 import { DateTripFilterPipe } from './Pipes/date-trip-filter.pipe';
+import { TestimonialComponent } from './Landing/testimonial/testimonial.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    TestimonialComponent
   ],
   imports: [
     BrowserModule,

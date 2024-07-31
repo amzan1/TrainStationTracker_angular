@@ -62,7 +62,7 @@ export class AdminService {
   getTestimonialsUrl='https://localhost:7159/api/Testimonial/GetAllTestimonial';
   acceptTestimonialUrl='https://localhost:7159/api/Testimonial/AcceptTestimonial/';
   rejectTestimonialUrl ='https://localhost:7159/api/Testimonial/RejectTestimonial/';
-
+  getAllAprovedTestimonialUrl='https://localhost:7159/api/Testimonial/GetAllApprovedTestimonial';
 
   // Pages Management 
   getHomeContentUrl ='https://localhost:7159/api/HomePage/GetAllHomePage';
@@ -228,6 +228,26 @@ uploadAttachments(img: FormData) {
   getTestimonials(): Observable<any[]> {
     return forkJoin({
       testimonials: this.http.get<any[]>(this.getTestimonialsUrl),
+      users: this.http.get<any[]>(this.getAllUsersUrl)
+    }).pipe(
+      map(({ testimonials, users }) => {
+        // Create a map of userId to username
+        const userMap = users.reduce((acc, user) => {
+          acc[user.id] = user.username; // Assuming the user object has a 'username' field
+          return acc;
+        }, {});
+  
+        // Map through testimonials to add username
+        return testimonials.map(testimonial => ({
+          ...testimonial,
+          username: userMap[testimonial.userId] || 'Unknown'
+        }));
+      })
+    );
+  }
+  getApprovedTestimonials(): Observable<any[]> {
+    return forkJoin({
+      testimonials: this.http.get<any[]>(this.getAllAprovedTestimonialUrl),
       users: this.http.get<any[]>(this.getAllUsersUrl)
     }).pipe(
       map(({ testimonials, users }) => {
