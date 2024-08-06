@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 export const authorizationGuard: CanActivateFn = (route, state) => {
   
 const router = new Router();
-//let toaster:ToastrService = inject(ToastrService);
 
 const token = localStorage.getItem('token');
 if(token){
@@ -15,18 +14,30 @@ if(token){
     user = JSON.parse(user);
     if(user.RoleId=='1')
     {
-      //toaster.success('Welcome in admin Page');
       return true;
     }
     //diff roleid
     else{
-      //toaster.warning('this page for admin');
       router.navigate([''])
       return false;
     }
   }
   //link != admin
-  
+  else{
+    if(state.url.indexOf('user')>0){
+      let user :any = localStorage.getItem('user');
+    user = JSON.parse(user);
+    if(user.RoleId=='2')
+    {
+      return true;
+    }
+    //diff roleid
+    else{
+      router.navigate([''])
+      return false;
+    }
+    }
+  }
     return false; //else if(state.url.indexOf('user')>0)
   
   

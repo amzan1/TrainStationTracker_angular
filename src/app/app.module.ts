@@ -19,6 +19,13 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/Intersptor/token.interceptor';
 import { DateRangeFilterPipe } from './Pipes/date-range-filter.pipe';
 import { DateTripFilterPipe } from './Pipes/date-trip-filter.pipe';
+import { MatButtonModule } from '@angular/material/button';
+import { MatOptionModule, MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -38,6 +45,9 @@ import { DateTripFilterPipe } from './Pipes/date-trip-filter.pipe';
     FormsModule,
     ReactiveFormsModule,
     AuthModule,
+    //
+ 
+    //
     AdminModule,
     UserModule
   ],
