@@ -18,19 +18,19 @@ export class HomeComponent implements OnInit {
     this.fetchAboutUsPageContents();
     this.fetchHomePageContents();
     this.fetchContactUsPageContents();
-  // this.fetchTestimonials()
+   this.fetchTestimonials()
   }
  
-    // fetchTestimonials(){
-    //   this.home.getTestimonials().subscribe(
-    //     data => {
-    //       this.testimonials = data;
-    //     },
-    //     error => {
-    //       console.error('Error fetching testimonials', error);
-    //     }
-    //   );
-    // }
+    fetchTestimonials(){
+      this.home.getTestimonials().subscribe(
+        data => {
+          this.testimonials = data;
+        },
+        error => {
+          console.error('Error fetching testimonials', error);
+        }
+      );
+    }
   fetchContactUsPageContents() {
     this.home.getContactusPage().subscribe(data => {
       if (data && data.length > 0) {
@@ -54,5 +54,14 @@ export class HomeComponent implements OnInit {
     });
    
 
+  }
+  activeIndex = 0;
+
+  prevSlide() {
+    this.activeIndex = (this.activeIndex > 0) ? this.activeIndex - 1 : this.testimonials.length - 1;
+  }
+
+  nextSlide() {
+    this.activeIndex = (this.activeIndex < this.testimonials.length - 1) ? this.activeIndex + 1 : 0;
   }
 }

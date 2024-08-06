@@ -25,6 +25,7 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { MangeHomeComponent } from './mange-home/mange-home.component';
 import { MangeAboutusComponent } from './mange-aboutus/mange-aboutus.component';
 import { MangeContactusComponent } from './mange-contactus/mange-contactus.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -46,7 +47,8 @@ import { MangeContactusComponent } from './mange-contactus/mange-contactus.compo
     TestimonialsComponent,
     MangeHomeComponent,
     MangeAboutusComponent,
-    MangeContactusComponent
+    MangeContactusComponent,
+    ProfileComponent
 
   ],
   imports: [

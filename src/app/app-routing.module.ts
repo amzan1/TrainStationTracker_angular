@@ -7,6 +7,8 @@ import { HomeComponent } from './Landing/home/home.component';
 import { AboutComponent } from './Landing/about/about.component';
 import { ContactComponent } from './Landing/contact/contact.component';
 import { authorizationGuard } from './authorization.guard';
+import { TestimonialComponent } from './Landing/testimonial/testimonial.component';
+import { UserModule } from './user/user.module';
 
 const routes: Routes = [
  
@@ -37,6 +39,14 @@ const routes: Routes = [
     path:'contact',
     component:ContactComponent
 
+  },
+  {
+    path:'testimonial',
+component:TestimonialComponent
+  },
+  {
+    path: 'user',
+    loadChildren: ()=>UserModule
   }
   
 ];

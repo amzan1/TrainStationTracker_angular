@@ -1,0 +1,40 @@
+<app-signed-navbar></app-signed-navbar>
+<!-- <mat-tab-group *ngIf="trips">
+    <mat-tab label="First">
+      <ng-template matTabContent>
+        {{trips.}}
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Second">
+      <ng-template matTabContent>
+        Content 2 - Loaded: {{getTimeLoaded(2) | date:'medium'}}
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Third">
+      <ng-template matTabContent>
+        Content 3 - Loaded: {{getTimeLoaded(3) | date:'medium'}}
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+   -->
+
+   <!-- src/app/components/user-trips/user-trips.component.html -->
+<div *ngIf="trips.length > 0; else noTrips">
+    <h2>User Trips</h2>
+    <ul>
+      <li *ngFor="let trip of trips">
+        {{ trip.departuretime }} 
+      </li>
+      <li *ngFor="let trip of trips">
+        {{ trip.duratointime }} 
+      </li>
+      <li *ngFor="let trip of trips">
+        {{ trip.createdat }} 
+      </li>
+    </ul>
+  </div>
+  <ng-template #noTrips>
+    <p>No trips found.</p>
+  </ng-template>
+  
+<app-footer></app-footer>

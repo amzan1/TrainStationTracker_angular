@@ -1,0 +1,17 @@
+<app-signed-navbar></app-signed-navbar>
+<form [formGroup]="upForm" (ngSubmit)="save()">
+    <label for="content">Content:</label>
+    <textarea id="content" formControlName="content"></textarea>
+    <div *ngIf="upForm.get('content')" class="error-message">
+      Content is required
+    </div>
+  
+    <!-- Hidden User ID Field -->
+    <input id="userid" formControlName="userid" type="hidden">
+  
+    <!-- Hidden Created At Field -->
+    <input id="createdAt" formControlName="createdAt" type="hidden">
+  
+    <button type="submit" [disabled]="upForm.invalid">Submit</button>
+  </form>
+  <app-footer ></app-footer>

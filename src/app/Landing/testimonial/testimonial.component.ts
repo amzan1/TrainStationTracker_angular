@@ -1,24 +1,34 @@
-import { AfterViewInit, Component } from '@angular/core';
+import {  Component } from '@angular/core';
 import { AdminService } from 'src/app/Services/admin.service';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
   selector: 'app-testimonial',
   templateUrl: './testimonial.component.html',
   styleUrls: ['./testimonial.component.css']
 })
 export class TestimonialComponent {
-  constructor(public home:AdminService){}
+  upForm: FormGroup;
+  constructor(public home:AdminService){
+    this.upForm = new FormGroup({
+      content: new FormControl('', [Validators.required]),
+      userId: new FormControl('', [Validators.required])
+    });
+  }
   testimonials:any = [];
 
 
 
   ngOnInit(): void {
    this.fetchTestimonials()
+
   }
+ 
   fetchTestimonials(){
     this.home.getApprovedTestimonials().subscribe(
       data => {
         this.testimonials = data;
+        console.log(this.testimonials);
+        
       },
       error => {
         console.error('Error fetching testimonials', error);

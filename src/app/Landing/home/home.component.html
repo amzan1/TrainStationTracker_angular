@@ -1,7 +1,13 @@
 <app-navbar></app-navbar>
 
-<header class="hero-section text-center" >
-    <div class="container" *ngIf="homeContent">
+<header class="hero-section text-center" *ngIf="homeContent"
+        [ngStyle]="{
+          'background-image': 'url(assets/image/' + homeContent.image + ')',
+          'background-repeat': 'no-repeat',
+          'background-position': 'center center',
+          'background-size': 'cover'
+        }">
+  <div class="container" >
     <h1 class="hero-title">{{homeContent.title}}</h1>
 
     <p class="hero-subtitle">{{homeContent.content}}</p>

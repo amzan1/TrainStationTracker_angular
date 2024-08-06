@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { forkJoin, map, Observable, tap } from 'rxjs';
@@ -63,7 +63,10 @@ export class AdminService {
   acceptTestimonialUrl='https://localhost:7159/api/Testimonial/AcceptTestimonial/';
   rejectTestimonialUrl ='https://localhost:7159/api/Testimonial/RejectTestimonial/';
   getAllAprovedTestimonialUrl='https://localhost:7159/api/Testimonial/GetAllApprovedTestimonial';
-
+  userCreateTestimonial='https://localhost:7159/api/Testimonial/WriteTestimonial';
+  getUserById='https://localhost:7159/api/Login/GetUserById';
+  updateUserProfile='https://localhost:7159/api/Login/UpdateProfile';
+  getTripById='https://localhost:7159/api/Trips/GetTripById';
   // Pages Management 
   getHomeContentUrl ='https://localhost:7159/api/HomePage/GetAllHomePage';
   updateHomeContentUrl = 'https://localhost:7159/api/HomePage/UpdateHomePage';
@@ -182,11 +185,48 @@ uploadAttachments(img: FormData) {
 
       })
   }
+  trips:any=[];
+  GetUserTips(id: number): Observable<any>{
+
+      this.trips= this.http.get(this.getTripById  +id).subscribe(data=>{
+console.log('success');
+
+       },err=>{
+console.log('error');
+
+       });
+       return this.trips
+  }
 
 
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.getAllUsersUrl);
+  }
+  users:any=[]
+  userProfile (id: number): Observable<User> {
+this.users=this.http.get<User>(`${this.getUserById}/${id}`);
+console.log(this.users);
+
+    return this.users
+  }
+
+  updateProfile(body: any) {
+  
+    this.http.put(this.updateUserProfile, body ).subscribe(
+      res => {
+        console.log(res);
+        
+        console.log("Updated");
+        this.toastr.success('Update successful!');
+        window.location.reload();
+      },
+      err => {
+        console.log("Failed update profile");
+        this.toastr.error('Update failed. Please try again.');
+        console.log(err);
+      }
+    );
   }
 
   getNumberOfBookedTrips(): Observable<number> {
@@ -272,7 +312,17 @@ uploadAttachments(img: FormData) {
   rejectTestimonial(id: number): Observable<any> {
     return this.http.put(this.rejectTestimonialUrl + id, {});
   }
-  
+  createTestimonial(body: any) {
+    console.log(body);
+    this.http.post(this.userCreateTestimonial, body).subscribe(res => {
+      console.log("Created");
+      this.toastr.success('Create successful!');
+    },
+      err => {
+        console.log("Failed" + err);
+        this.toastr.error('Create failed. Please try again.');
+      })
+  }  
 
   DeleteTrip(id: number) {
     this.http.delete(this.deleteTripUrl + id).subscribe((res) => {
