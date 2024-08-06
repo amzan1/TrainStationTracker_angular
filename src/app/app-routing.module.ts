@@ -29,8 +29,8 @@ const routes: Routes = [
   {
     path:'user',
     loadChildren:()=>UserModule,
-    canActivate:[authorizationGuard]
 
+    canActivate:[authorizationGuard]
   },
   {
     path:'',
