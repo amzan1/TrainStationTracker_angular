@@ -12,10 +12,7 @@ const routes: Routes = [
   {
     path:'trips',
     component:TripsSearchComponent
-  }
-
-
-const routes: Routes = [
+  },
   {
     path:'map',
     component:MapComponent

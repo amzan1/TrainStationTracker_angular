@@ -74,11 +74,11 @@ export class AdminService {
   getContactUsUrl ='https://localhost:7159/api/Contact/GetAllContactUsPage';
   updateContactUsUrl ='https://localhost:7159/api/Contact/UpdateContactUsPage';
 
-  uploadImageUrl = 'https://localhost:7159/api/UploadImage';
+  uploadImageUrl = 'https://localhost:7159/api/UploadImage/UploadImage';
   displayImg:any;
 // Upload images
 uploadAttachments(img: FormData) {
-  this.http.post(this.uploadImageUrl, img, { responseType: 'text' }).subscribe({
+  this.http.post('https://localhost:7159/api/UploadImage/UploadImageOthers', img, { responseType: 'text' }).subscribe({
     next: (res: string) => {
       this.displayImg = res; // Directly assign the plain text response
       console.log(this.displayImg);
@@ -319,7 +319,7 @@ uploadAttachments(img: FormData) {
 
   displayImage:any;
   uploadImage(image:FormData){
-    this.http.post('https://localhost:7159/api/UploadImage',image).subscribe((res:any)=>{
+    this.http.post(this.uploadImageUrl,image).subscribe((res:any)=>{
       this.displayImage= res.image;
       console.log(res);
     },err=>{
