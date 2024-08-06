@@ -16,6 +16,22 @@ export class TrainStationsComponent implements OnInit {
   pData: any;
   trainStations: any;
 
+  // google map
+  zoom = 12;
+  center!: google.maps.LatLngLiteral;
+  markerPosition: google.maps.LatLngLiteral | undefined;
+  trainMarker: google.maps.Marker | undefined;
+
+  options: google.maps.MapOptions = {
+    mapTypeId: 'roadmap',
+    zoomControl: true,
+    scrollwheel: false,
+    disableDoubleClickZoom: true,
+    maxZoom: 15,
+    minZoom: 8,
+  };
+  // google map
+
   _stationFilter: string = '';
   updateForm: FormGroup = new FormGroup({
     stationid: new FormControl('', [Validators.required]),  // Added stationid control
@@ -52,7 +68,12 @@ export class TrainStationsComponent implements OnInit {
     const dialogResult = this.dialog.open(this.CallUpdateDialog);
     this.pData = train;
     console.log("PData:", this.pData);
+    // this.markerPosition = {
+    //   lat: this.pData.latitude.lat(),
+    //   lng: this.pData.longitude.lng()
+    // };
 
+    this.center={lat:this.pData.latitude, lng:this.pData.longitude}
     // Ensure the form control update happens after the dialog is opened
     dialogResult.afterOpened().subscribe(() => {
       this.updateForm.controls['stationid'].setValue(this.pData.stationid);
@@ -67,6 +88,20 @@ export class TrainStationsComponent implements OnInit {
     console.log("API HIT ");
 
   }
+
+  //google map 
+  click(event:google.maps.MapMouseEvent): void {
+    if (event.latLng) {
+      this.markerPosition = {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng()
+      };
+      this.updateForm.patchValue({
+        latitude: this.markerPosition.lat,
+        longitude: this.markerPosition.lng
+      });
+    }
+    }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     const diares = this.dialog.open(CreateTrainComponent, {

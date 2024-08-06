@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
+
 interface TrainStation {
   id: number;
   stationname: string;
@@ -14,22 +15,23 @@ interface Marker {
     text: string;
   };
 }
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  zoom = 11;
+  zoom = 10;
   center: google.maps.LatLngLiteral= { lat: 24.774265, lng: 46.738586 };
-  // options: google.maps.MapOptions = {
-  //   mapTypeId: 'hybrid',
-  //   zoomControl: true,
-  //   scrollwheel: false,
-  //   disableDoubleClickZoom: true,
-  //   maxZoom: 15,
-  //   minZoom: 8,
-  // };
+  options: google.maps.MapOptions = {
+    mapTypeId: 'hybrid',
+    zoomControl: true,
+    scrollwheel: false,
+    disableDoubleClickZoom: true,
+    maxZoom: 15,
+    minZoom: 8,
+  };
 
   markers: Marker[] = [];
 
@@ -46,7 +48,10 @@ export class MapComponent implements OnInit {
     });
   }
 
-  
+  click(event: google.maps.MapMouseEvent) {
+    console.log(event);
+  }
+ 
  
 
 }

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDatepicker } from '@angular/material/datepicker';
+import { OwlDateTime } from '@danielmoncada/angular-datetime-picker/lib/date-time/date-time.class';
 import { AdminService } from 'src/app/Services/admin.service';
+
 
 @Component({
   selector: 'app-create-trips',
@@ -8,6 +11,8 @@ import { AdminService } from 'src/app/Services/admin.service';
   styleUrls: ['./create-trips.component.css']
 })
 export class CreateTripsComponent implements OnInit{
+
+  
   constructor(private adminService:AdminService){}
   updateForm: FormGroup = new FormGroup({
     originstationid : new FormControl('', [Validators.required]),
@@ -17,12 +22,23 @@ export class CreateTripsComponent implements OnInit{
     availableseats : new FormControl('', [Validators.required]),
     price : new FormControl('', [Validators.required]),
       })
+
       pData:any;
       stations1:any;
       filteredStationsForOrigin: any = [];
       filteredStationsForDestination: any = [];
+
+      // @ViewChild('picker') picker: MatDatepicker<Date> | undefined;
+      @ViewChild('picker') dateTimePicker: OwlDateTime<any> | undefined;
+
+      public date = new Date()
+
+
+      
+
       save() {
-        this.adminService.createTrip(this.updateForm.value)
+        this.adminService.createTrip(this.updateForm.value);
+
       }
 
 
@@ -31,8 +47,10 @@ export class CreateTripsComponent implements OnInit{
           this.stations1 = data;
           this.filteredStationsForOrigin = data;
           this.filteredStationsForDestination = data;
+
+
         });
-  
+        
         this.updateForm.controls['originstationid'].valueChanges.subscribe(value => {
           this.filterStations();
         });
@@ -44,6 +62,9 @@ export class CreateTripsComponent implements OnInit{
         console.log(this.filteredStationsForDestination);
         
     } 
+    
+
+
     filterStations() {
       const originStationId = this.updateForm.controls['originstationid'].value;
       const destinationStationId = this.updateForm.controls['destinationstationid'].value;

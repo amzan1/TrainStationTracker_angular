@@ -7,12 +7,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { LandingPComponent } from './landing-p/landing-p.component';
 import { TripsSearchComponent } from './trips-search/trips-search.component';
 import { AdminModule } from '../admin/admin.module';
+import { MapComponent } from './map/map.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 
 @NgModule({
   declarations: [
     LandingPComponent,
     TripsSearchComponent
+    MapComponent
   ],
   imports: [
     CommonModule,
@@ -20,6 +23,7 @@ import { AdminModule } from '../admin/admin.module';
     SharedModule,
     HttpClientModule,
     AdminModule
+    GoogleMapsModule
   ]
 })
 export class UserModule { }

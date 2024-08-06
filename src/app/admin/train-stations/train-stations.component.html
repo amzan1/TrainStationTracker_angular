@@ -44,7 +44,6 @@
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         <h4 class="card-title">Train Stations Details</h4>
                                     </div>
-                                    <app-map></app-map>
                                     <button mat-raised-button class="mb-4" (click)="openDialog('0ms', '0ms')">Create New Train Station</button>
                                     <!-- Search input -->
                                     <div class="mb-4">
@@ -116,7 +115,22 @@
     <h2 mat-dialog-title>Update Train Station</h2>
         <form class="example-form" [formGroup]='updateForm'>
 
-    
+            <!-- map start -->
+    <p>select Location on the map</p>
+    <google-map 
+    height="150px" 
+    width="100%"
+    [zoom]="zoom"
+    [center]="center"
+    [options]="options"
+    (mapClick)="click($event)"
+    >
+        <map-marker *ngIf="markerPosition"
+        [position]="markerPosition"></map-marker>
+    </google-map>
+    <!-- map end -->
+    <br>
+
             <mat-form-field class="example-full-width">
               <mat-label>Train Station Name</mat-label>
               <input type="text" matInput formControlName="stationname" [(ngModel)]="pData.stationname">
