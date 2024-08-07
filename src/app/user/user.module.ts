@@ -14,7 +14,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 @NgModule({
   declarations: [
     LandingPComponent,
-    TripsSearchComponent
+    TripsSearchComponent,
     MapComponent
   ],
   imports: [
@@ -22,7 +22,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
     UserRoutingModule,
     SharedModule,
     HttpClientModule,
-    AdminModule
+    AdminModule,
     GoogleMapsModule
   ]
 })
