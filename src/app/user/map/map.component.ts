@@ -22,7 +22,7 @@ interface Marker {
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  zoom = 10;
+  zoom = 11;
   center: google.maps.LatLngLiteral= { lat: 24.774265, lng: 46.738586 };
   options: google.maps.MapOptions = {
     mapTypeId: 'hybrid',

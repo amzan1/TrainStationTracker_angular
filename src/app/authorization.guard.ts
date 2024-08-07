@@ -32,10 +32,17 @@ if(token){
       return true;
     }
     //diff roleid
-    else{
-      router.navigate([''])
-      return false;
-    }
+      else{
+        if(user.RoleId=='1'){
+        router.navigate(['admin/dashboard'])
+        return false;
+        }
+        else{
+          router.navigate([''])
+          return false;
+        }
+      }
+
     }
   }
     return false; //else if(state.url.indexOf('user')>0)
