@@ -9,6 +9,8 @@ import { TripsSearchComponent } from './trips-search/trips-search.component';
 import { AdminModule } from '../admin/admin.module';
 import { MapComponent } from './map/map.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -23,7 +25,10 @@ import { GoogleMapsModule } from '@angular/google-maps';
     SharedModule,
     HttpClientModule,
     AdminModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    SharedModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ]
 })
 export class UserModule { }
