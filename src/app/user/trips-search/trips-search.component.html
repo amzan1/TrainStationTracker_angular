@@ -35,11 +35,38 @@
         </mat-form-field>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <button mat-raised-button color="primary" class="btn-block" type="submit" [disabled]="BookingForm.invalid">Book Now</button>
-      </div>
-    </div>
   </form>
+
+  <div *ngIf="filteredTrips.length > 0" class="trips-container">
+    <h2>Available Trips</h2>
+    <div *ngFor="let trip of filteredTrips" class="trip-card" [ngClass]="{'low-seats': trip.availableseats <= 2, 'medium-seats': trip.availableseats > 2 && trip.availableseats <= 10, 'high-seats': trip.availableseats > 10}">
+      
+      <!-- Trip Header with Basic Information -->
+      <div class="trip-header">
+        <strong>Leaving From:</strong> <h5> {{ trip.originstation }} </h5> <strong>Arriving To:</strong> <h5>  {{ trip.destinationstation }} </h5>
+      </div>
+      
+      <!-- Time and Duration Details -->
+      <div class="details">
+        <div class="time-details">
+          <p><strong>Departure:</strong> {{ trip.departuretime | date:'short' }}</p>
+          <p><strong>Arrival:</strong> {{ trip.arrivalTime | date:'short' }}</p>
+          <p><strong>Duration:</strong> {{ trip.duratointime }} minutes</p>
+        </div>
+        
+        <!-- Availability and Pricing -->
+        <div class="availability-pricing">
+          <p><strong>Available Seats:</strong> {{ trip.availableseats }}</p>
+          <p><strong>Price:</strong> ${{ trip.price }}</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+
+  <div *ngIf="filteredTrips.length === 0 && BookingForm.valid" class="no-trips-message">
+    <p>No trips available for the selected criteria.</p>
+  </div>
 </div>

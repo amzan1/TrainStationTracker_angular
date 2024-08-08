@@ -11,7 +11,9 @@ export class TripsSearchComponent implements OnInit {
   BookingForm: FormGroup;
   filteredStationsForOrigin: any;
   filteredStationsForDestination: any;
-  stations1:any;
+  stations1: any;
+  trips: any;
+  filteredTrips: any = [];
 
   constructor(private adminService: AdminService) {
     this.BookingForm = new FormGroup({
@@ -28,12 +30,24 @@ export class TripsSearchComponent implements OnInit {
       this.filteredStationsForDestination = data;
     });
 
+    this.adminService.getTrips().subscribe(data => {
+      this.trips = data;
+    });
+
     this.BookingForm.controls['originstationid'].valueChanges.subscribe(() => {
       this.filterStations();
+      this.bookTravel();
+
+    });
+
+    this.BookingForm.controls['departuretime'].valueChanges.subscribe(() => {
+      this.filterStations();
+      this.filterTrips();
     });
 
     this.BookingForm.controls['destinationstationid'].valueChanges.subscribe(() => {
       this.filterStations();
+      this.filterTrips();
     });
   }
 
@@ -45,13 +59,35 @@ export class TripsSearchComponent implements OnInit {
     this.filteredStationsForDestination = this.stations1.filter((station1: { stationid: any; }) => station1.stationid !== originStationId);
   }
 
+  filterTrips() {
+    const origin = this.BookingForm.controls['originstationid'].value;
+    const destination = this.BookingForm.controls['destinationstationid'].value;
+    const departureDate = this.BookingForm.controls['departuretime'].value;
+  
+    if (!departureDate) {
+      // If departure date is not provided, do not proceed
+      return;
+    }
+  
+    const targetDate = new Date(departureDate);
+    const endDate = new Date(targetDate);
+    endDate.setDate(targetDate.getDate() + 3);
+  
+    this.filteredTrips = this.trips.filter((trip: any) => {
+      const tripDate = new Date(trip.departuretime);
+      const matchesDateRange = tripDate >= targetDate && tripDate <= endDate;
+      const matchesOrigin = origin ? trip.originstationid === origin : true;
+      const matchesDestination = destination ? trip.destinationstationid === destination : true;
+      const hasAvailableSeats = trip.availableseats > 1;
+  
+      return matchesDateRange && (matchesOrigin || matchesDestination) && hasAvailableSeats;
+    });
+  }
+  
   bookTravel() {
     if (this.BookingForm.valid) {
-      const origin = this.BookingForm.controls['originstationid'].value;
-      const destination = this.BookingForm.controls['destinationstationid'].value;
-      const departureDate = this.BookingForm.controls['departuretime'].value;
-      console.log(departureDate)
-      console.log(`Travel booked from ${origin} to ${destination} on ${departureDate}`);
+      console.log(this.filteredTrips);
     }
   }
 }
+
