@@ -80,12 +80,30 @@ bookTrip(id:number) {
     this.filteredTrips = this.trips.filter((trip: any) => {
       const tripDate = new Date(trip.departuretime);
       const matchesDateRange = tripDate >= targetDate && tripDate <= endDate;
-      const matchesOrigin = origin ? trip.originstationid === origin : true;
-      const matchesDestination = destination ? trip.destinationstationid === destination : true;
-      const hasAvailableSeats = trip.availableseats >= 1;
+      // const hasAvailableSeats = trip.availableseats >= 1;
   
-      return matchesDateRange && (matchesOrigin || matchesDestination) && hasAvailableSeats;
+      // Scenario 1: User chooses origin and date only
+      if (origin && !destination) {
+        const matchesOrigin = trip.originstationid === origin;
+        return matchesDateRange && matchesOrigin;
+      }
+  
+      // Scenario 2: User chooses destination and date only
+      if (!origin && destination) {
+        const matchesDestination = trip.destinationstationid === destination;
+        return matchesDateRange && matchesDestination;
+      }
+  
+      // Scenario 3: User chooses both origin, destination, and date
+      if (origin && destination) {
+        const matchesOrigin = trip.originstationid === origin;
+        const matchesDestination = trip.destinationstationid === destination;
+        return matchesDateRange && matchesOrigin && matchesDestination;
+      }
+  
+      return false; // If no valid input scenario, exclude the trip
     });
   }
+  
 }
 

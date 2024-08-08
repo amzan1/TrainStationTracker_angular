@@ -43,8 +43,8 @@
       
       <!-- Trip Header with Basic Information -->
       <div class="trip-header">
-        <strong>Leaving From:</strong> <h5> {{ trip.originstation }} </h5>
-        <strong>Arriving To:</strong> <h5> {{ trip.destinationstation }} </h5>
+        <strong>Leaving From:</strong> <h5>{{ trip.originstation }}</h5>
+        <strong>Arriving To:</strong> <h5>{{ trip.destinationstation }}</h5>
       </div>
       
       <!-- Time and Duration Details -->
@@ -62,13 +62,15 @@
         </div>
       </div>
       
-      <!-- Book Button -->
+      <!-- Book Button or No Seats Message -->
       <div class="book-button-container">
-        <button (click)="bookTrip(trip.tripid)" class="book-button">Book This Trip</button>
+        <button *ngIf="trip.availableseats > 0" (click)="bookTrip(trip.tripid)" class="book-button">Book This Trip</button>
+        <p *ngIf="trip.availableseats === 0" class="no-seats-message">No seats available for this trip</p>
       </div>
       
     </div>
   </div>
+  
   
   
 

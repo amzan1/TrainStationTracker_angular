@@ -163,4 +163,11 @@ button.btn-block {
   background-color: #ccc;
   cursor: not-allowed;
 }
+.no-seats-message {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
 
