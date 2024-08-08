@@ -8,6 +8,10 @@ import { AdminService } from 'src/app/Services/admin.service';
   styleUrls: ['./trips-search.component.css']
 })
 export class TripsSearchComponent implements OnInit {
+bookTrip(id:number) {
+  console.log("Trip ID: "+id);
+  
+}
   BookingForm: FormGroup;
   filteredStationsForOrigin: any;
   filteredStationsForDestination: any;
@@ -36,7 +40,7 @@ export class TripsSearchComponent implements OnInit {
 
     this.BookingForm.controls['originstationid'].valueChanges.subscribe(() => {
       this.filterStations();
-      this.bookTravel();
+      this.filterTrips();
 
     });
 
@@ -78,16 +82,10 @@ export class TripsSearchComponent implements OnInit {
       const matchesDateRange = tripDate >= targetDate && tripDate <= endDate;
       const matchesOrigin = origin ? trip.originstationid === origin : true;
       const matchesDestination = destination ? trip.destinationstationid === destination : true;
-      const hasAvailableSeats = trip.availableseats > 1;
+      const hasAvailableSeats = trip.availableseats >= 1;
   
       return matchesDateRange && (matchesOrigin || matchesDestination) && hasAvailableSeats;
     });
-  }
-  
-  bookTravel() {
-    if (this.BookingForm.valid) {
-      console.log(this.filteredTrips);
-    }
   }
 }
 

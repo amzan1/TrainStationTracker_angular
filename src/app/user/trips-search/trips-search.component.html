@@ -1,6 +1,6 @@
 <div class="container booking-container">
   <h1>Book Your Travel</h1>
-  <form [formGroup]="BookingForm" (ngSubmit)="bookTravel()">
+  <form [formGroup]="BookingForm">
     <div class="row">
       <div class="col-md-6">
         <mat-form-field class="full-width">
@@ -43,7 +43,8 @@
       
       <!-- Trip Header with Basic Information -->
       <div class="trip-header">
-        <strong>Leaving From:</strong> <h5> {{ trip.originstation }} </h5> <strong>Arriving To:</strong> <h5>  {{ trip.destinationstation }} </h5>
+        <strong>Leaving From:</strong> <h5> {{ trip.originstation }} </h5>
+        <strong>Arriving To:</strong> <h5> {{ trip.destinationstation }} </h5>
       </div>
       
       <!-- Time and Duration Details -->
@@ -61,8 +62,14 @@
         </div>
       </div>
       
+      <!-- Book Button -->
+      <div class="book-button-container">
+        <button (click)="bookTrip(trip.tripid)" class="book-button">Book This Trip</button>
+      </div>
+      
     </div>
   </div>
+  
   
 
 
