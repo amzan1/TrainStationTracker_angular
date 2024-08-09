@@ -33,9 +33,20 @@
               </mat-card-content>
             </mat-card>
           </div>
+          <div *ngIf="(stations | stationFilter: searchQuery).length === 0" class="no-results-container">
+            <mat-card>
+              <mat-card-content>
+                <p>No stations match your search criteria.</p>
+              </mat-card-content>
+            </mat-card>
+          </div>
         </div>
       </div>
       
+      <div class="container services-section py-5">
+        <h2 class="mb-5">Where to find us on the map!</h2>
+        <app-map></app-map>
+      </div>
       
     <div class="container services-section py-5">
       <h2 class="mb-5">Our Services</h2>

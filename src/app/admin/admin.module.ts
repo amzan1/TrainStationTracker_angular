@@ -35,6 +35,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { OwlMomentDateTimeModule } from 'ng-pick-datetime-moment';
+import { HighchartsChartModule } from 'highcharts-angular';
+
 
 export const MY_MOMENT_FORMATS = {
   parseInput: 'DD/MM/YYYY HH:mm:ss',
@@ -65,8 +67,6 @@ export const MY_MOMENT_FORMATS = {
     MangeHomeComponent,
     MangeAboutusComponent,
     MangeContactusComponent,
-    
-    
 
   ],
   imports: [
@@ -90,8 +90,8 @@ export const MY_MOMENT_FORMATS = {
 
     MatMomentDateModule,
 
-    MatNativeDateModule
-    
+    MatNativeDateModule,
+    HighchartsChartModule
  
     
 

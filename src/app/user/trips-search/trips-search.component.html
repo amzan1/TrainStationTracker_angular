@@ -1,25 +1,81 @@
-<div class="booking-container">
-    <h1>Book Your Travel</h1>
-    <form>
-      <mat-form-field class="full-width">
-        <mat-label>Origin</mat-label>
-        <mat-select [(ngModel)]="origin" name="origin">
-          <mat-option *ngFor="let station of stations" [value]="station">
-            {{station}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-  
-      <mat-form-field class="full-width">
-        <mat-label>Destination</mat-label>
-        <mat-select [(ngModel)]="destination" name="destination">
-          <mat-option *ngFor="let station of stations" [value]="station">
-            {{station}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-  
-      <button mat-raised-button color="primary" (click)="bookTravel()">Book Now</button>
-    </form>
+<div class="container booking-container">
+  <h1>Book Your Travel</h1>
+  <form [formGroup]="BookingForm">
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <mat-label>Origin</mat-label>
+          <mat-select formControlName="originstationid">
+            <mat-option *ngFor="let station of filteredStationsForOrigin" [value]="station.stationid">
+              {{ station.stationname }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <mat-label>Destination</mat-label>
+          <mat-select formControlName="destinationstationid">
+            <mat-option *ngFor="let station of filteredStationsForDestination" [value]="station.stationid">
+              {{ station.stationname }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <mat-label>Departure Date</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="departuretime">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+  <div *ngIf="filteredTrips.length > 0" class="trips-container">
+    <h2>Available Trips</h2>
+    <div *ngFor="let trip of filteredTrips" class="trip-card" [ngClass]="{'low-seats': trip.availableseats <= 2, 'medium-seats': trip.availableseats > 2 && trip.availableseats <= 10, 'high-seats': trip.availableseats > 10}">
+      
+      <!-- Trip Header with Basic Information -->
+      <div class="trip-header">
+        <strong>Leaving From:</strong> <h5>{{ trip.originstation }}</h5>
+        <strong>Arriving To:</strong> <h5>{{ trip.destinationstation }}</h5>
+      </div>
+      
+      <!-- Time and Duration Details -->
+      <div class="details">
+        <div class="time-details">
+          <p><strong>Departure:</strong> {{ trip.departuretime | date:'short' }}</p>
+          <p><strong>Arrival:</strong> {{ trip.arrivalTime | date:'short' }}</p>
+          <p><strong>Duration:</strong> {{ trip.duratointime }} minutes</p>
+        </div>
+        
+        <!-- Availability and Pricing -->
+        <div class="availability-pricing">
+          <p><strong>Available Seats:</strong> {{ trip.availableseats }}</p>
+          <p><strong>Price:</strong> ${{ trip.price }}</p>
+        </div>
+      </div>
+      
+      <!-- Book Button or No Seats Message -->
+      <div class="book-button-container">
+        <button *ngIf="trip.availableseats > 0" (click)="bookTrip(trip.tripid)" class="book-button">Book This Trip</button>
+        <p *ngIf="trip.availableseats === 0" class="no-seats-message">No seats available for this trip</p>
+      </div>
+      
+    </div>
   </div>
   
+  
+  
+
+
+  <div *ngIf="filteredTrips.length === 0 && BookingForm.valid" class="no-trips-message">
+    <p>No trips available for the selected criteria.</p>
+  </div>
+</div>
