@@ -23,21 +23,31 @@ export class ReportsComponent implements OnInit {
   Highcharts: typeof Highcharts = Highcharts; // Define the type for Highcharts
   chartOptions1!: Highcharts.Options; // Options for the first chart
   chartOptions2!: Highcharts.Options; // Options for the second chart
-
+  totalBookings: number = 0;
+  totalPrice: number = 0;
   ngOnInit(): void {
     this.AdminService.getInitialReport().subscribe(data => {
       this.Reports = data;
-      this.initializeBarChart(); // Initialize the line chart after reports data is available
+      this.calculateTotals(); // Call this after setting the Reports data
+      this.initializeBarChart(); // Initialize the bar chart after calculating totals
     });
+  
     this.AdminService.getTrips().subscribe(
       data => {
         this.trips = data;
-        this.initializePieChart(); // Initialize the chart after trips data is available
+        this.initializePieChart(); // Initialize the pie chart after trips data is available
       },
       error => {
         console.error('Error fetching trips:', error);
       }
     );
+  }
+  
+  calculateTotals() {
+    if (this.Reports && this.Reports.length > 0) {
+      this.totalBookings = this.Reports.length;
+      this.totalPrice = this.Reports.reduce((sum: number, report: any) => sum + (report.price || 0), 0);
+    }
   }
 
   initializePieChart() {
@@ -133,7 +143,7 @@ export class ReportsComponent implements OnInit {
         text: 'Bookings by Month'
       },
       subtitle: {
-        text: `Total Bookings: `// Display the total number of trips
+        text: `Total Bookings: ${this.totalBookings}`// Display the total number of trips
       },
       xAxis: {
         categories: months, // Set categories to month-year
