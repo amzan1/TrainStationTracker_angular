@@ -129,6 +129,23 @@
                             </div>
                           </div>
                         </div>
+                        
                       </div>
+                      
+                      
+                      
+                      <div class="chart-container">
+                        <div class="chart-description">
+                          <h2>Number of Trips by Origin Station</h2>
+                          <p>This chart displays the distribution of Trips across various Stations. Hover over the Pie to see the exact number of Trips for each Station.</p>
+                        </div>
+                        <div class="chart-wrapper">
+                          <highcharts-chart
+                            [Highcharts]="Highcharts"
+                            [options]="chartOptions1"
+                            class="chart"
+                            style="width: 100%; height: 100%; display: block;">
+                          </highcharts-chart>
+                        </div>
                       
                       
