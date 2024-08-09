@@ -11,6 +11,8 @@ import { MapComponent } from './map/map.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { PaymentComponent } from './payment/payment.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -28,6 +30,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     AdminModule,
     GoogleMapsModule,
     ReactiveFormsModule
+    SharedModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ]
 })
 export class UserModule { }

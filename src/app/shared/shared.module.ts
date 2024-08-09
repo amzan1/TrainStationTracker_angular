@@ -38,8 +38,7 @@ import { MatListModule } from '@angular/material/list';
     MatSelectModule,
     MatToolbarModule,
     MatMenuModule,
-    MatListModule
-
+    MatListModule,
   ],
   exports:[
     NavbarComponent,
