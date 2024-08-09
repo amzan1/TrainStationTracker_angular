@@ -14,6 +14,7 @@
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between align-items-center mb-4">
                                         <h4 class="card-title">Reports</h4>
+                                        <button (click)="downloadTableAsPDF('reportsTable')" class="btn btn-primary">Download Reports as PDF</button>
                                     </div>
                                     <div class="mb-4">
                                         <input type="text" class="form-control" placeholder="Search by Username" [(ngModel)] ="ReportsFilter">
@@ -34,7 +35,7 @@
                                         </mat-form-field>
                                     </div>
                                     
-                                    <div class="table-responsive mt-4">
+                                    <div class="table-responsive mt-4" id="reportsTable">
                                         <table class="table table-striped table-bordered" *ngIf="(Reports | dateRangeFilter:startDate:endDate | usersFilter:ReportsFilter).length > 0; else noResults">
                                             <thead>
                                                 <tr>
@@ -74,6 +75,7 @@
                             <div class="card-body">
                               <div class="d-flex justify-content-between align-items-center mb-4">
                                 <h4 class="card-title">Trips Report</h4>
+                                <button (click)="downloadTableAsPDF('tripsTable')" class="btn btn-primary">Download Trips as PDF</button>
                               </div>
                               <!-- Search input -->
                               <div class="mb-4">
@@ -93,7 +95,7 @@
                                   <mat-datepicker #endDatePicker1></mat-datepicker>
                                 </mat-form-field>
                               </div>
-                              <div class="table-responsive mt-4">
+                              <div class="table-responsive mt-4" id="tripsTable">
                                 <table class="table table-striped table-bordered"
                                   *ngIf="(trips | tripsFilter:tripSearch | dateTripFilter:startDateT:endDateT).length > 0; else noResults1">
                                   <thead>
@@ -138,13 +140,15 @@
                         <div class="chart-description">
                           <h2>Number of Trips by Origin Station</h2>
                           <p>This chart displays the distribution of Trips across various Stations. Hover over the Pie to see the exact number of Trips for each Station.</p>
+                          <button (click)="downloadChartAsPDF('chart1')" class="btn btn-primary">Download Trips Chart as PDF</button>
                         </div>
                         <div class="chart-wrapper">
                           <highcharts-chart
                             [Highcharts]="Highcharts"
                             [options]="chartOptions1"
                             class="chart"
-                            style="width: 100%; height: 100%; display: block;">
+                            style="width: 100%; height: 100%; display: block;"
+                            id="chart1">
                           </highcharts-chart>
                         </div>
 
@@ -152,13 +156,15 @@
                           <div class="chart-description">
                             <h2>Number of Bookings by Date </h2>
                             <p>This chart displays the distribution of Bookings across various Months. Hover over the Line to see the exact number of Bookings for each Month.</p>
+                            <button (click)="downloadChartAsPDF('chart2')" class="btn btn-primary">Download Bookings Chart as PDF</button>
                           </div>
                           <div class="chart-wrapper">
                             <highcharts-chart
                               [Highcharts]="Highcharts"
                               [options]="chartOptions2"
                               class="chart"
-                              style="width: 100%; height: 100%; display: block;">
+                              style="width: 100%; height: 100%; display: block;"
+                              id="chart2">
                             </highcharts-chart>
                           </div>
                       

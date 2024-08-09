@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService, Trip } from 'src/app/Services/admin.service';
 import * as Highcharts from 'highcharts';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-reports',
@@ -78,7 +80,15 @@ export class ReportsComponent implements OnInit {
         text: `Total Trips: ${totalTrips}` // Display the total number of trips
       },
       tooltip: {
-        pointFormat: '<b>{point.name}</b>: {point.y} ({point.percentage:.1f}%)'
+        pointFormat: '<b>{point.name}</b>: <strong>Total Trips : </strong> {point.y} ({point.percentage:.1f}%)'
+      },
+      plotOptions: {
+        pie: {
+          dataLabels: {
+            enabled: true, // Show data labels
+            format: '{point.name}: ({point.percentage:.1f}%)' // Display the count and percentage
+          }
+        }
       },
       series: [
         {
@@ -88,6 +98,7 @@ export class ReportsComponent implements OnInit {
       ]
     };
   }
+  
 
   initializeBarChart() {
     if (!this.Reports || this.Reports.length === 0) {
@@ -113,7 +124,6 @@ export class ReportsComponent implements OnInit {
     const chartData = months.map(month => bookingsOverMonth[month]);
   
     console.log(chartData);
-  
     // Initialize the bar chart options
     this.chartOptions2 = {
       chart: {
@@ -121,6 +131,9 @@ export class ReportsComponent implements OnInit {
       },
       title: {
         text: 'Bookings by Month'
+      },
+      subtitle: {
+        text: `Total Bookings: `// Display the total number of trips
       },
       xAxis: {
         categories: months, // Set categories to month-year
@@ -142,7 +155,57 @@ export class ReportsComponent implements OnInit {
     };
   }
   
-  filterReports() {
-    // Add filter logic here if needed
+  downloadTableAsPDF(tableId: string) {
+    const data = document.getElementById(tableId);
+    if (data) {
+      html2canvas(data).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        const imgWidth = 210;
+        const pageHeight = 295;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        let heightLeft = imgHeight;
+
+        let position = 0;
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+
+        while (heightLeft >= 0) {
+          position = heightLeft - imgHeight;
+          pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+        }
+
+        pdf.save('table.pdf');
+      });
+    }
+  }
+
+  downloadChartAsPDF(chartId: string) {
+    const chart = document.getElementById(chartId);
+    if (chart) {
+      html2canvas(chart).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF();
+        const imgWidth = 210;
+        const pageHeight = 295;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        let heightLeft = imgHeight;
+
+        let position = 0;
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+
+        while (heightLeft >= 0) {
+          position = heightLeft - imgHeight;
+          pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+        }
+
+        pdf.save('chart.pdf');
+      });
+    }
   }
 }
