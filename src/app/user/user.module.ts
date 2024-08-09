@@ -9,13 +9,16 @@ import { TripsSearchComponent } from './trips-search/trips-search.component';
 import { AdminModule } from '../admin/admin.module';
 import { MapComponent } from './map/map.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { PaymentComponent } from './payment/payment.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     LandingPComponent,
     TripsSearchComponent,
-    MapComponent
+    MapComponent,
+    PaymentComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +26,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     SharedModule,
     HttpClientModule,
     AdminModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    ReactiveFormsModule
   ]
 })
 export class UserModule { }
