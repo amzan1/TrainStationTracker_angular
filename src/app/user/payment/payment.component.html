@@ -1,0 +1,55 @@
+<!-- <form [formGroup]="paymentForm" (ngSubmit)="handlePayment()">
+    <div>
+      <label for="name">Name</label>
+      <input id="name" formControlName="name">
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input id="email" formControlName="email">
+    </div>
+    <div id="card-element"></div>
+    <button type="submit" [disabled]="paymentForm.invalid">Pay</button>
+  </form>
+  
+ -->
+
+
+ <!-- <form [formGroup]="paymentForm" class="payment-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Cardholder Name</mat-label>
+      <input matInput type="text" id="cardName" formControlName="name" required />
+    </mat-form-field>
+  
+    <div id="card-element" class="stripe-card-element"></div>
+  
+    <button mat-flat-button color="primary" type="submit" class="pay-button">Pay Now</button>
+  </form> -->
+  
+
+  <div class="payment-container">
+    <div class="payment-summary">
+      <h2>Booking Summary</h2>
+      <div >
+        <p>Trip name - Trip price</p>
+      </div>
+      <hr>
+      <h3>Total: </h3>
+    </div>
+  
+    <div class="payment-form-container">
+      <h2>Payment Details</h2>
+      <form  class="payment-form"  [formGroup]="paymentForm" (ngSubmit)="handlePayment()">
+        <mat-form-field appearance="outline">
+          <mat-label>Cardholder Name</mat-label>
+          <input matInput type="text" id="cardName" name="cardName" formControlName="name" required />
+        </mat-form-field>
+        
+        
+        <div id="card-element" class="stripe-card-element"></div>
+        <button mat-flat-button  type="submit" [disabled]="paymentForm.invalid"  color="primary" class="pay-button">Pay Now</button>
+      </form>
+
+      
+    </div>
+  </div>
+  

@@ -9,6 +9,8 @@ import { TripsSearchComponent } from './trips-search/trips-search.component';
 import { AdminModule } from '../admin/admin.module';
 import { MapComponent } from './map/map.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { PaymentComponent } from './payment/payment.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
@@ -17,7 +19,8 @@ import { MatNativeDateModule } from '@angular/material/core';
   declarations: [
     LandingPComponent,
     TripsSearchComponent,
-    MapComponent
+    MapComponent,
+    PaymentComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +29,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     HttpClientModule,
     AdminModule,
     GoogleMapsModule,
+    ReactiveFormsModule
     SharedModule,
     MatDatepickerModule,
     MatNativeDateModule,

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingPComponent } from './landing-p/landing-p.component';
 import { TripsSearchComponent } from './trips-search/trips-search.component';
 import { MapComponent } from './map/map.component';
+import { PaymentComponent } from './payment/payment.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path:'map',
     component:MapComponent
+  },
+  {
+    path:'payment',
+    component:PaymentComponent
   }
 ];
 

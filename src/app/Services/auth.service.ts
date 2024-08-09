@@ -43,12 +43,12 @@ export class AuthService {
       else if(data.RoleId == '2')
       {
         this.toastr.success('Welcome back')
-        this.router.navigate([''])
+        this.router.navigate(['user/home'])
  
       }
      
     }, err => {
-      //this.toaster.error('Something Went Wrong')
+      this.toastr.error('Something Went Wrong')
     })
   }
 }
