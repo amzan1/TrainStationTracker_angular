@@ -22,9 +22,11 @@ export class ReportsComponent implements OnInit {
   chartOptions1!: Highcharts.Options; // Options for the first chart
   chartOptions2!: Highcharts.Options; // Options for the second chart
 
-
   ngOnInit(): void {
-    this.AdminService.getInitialReport().subscribe(data => this.Reports = data);
+    this.AdminService.getInitialReport().subscribe(data => {
+      this.Reports = data;
+      this.initializeBarChart(); // Initialize the line chart after reports data is available
+    });
     this.AdminService.getTrips().subscribe(
       data => {
         this.trips = data;
@@ -86,8 +88,60 @@ export class ReportsComponent implements OnInit {
       ]
     };
   }
-  
 
+  initializeBarChart() {
+    if (!this.Reports || this.Reports.length === 0) {
+      console.error('No reports data available to generate the chart.');
+      return;
+    }
+  
+    // Aggregate bookings by month and year
+    const bookingsOverMonth = this.Reports.reduce((acc: any, report: any) => {
+      const date = new Date(report.bookingtime);
+      const monthYear = `${date.getFullYear()}-${date.getMonth() + 1}`; // Format: YYYY-M
+  
+      if (acc[monthYear]) {
+        acc[monthYear]++;
+      } else {
+        acc[monthYear] = 1;
+      }
+      return acc;
+    }, {});
+  
+    // Extract dates and data
+    const months = Object.keys(bookingsOverMonth).sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+    const chartData = months.map(month => bookingsOverMonth[month]);
+  
+    console.log(chartData);
+  
+    // Initialize the bar chart options
+    this.chartOptions2 = {
+      chart: {
+        type: 'bar' // Change chart type to 'bar'
+      },
+      title: {
+        text: 'Bookings by Month'
+      },
+      xAxis: {
+        categories: months, // Set categories to month-year
+        title: {
+          text: 'Month-Year'
+        }
+      },
+      yAxis: {
+        title: {
+          text: 'Number of Bookings'
+        }
+      },
+      series: [
+        {
+          name: 'Bookings',
+          data: chartData
+        } as any
+      ]
+    };
+  }
+  
   filterReports() {
     // Add filter logic here if needed
   }
