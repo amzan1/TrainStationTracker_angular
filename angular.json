@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": ["moment"],
             "outputPath": "dist/train-station-tracker",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -54,6 +55,7 @@
               "src/assets/Admin/assets/js/todolist.js",
               "src/assets/Admin/assets/js/jquery.cookie.js",
               "src/assets/Admin/assets/js/dashboard.js"
+              
             ]
           },
           "configurations": {

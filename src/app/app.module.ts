@@ -21,6 +21,14 @@ import { DateRangeFilterPipe } from './Pipes/date-range-filter.pipe';
 import { DateTripFilterPipe } from './Pipes/date-trip-filter.pipe';
 import { TestimonialComponent } from './Landing/testimonial/testimonial.component';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatOptionModule, MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +48,9 @@ import { TestimonialComponent } from './Landing/testimonial/testimonial.componen
     FormsModule,
     ReactiveFormsModule,
     AuthModule,
+    //
+ 
+    //
     AdminModule,
     UserModule
   ],

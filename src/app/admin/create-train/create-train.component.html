@@ -1,5 +1,21 @@
 <div mat-dialog-content class="create-train-dialog">
     <h2 mat-dialog-title class="dialog-title">Create New Train Station</h2>
+    <!-- map start -->
+    <p>select Location on the map</p>
+    <google-map 
+    height="150px" 
+    width="100%"
+    [zoom]="zoom"
+    [center]="center"
+    [options]="options"
+    (mapClick)="click($event)"
+    >
+        <map-marker *ngIf="markerPosition"
+        [position]="markerPosition"></map-marker>
+    </google-map>
+    <!-- map end -->
+    <br>
+
     <form [formGroup]="upForm" class="train-form">
         <mat-form-field class="example-full-width">
             <mat-label>Train Station Name</mat-label>

@@ -41,7 +41,6 @@ import { MatTableModule } from '@angular/material/table';
     MatMenuModule,
     MatListModule,
     MatTableModule
-
   ],
   exports:[
     NavbarComponent,
