@@ -1,0 +1,57 @@
+/* General Table Styling */
+table {
+    width: 80%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the table horizontally */
+    border-collapse: collapse;
+    font-family: 'Roboto', sans-serif;
+    color: #424242;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  /* Header and Cell Styling */
+  th, td {
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+    white-space: nowrap;
+  }
+  
+  th {
+    background-color: #f5f5f5;
+    color: #616161;
+    font-weight: bold;
+  }
+  
+  td {
+    color: #757575;
+  }
+  
+  /* Alternate Row Coloring */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Hover Effect */
+  tr:hover {
+    background-color: #e0f7fa;
+    cursor: pointer;
+  }
+  
+  /* Table Elevation */
+  .mat-elevation-z8 {
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Custom Classes for Table Header and Cells */
+  .custom-header {
+    font-weight: bold;
+    background-color: #f5f5f5;
+  }
+  
+  .custom-cell {
+    padding: 16px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  

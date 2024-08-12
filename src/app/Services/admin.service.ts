@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { forkJoin, map, Observable, tap } from 'rxjs';
+import { forkJoin, map, Observable, switchMap, tap } from 'rxjs';
 export interface User {
   userid: number;
   username: string;
@@ -67,6 +67,9 @@ export class AdminService {
   getUserById='https://localhost:7159/api/Login/GetUserById';
   updateUserProfile='https://localhost:7159/api/Login/UpdateProfile';
   getTripById='https://localhost:7159/api/Trips/GetTripById';
+  getUserBookingUrl='https://localhost:7159/api/Booking/GetUserBookings';
+
+
   // Pages Management 
   getHomeContentUrl ='https://localhost:7159/api/HomePage/GetAllHomePage';
   updateHomeContentUrl = 'https://localhost:7159/api/HomePage/UpdateHomePage';
@@ -223,7 +226,7 @@ console.log(this.users);
       },
       err => {
         console.log("Failed update profile");
-        this.toastr.error('Update failed. Please try again.');
+        // this.toastr.error('Update failed. Please try again.');
         console.log(err);
       }
     );
@@ -397,4 +400,12 @@ console.log(this.users);
     })
 
   }
-}
+bookings:any=[];
+    GetUserBook (id: number): Observable<any> {
+      this.bookings=this.http.get<any>(`${this.getUserBookingUrl}/${id}`);
+      console.log(this.bookings);
+      
+          return this.bookings
+        }
+  }
+  
