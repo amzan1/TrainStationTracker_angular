@@ -4,26 +4,26 @@ body {
 
 .form-control:focus {
     box-shadow: none;
-    border-color: #BA68C8
+    border-color: #007bff;
 }
 
 .profile-button {
-    background: rgb(99, 39, 120);
+    background: #007bff;
     box-shadow: none;
     border: none
 }
 
 .profile-button:hover {
-    background: #682773
+    background:  #007bff;
 }
 
 .profile-button:focus {
-    background: #682773;
+    background:  #007bff;
     box-shadow: none
 }
 
 .profile-button:active {
-    background: #682773;
+    background: #007bff;
     box-shadow: none
 }
 
@@ -41,4 +41,28 @@ body {
     color: #fff;
     cursor: pointer;
     border: solid 1px #BA68C8
+}
+mat-dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.example-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+mat-form-field {
+    width: 80%; /* Adjust the width of the form fields */
+    margin-bottom: 16px; /* Adds some space between form fields */
+}
+
+mat-dialog-actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }

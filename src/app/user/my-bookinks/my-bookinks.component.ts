@@ -12,7 +12,7 @@ export class MyBookinksComponent implements OnInit {
   displayedColumns: string[] = ['username', 'bookingtime', 'departuretime', 'duratointime', 'price', 'paymentstatus'];
 
   bookings: any ;
-
+  currentDate: Date = new Date();
   constructor(private user: AdminService, private token: HomeService) { }
   
   ngOnInit(): void {

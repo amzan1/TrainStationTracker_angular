@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+
 <div class="login-container">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -19,7 +20,8 @@
               <mat-error *ngIf="loginForm.get('Password')?.hasError('required')">Password is required</mat-error>
             </mat-form-field>
             <div class="text-center">
-              <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" (click)="onSubmit">Login</button>
+              <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid"
+                (click)="onSubmit">Login</button>
             </div>
           </form>
         </mat-card-content>
@@ -29,5 +31,5 @@
       </p>
     </div>
   </div>
- <app-footer></app-footer> 
 
+  <app-footer></app-footer>

@@ -323,7 +323,6 @@ console.log(this.users);
     },
       err => {
         console.log("Failed" + err);
-        this.toastr.error('Create failed. Please try again.');
       })
   }  
 

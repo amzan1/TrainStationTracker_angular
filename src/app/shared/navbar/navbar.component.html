@@ -3,9 +3,8 @@
       <img src="../assets/image/Train_icon.jpg" alt="Logo" class="nav-logo">
       <div class="spacer"></div>
       <button mat-button routerLink="">Home</button>
-      <button mat-button routerLink="/about">About Us</button>
-      <button mat-button routerLink="/contact">Contact Us</button>
-      <button mat-button routerLink="/testimonial">Testimonial</button>
+      <button mat-button (click)="scrollTo('about-section')">About Us</button>
+      <button mat-button (click)="scrollTo('contact-section')">Contact Us</button>
       <button mat-button routerLink="/security/login">Login</button>
       <button mat-button routerLink="/security/register">Register</button>
   </div>

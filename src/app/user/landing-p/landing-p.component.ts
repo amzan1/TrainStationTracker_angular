@@ -13,7 +13,7 @@ homepage:any
 stations:any
 searchQuery='';
   ngOnInit(): void {
-    this.adminService.getTestimonials().subscribe((res => {
+    this.adminService.getApprovedTestimonials().subscribe((res => {
       this.testimonials = res;
     }))
     this.adminService.getHomeContent().subscribe(data => {

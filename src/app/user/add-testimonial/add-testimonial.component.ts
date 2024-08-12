@@ -15,16 +15,15 @@ export class AddTestimonialComponent implements OnInit {
     this.upForm = new FormGroup({
       content: new FormControl('', [Validators.required]),
       userid: new FormControl('', [Validators.required]),
-      createdAt: new FormControl('', Validators.required),
-      status: new FormControl('', Validators.required)
+      
     });
   }
 
   ngOnInit(): void {
     let user = this.homeService.token();
+    let testimonial:any=this.upForm;
     this.upForm.controls['userid'].setValue(user.Userid);
-    this.upForm.controls['createdAt'].setValue(new Date().toISOString());
-    this.upForm.controls['status'].setValue('pending')
+    this.upForm.controls['content'].setValue(testimonial.content);
   }
 
   save() {

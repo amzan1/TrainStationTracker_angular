@@ -1,27 +1,36 @@
 /* landing-page.component.css */
+
 .hero-section {
-  background: url('src/assets/image/Train1.jpg') no-repeat center center/cover; 
+  background: url('src/assets/image/Train1.jpg') no-repeat center center/cover;
   color: #ffffff;
   padding: 5rem 0;
   text-align: center;
+  height: 80vh; /* Match the height from the first style */
+  overflow: hidden; /* To align with the first style */
 }
 
 .hero-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 20rem;
+  font-size: 4em; /* Match font size from the first style */
+  font-weight: 300;
+  margin-bottom: 20px; /* Adjust as needed */
+  animation: fadeIn 2s;
 }
 
 .hero-subtitle {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
+  font-size: 1.5em;
+  margin-bottom: 30px; /* Adjust margin as needed */
+  animation: fadeIn 3s;
 }
+
 .hero-image {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.5);
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .btn-primary {
   background-color: #007bff;
   border: none;
@@ -30,123 +39,87 @@
   font-size: 1rem;
   font-weight: 500;
   text-transform: uppercase;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .testimonial_section {
   width: 100%;
-  float: left;
   background-color: #333;
-  height: auto;
-  padding: 90px 0px 150px 0px;
-  background-size: 100%;
+  padding: 90px 0 150px;
 }
 
 .testimonial_taital {
-  width: 100%;
-  float: left;
-  font-size: 40px;
+  font-size: 2.5em;
   color: #ffffff;
   text-align: center;
-  font-weight: bold;
-  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  animation: fadeIn 2s;
 }
+
 .client_name_text {
-  width: 100%;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 1.5em;
+  font-weight: 300;
   color: #ffffff;
-  text-align: left;
   text-transform: uppercase;
 }
 
 .textimonial_text {
-  width: 100%;
   background-color: #ffffff;
   padding: 40px;
   color: #0d0d0d;
-  margin: 0px;
-  text-align: left;
-  border-radius: 4px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
-#costum_slider a.carousel-control-next {
-  right: -60px;
-  left: 0px;
-  top: 500px;
-}
-
-#costum_slider a.carousel-control-prev {
-  left: -60px;
-  right: 0px;
-  top: 500px;
-  color: #fff;
-  background-color: #fda417;
-}
-
-#costum_slider .carousel-control-next,
-#costum_slider .carousel-control-prev {
-  width: 55px;
-  height: 55px;
-  background: #ffffff;
-  opacity: 1;
-  font-size: 30px;
-  color: #252525;
-  margin: 0 auto;
-  text-align: center;
-  border-radius: 100px;
-}
-
-#costum_slider .carousel-control-next:focus,
-#costum_slider .carousel-control-next:hover,
-#costum_slider .carousel-control-prev:focus,
-#costum_slider .carousel-control-prev:hover {
-  color: #fff;
-  background-color: #fda417;
-}
-
-
-/* testimonial section end  */
 
 .section-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
-}
-/* app-about.component.css */
-.about-content {
-  padding: 5rem 0;
-  background-color: #ffffff;
+  font-size: 2.5em;
+  margin-bottom: 20px;
   text-align: center;
+  color: #333;
+  font-weight: 300;
+  animation: fadeIn 2s;
 }
 
-.about-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Define the keyframes for the initial animation */
+@keyframes fadeInZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-.about-text {
-  font-size: 1.125rem;
-  color: #333333;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-}
-
+/* Apply the animation to the about image */
 .about-image {
   width: 100%;
   height: auto;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeInZoom 1.5s ease-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
 }
 
-.about-values {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 1.125rem;
-  color: #555555;
+/* Hover effect for the image */
+.about-image:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
 }
-
 .contact {
   background-color: #f8f8f8;
   padding: 60px 0;

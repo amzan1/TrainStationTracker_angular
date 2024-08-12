@@ -59,6 +59,7 @@ export class ProfileComponent implements OnInit {
       panelClass: 'custom-dialog',
       width: '80vw', // Optional: you can set the width here as well
       height: '80vh' // Optional: you can set the height here as well
+      
     });
     this.pData = User;
     console.log("PData:", User);

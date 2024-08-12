@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AdminService } from 'src/app/Services/admin.service';
 
 
@@ -9,6 +9,22 @@ import { AdminService } from 'src/app/Services/admin.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('contactSection') contactSection!: ElementRef;
+  @ViewChild('aboutSection') aboutSection!: ElementRef;
+  onScrollToSection(sectionId: string): void {
+    switch (sectionId) {
+      case 'about-section':
+        this.scrollTo(this.aboutSection);
+        break;
+      case 'contact-section':
+        this.scrollTo(this.contactSection);
+        break;
+    }
+  }
+
+  private scrollTo(element: ElementRef): void {
+    element.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
   constructor(public home:AdminService){}
   aboutContent: any = {}; // Initialize as an empty object
   homeContent: any = {}; // Initialize as an empty object
