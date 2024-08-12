@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AdminService } from 'src/app/Services/admin.service';
+import { BookingService } from 'src/app/Services/booking.service';
 
 @Component({
   selector: 'app-trips-search',
@@ -8,10 +10,7 @@ import { AdminService } from 'src/app/Services/admin.service';
   styleUrls: ['./trips-search.component.css']
 })
 export class TripsSearchComponent implements OnInit {
-bookTrip(id:number) {
-  console.log("Trip ID: "+id);
-  
-}
+
   BookingForm: FormGroup;
   filteredStationsForOrigin: any;
   filteredStationsForDestination: any;
@@ -19,14 +18,20 @@ bookTrip(id:number) {
   trips: any;
   filteredTrips: any = [];
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: AdminService, private bookingService:BookingService, private router: Router) {
     this.BookingForm = new FormGroup({
       originstationid: new FormControl('', [Validators.required]),
       destinationstationid: new FormControl('', [Validators.required]),
       departuretime: new FormControl('', [Validators.required])
     });
   }
-
+  bookTrip(id:number) {
+    //console.log("Trip ID: "+id);
+    this.bookingService.ID_Passing(id);
+    this.router.navigate(['user/payment'])
+  
+    
+  }
   ngOnInit(): void {
     this.adminService.getAllTrainStation().subscribe(data => {
       this.stations1 = data;

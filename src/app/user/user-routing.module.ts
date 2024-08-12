@@ -7,6 +7,7 @@ import { LandingPComponent } from './landing-p/landing-p.component';
 import { TripsSearchComponent } from './trips-search/trips-search.component';
 import { MapComponent } from './map/map.component';
 import { PaymentComponent } from './payment/payment.component';
+import { InvoiceComponent } from './invoice/invoice.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path:'payment',
     component:PaymentComponent
+  },
+  {
+    path:'invoice',
+    component:InvoiceComponent
   },
    {
     path:'profile',

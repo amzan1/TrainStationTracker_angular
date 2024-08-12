@@ -58,3 +58,15 @@
     background-color: #007aff;
   }
   
+
+  table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+

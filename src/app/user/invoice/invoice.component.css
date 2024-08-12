@@ -1,0 +1,101 @@
+.invoice-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  
+  .invoice-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .company-logo {
+    width: 100px;
+    margin-bottom: 10px;
+  }
+  
+  .invoice-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .col {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+  }
+  
+  .invoice-table th,
+  .invoice-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .invoice-table th {
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .invoice-summary {
+    text-align: right;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  .success-message {
+    background-color: #e0ffe0;
+    border: 1px solid #4caf50;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .success-icon {
+    font-size: 2em;
+    color: #4caf50;
+    margin-bottom: 10px;
+  }
+  
+  h2 {
+    color: #333;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  
+  p {
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  .btn-primary {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 15px;
+  }
+  
+  .btn-primary:hover {
+    background-color: #45a049;
+  }
+  
+  
