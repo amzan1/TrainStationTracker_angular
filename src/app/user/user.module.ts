@@ -24,7 +24,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     SignedNavbarComponent,
     ProfileComponent,
     MyBookinksComponent,
-    AddTestimonialComponent
+    AddTestimonialComponent,
     LandingPComponent,
     TripsSearchComponent,
     MapComponent,
@@ -37,7 +37,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     HttpClientModule,
     AdminModule,
     GoogleMapsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     SharedModule,
     MatDatepickerModule,
     MatNativeDateModule,
