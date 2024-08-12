@@ -15,6 +15,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -39,6 +40,7 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatMenuModule,
     MatListModule,
+    MatTableModule
   ],
   exports:[
     NavbarComponent,
@@ -55,7 +57,8 @@ import { MatListModule } from '@angular/material/list';
     MatSelectModule,
     MatToolbarModule,
     MatMenuModule,
-    MatListModule
+    MatListModule,
+    MatTableModule
   ]
 
 })

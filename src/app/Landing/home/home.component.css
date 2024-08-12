@@ -147,6 +147,33 @@
   color: #555555;
 }
 
-.about-values li {
-  margin-bottom: 1rem;
+.contact {
+  background-color: #f8f8f8;
+  padding: 60px 0;
+}
+
+.contact-title {
+  font-size: 2.5em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.contact-info {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+}
+
+.contact-info p {
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.contact-info strong {
+  font-weight: 600;
+  color: #333;
 }

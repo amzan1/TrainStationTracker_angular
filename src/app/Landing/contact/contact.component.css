@@ -1,32 +1,30 @@
 .contact {
-  background-color: #ffffff;
+  background-color: #f8f8f8;
+  padding: 60px 0;
 }
 
 .contact-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 2rem;
+  font-size: 2.5em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 40px;
 }
 
-.form-group {
-  margin-bottom: 1.5rem;
+.contact-info {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
 }
 
-.form-control {
-  border-radius: 8px;
-  padding: 0.75rem;
-  border: 1px solid #ced4da;
-  font-size: 1rem;
-  width: 100%;
+.contact-info p {
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  color: #555;
 }
 
-.btn-primary {
-  background-color: #007bff;
-  border: none;
-  border-radius: 25px;
-  padding: 0.75rem 2rem;
-  font-size: 1rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  cursor: pointer;
+.contact-info strong {
+  font-weight: 600;
+  color: #333;
 }

@@ -1,9 +1,9 @@
 <footer class="text-center py-4">
-    <div class="container">
+    <div class="container" *ngFor="let contact of home.contact">
         <p>
-            <i class="fa fa-map-marker"></i> 123 Main Street, Anytown, USA<br>
-            <i class="fa fa-phone"></i> (123) 456-7890<br>
-            <i class="fa fa-envelope"></i> email@example.com
+            <i class="fa fa-map-marker"></i> {{contact.address}}<br>
+            <i class="fa fa-phone"></i> {{contact.phone}}<br>
+            <i class="fa fa-envelope"></i> {{contact.email}}
         </p>
     <p>&copy; 2024 Your Company. All rights reserved.</p>
     </div>

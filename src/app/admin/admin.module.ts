@@ -25,6 +25,7 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { MangeHomeComponent } from './mange-home/mange-home.component';
 import { MangeAboutusComponent } from './mange-aboutus/mange-aboutus.component';
 import { MangeContactusComponent } from './mange-contactus/mange-contactus.component';
+import { ProfileComponent } from './profile/profile.component';
 import { GoogleMapsModule } from '@angular/google-maps'
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -67,6 +68,8 @@ export const MY_MOMENT_FORMATS = {
     MangeHomeComponent,
     MangeAboutusComponent,
     MangeContactusComponent,
+    ProfileComponent
+
 
   ],
   imports: [

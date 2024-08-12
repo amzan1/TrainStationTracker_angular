@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { forkJoin, map, Observable, tap } from 'rxjs';
+import { forkJoin, map, Observable, switchMap, tap } from 'rxjs';
 export interface User {
   userid: number;
   username: string;
@@ -62,6 +62,12 @@ export class AdminService {
   getTestimonialsUrl='https://localhost:7159/api/Testimonial/GetAllTestimonial';
   acceptTestimonialUrl='https://localhost:7159/api/Testimonial/AcceptTestimonial/';
   rejectTestimonialUrl ='https://localhost:7159/api/Testimonial/RejectTestimonial/';
+  getAllAprovedTestimonialUrl='https://localhost:7159/api/Testimonial/GetAllApprovedTestimonial';
+  userCreateTestimonial='https://localhost:7159/api/Testimonial/WriteTestimonial';
+  getUserById='https://localhost:7159/api/Login/GetUserById';
+  updateUserProfile='https://localhost:7159/api/Login/UpdateProfile';
+  getTripById='https://localhost:7159/api/Trips/GetTripById';
+  getUserBookingUrl='https://localhost:7159/api/Booking/GetUserBookings';
 
 
   // Pages Management 
@@ -182,11 +188,48 @@ uploadAttachments(img: FormData) {
 
       })
   }
+  trips:any=[];
+  GetUserTips(id: number): Observable<any>{
+
+      this.trips= this.http.get(this.getTripById  +id).subscribe(data=>{
+console.log('success');
+
+       },err=>{
+console.log('error');
+
+       });
+       return this.trips
+  }
 
 
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.getAllUsersUrl);
+  }
+  users:any=[]
+  userProfile (id: number): Observable<User> {
+this.users=this.http.get<User>(`${this.getUserById}/${id}`);
+console.log(this.users);
+
+    return this.users
+  }
+
+  updateProfile(body: any) {
+  
+    this.http.put(this.updateUserProfile, body ).subscribe(
+      res => {
+        console.log(res);
+        
+        console.log("Updated");
+        this.toastr.success('Update successful!');
+        window.location.reload();
+      },
+      err => {
+        console.log("Failed update profile");
+        // this.toastr.error('Update failed. Please try again.');
+        console.log(err);
+      }
+    );
   }
 
   getNumberOfBookedTrips(): Observable<number> {
@@ -245,6 +288,26 @@ uploadAttachments(img: FormData) {
       })
     );
   }
+  getApprovedTestimonials(): Observable<any[]> {
+    return forkJoin({
+      testimonials: this.http.get<any[]>(this.getAllAprovedTestimonialUrl),
+      users: this.http.get<any[]>(this.getAllUsersUrl)
+    }).pipe(
+      map(({ testimonials, users }) => {
+        // Create a map of userId to username
+        const userMap = users.reduce((acc, user) => {
+          acc[user.id] = user.username; // Assuming the user object has a 'username' field
+          return acc;
+        }, {});
+  
+        // Map through testimonials to add username
+        return testimonials.map(testimonial => ({
+          ...testimonial,
+          username: userMap[testimonial.userId] || 'Unknown'
+        }));
+      })
+    );
+  }
   approveTestimonial(id: number): Observable<any> {
     return this.http.put(this.acceptTestimonialUrl + id, {});
   }
@@ -252,7 +315,17 @@ uploadAttachments(img: FormData) {
   rejectTestimonial(id: number): Observable<any> {
     return this.http.put(this.rejectTestimonialUrl + id, {});
   }
-  
+  createTestimonial(body: any) {
+    console.log(body);
+    this.http.post(this.userCreateTestimonial, body).subscribe(res => {
+      console.log("Created");
+      this.toastr.success('Create successful!');
+    },
+      err => {
+        console.log("Failed" + err);
+        this.toastr.error('Create failed. Please try again.');
+      })
+  }  
 
   DeleteTrip(id: number) {
     this.http.delete(this.deleteTripUrl + id).subscribe((res) => {
@@ -327,4 +400,12 @@ uploadAttachments(img: FormData) {
     })
 
   }
-}
+bookings:any=[];
+    GetUserBook (id: number): Observable<any> {
+      this.bookings=this.http.get<any>(`${this.getUserBookingUrl}/${id}`);
+      console.log(this.bookings);
+      
+          return this.bookings
+        }
+  }
+  
