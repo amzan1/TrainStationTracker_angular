@@ -19,6 +19,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from 'src/Intersptor/token.interceptor';
 import { DateRangeFilterPipe } from './Pipes/date-range-filter.pipe';
 import { DateTripFilterPipe } from './Pipes/date-trip-filter.pipe';
+import { TestimonialComponent } from './Landing/testimonial/testimonial.component';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatOptionModule, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -32,7 +34,8 @@ import { MatSelectModule } from '@angular/material/select';
     AppComponent,
     HomeComponent,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    TestimonialComponent
   ],
   imports: [
     BrowserModule,

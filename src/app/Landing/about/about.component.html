@@ -1,16 +1,15 @@
 <app-navbar></app-navbar>
 <div class="about-content py-5">
-  <div class="container">
-      <div class="row">
-          <div class="col-md-6">
-              <h2 class="about-title">Who We Are</h2>
-              <p class="about-text">We are a passionate team dedicated to crafting innovative technology solutions that make a difference. With a rich history of excellence, we pride ourselves on our commitment to quality and our drive for continuous improvement.</p>
-          </div>
-          <div class="col-md-6">
-              <img src="../assets/image/Train3.jpg" alt="Our Team" class="about-image">
-          </div>
-      </div>
-      
-  </div>
+    <div class="container" *ngIf="aboutContent">
+        <div class="row" >
+            <div class="col-md-6">
+                <h2 class="about-title">{{aboutContent?.title}}</h2>
+                <p class="about-text">{{aboutContent?.content}}</p>
+            </div>
+            <div class="col-md-6">
+                <img src="../assets/image/{{aboutContent.image}}" alt="" class="about-image">
+            </div>
+        </div>
+    </div>
 </div>
 <app-footer></app-footer>

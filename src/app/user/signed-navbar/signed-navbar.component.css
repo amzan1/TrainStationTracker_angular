@@ -1,0 +1,25 @@
+/* Add this to your landing-page.component.css or navbar.component.css */
+.navbar {
+    background-color: #333; /* Dark background for the navbar */
+    color: #fff; /* White text color */
+  }
+  
+  .nav-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .nav-logo {
+    height: 40px;
+    margin-right: 1rem;
+  }
+  
+  .spacer {
+    flex: 1;
+  }
+  
+  button[mat-button] {
+    color: #fff; /* White text color for buttons */
+  }
+  

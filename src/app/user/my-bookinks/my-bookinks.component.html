@@ -1,0 +1,55 @@
+<app-signed-navbar></app-signed-navbar>
+  
+   <h2>My Trips</h2>
+   <ng-container *ngIf="bookings && bookings.length > 0; else noTrips">
+     <table mat-table [dataSource]="bookings" class="mat-elevation-z8 custom-table">
+   
+       <!-- Username Column -->
+       <ng-container matColumnDef="username">
+         <th mat-header-cell *matHeaderCellDef class="custom-header"> Username </th>
+         <td mat-cell *matCellDef="let booking" class="custom-cell"> {{ booking.username | uppercase }} </td>
+       </ng-container>
+   
+       <!-- Booking Time Column -->
+       <ng-container matColumnDef="bookingtime">
+         <th mat-header-cell *matHeaderCellDef class="custom-header"> Booking Time </th>
+         <td mat-cell *matCellDef="let booking" class="custom-cell"> {{ booking.bookingtime | date:'short' }} </td>
+       </ng-container>
+   
+       <!-- Departure Time Column -->
+       <ng-container matColumnDef="departuretime">
+         <th mat-header-cell *matHeaderCellDef class="custom-header"> Departure Time </th>
+         <td mat-cell *matCellDef="let booking" class="custom-cell"> {{ booking.departuretime | date:'short' }} </td>
+       </ng-container>
+   
+       <!-- Duration Time Column -->
+       <ng-container matColumnDef="duratointime">
+         <th mat-header-cell *matHeaderCellDef class="custom-header"> Duration Time (Minutes) </th>
+         <td mat-cell *matCellDef="let booking" class="custom-cell"> {{ booking.duratointime }} </td>
+       </ng-container>
+   
+       <!-- Price Column -->
+       <ng-container matColumnDef="price">
+         <th mat-header-cell *matHeaderCellDef class="custom-header"> Price </th>
+         <td mat-cell *matCellDef="let booking" class="custom-cell"> {{ booking.price | currency:'USD' }} </td>
+       </ng-container>
+   
+       <!-- Payment Status Column -->
+       <ng-container matColumnDef="paymentstatus">
+         <th mat-header-cell *matHeaderCellDef class="custom-header"> Payment Status </th>
+         <td mat-cell *matCellDef="let booking" class="custom-cell"> {{ booking.paymentstatus | uppercase }} </td>
+       </ng-container>
+   
+       <!-- Header and Row Declarations -->
+       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+     </table>
+   </ng-container>
+   
+   <ng-template #noTrips>
+     <p>No trips found.</p>
+   </ng-template>
+   
+
+  
+<app-footer></app-footer>
