@@ -1,32 +1,7 @@
-<!-- <form [formGroup]="paymentForm" (ngSubmit)="handlePayment()">
-    <div>
-      <label for="name">Name</label>
-      <input id="name" formControlName="name">
-    </div>
-    <div>
-      <label for="email">Email</label>
-      <input id="email" formControlName="email">
-    </div>
-    <div id="card-element"></div>
-    <button type="submit" [disabled]="paymentForm.invalid">Pay</button>
-  </form>
-  
- -->
-
-
- <!-- <form [formGroup]="paymentForm" class="payment-form">
-    <mat-form-field appearance="outline">
-      <mat-label>Cardholder Name</mat-label>
-      <input matInput type="text" id="cardName" formControlName="name" required />
-    </mat-form-field>
-  
-    <div id="card-element" class="stripe-card-element"></div>
-  
-    <button mat-flat-button color="primary" type="submit" class="pay-button">Pay Now</button>
-  </form> -->
-  
+<!-- <ngx-spinner bdColor = "rgba(0,0,45,0.8)" size = "medium" color = "#fff" type = "ball-clip-rotate-multiple" [fullScreen] = "true"><p style="color: white" > Payment procec... </p></ngx-spinner> -->
 
   <div class="payment-container">
+    
     <div class="payment-summary">
       <h2>Booking Summary</h2>
         
@@ -38,8 +13,8 @@
                 <th>To:</th>
             </tr>
             <tr>
-                <td>{{trip.originstationid}}</td>
-                <td>{{trip.destinationstationid}}</td>
+                <td>{{trip.originstation}}</td>
+                <td>{{trip.destinationstation}}</td>
                 
             </tr>
             <tr>
@@ -73,4 +48,5 @@
       
     </div>
   </div>
+
   

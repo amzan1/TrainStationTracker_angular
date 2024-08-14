@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Trip, User } from 'src/app/Services/admin.service';
 import { BookingService } from 'src/app/Services/booking.service';
 
@@ -12,8 +13,12 @@ export class InvoiceComponent implements OnInit {
 
   user: User | undefined;
   trip: Trip|undefined;
-  
-constructor(private bookingService:BookingService){}
+  currentDate: Date = new Date();
+
+constructor(private bookingService:BookingService, private router:Router){}
+
+invoiceNum:number = this.bookingService.count;
+
 ngOnInit(): void {
   const userInfo=localStorage.getItem('user');
   if(userInfo){
@@ -40,5 +45,10 @@ ngOnInit(): void {
     
   );
   
+}
+
+goToMyBookings(){
+
+  this.router.navigate(['user/myBookings'])
 }
 }

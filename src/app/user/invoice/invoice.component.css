@@ -97,5 +97,8 @@
   .btn-primary:hover {
     background-color: #45a049;
   }
-  
+  .nav-logo{
+    width: 100px;
+    border-radius: 10%;
+  }
   
