@@ -9,7 +9,6 @@
       </div>
     </div>
     <div class="container services-section py-5">
-      <app-map></app-map>
       <br>
       <br>
         <h2 class="mb-5">Our Stations</h2>
@@ -30,10 +29,6 @@
               <mat-card-header>
                 <mat-card-title>{{ station.stationname }}</mat-card-title>
               </mat-card-header>
-              <mat-card-content>
-                <p><strong>City:</strong> {{ station.lang }}</p>
-                <p><strong>Street:</strong> {{ station.lat }}</p>
-              </mat-card-content>
             </mat-card>
           </div>
           <div *ngIf="(stations | stationFilter: searchQuery).length === 0" class="no-results-container">
@@ -93,8 +88,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <app-add-testimonial></app-add-testimonial>
-  
+    </div>  
     <app-footer></app-footer>
   

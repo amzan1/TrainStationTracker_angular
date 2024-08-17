@@ -1,6 +1,8 @@
 .invoice-container {
     max-width: 800px;
-    margin: auto;
+    margin:auto;
+    margin-top: 75px;
+    margin-bottom: 50px;
     padding: 20px;
     background-color: #f8f8f8;
     border-radius: 12px;

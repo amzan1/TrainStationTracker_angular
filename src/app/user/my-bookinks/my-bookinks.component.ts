@@ -26,8 +26,7 @@ export class MyBookinksComponent implements OnInit {
     console.log(user);
     
     this.user.GetUserBook(user.Userid).subscribe(data => {
-      
-        this.bookings = data;
+      this.bookings = data.filter((trips: { departuretime: string | number | Date; }) => new Date(trips.departuretime) > new Date());
         console.log(this.bookings);
         
       }

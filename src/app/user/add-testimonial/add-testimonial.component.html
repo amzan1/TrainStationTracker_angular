@@ -1,5 +1,5 @@
-<div class="container testimonials-section py-5 ">
-  <h2 class="mb-5">Write your opinion </h2>
+<div class="container testimonials-section py-5 " *ngIf="Activate">
+  <h2 class="mb-5">Write About Your Experince!</h2>
 <form [formGroup]="upForm" (ngSubmit)="save()">
     <label for="content">Content:</label>
     <textarea id="content" formControlName="content"></textarea>

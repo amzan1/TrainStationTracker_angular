@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { window } from 'rxjs';
 import { AdminService } from 'src/app/Services/admin.service';
 import { HomeService } from 'src/app/Services/home.service';
@@ -11,8 +12,9 @@ import { HomeService } from 'src/app/Services/home.service';
 })
 export class AddTestimonialComponent implements OnInit {
   upForm: FormGroup;
+  Activate:boolean= true;
 
-  constructor(private adminService: AdminService, private homeService: HomeService) {
+  constructor(private adminService: AdminService, private homeService: HomeService, private toaster: ToastrService) {
     this.upForm = new FormGroup({
       content: new FormControl('', [Validators.required]),
       userid: new FormControl('', [Validators.required]),
@@ -35,6 +37,9 @@ export class AddTestimonialComponent implements OnInit {
   save() {
     if (this.upForm.valid) {
       this.adminService.createTestimonial(this.upForm.value);
+      this.upForm.controls['content'].setValue('');
+      this.Activate = false;
+      this.toaster.success('Sent successfully!');
       console.log('saved');
       
     } else {

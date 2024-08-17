@@ -5,7 +5,19 @@
   background: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 75px;
+  margin-bottom: 75px;
 }
+
+
+
+
+button.btn-block {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
+}
+
 
 .booking-container h1 {
   text-align: center;
@@ -19,37 +31,7 @@
   margin-bottom: 20px;
 }
 
-button.btn-block {
-  width: 100%;
-  padding: 15px;
-  font-size: 18px;
-}
-.booking-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 30px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
-.booking-container h1 {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-.full-width {
-  width: 100%;
-  margin-bottom: 20px;
-}
-
-button.btn-block {
-  width: 100%;
-  padding: 15px;
-  font-size: 18px;
-}
 
 .trips-container {
   margin-top: 30px;
