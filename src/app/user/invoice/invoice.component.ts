@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Trip, User } from 'src/app/Services/admin.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AdminService, Trip, User } from 'src/app/Services/admin.service';
 import { BookingService } from 'src/app/Services/booking.service';
 
 @Component({
@@ -12,8 +14,12 @@ export class InvoiceComponent implements OnInit {
 
   user: User | undefined;
   trip: Trip|undefined;
-  
-constructor(private bookingService:BookingService){}
+  currentDate: Date = new Date();
+
+constructor(private bookingService:BookingService, private adminService:AdminService, private router:Router){}
+
+invoiceNum:number = 0;
+
 ngOnInit(): void {
   const userInfo=localStorage.getItem('user');
   if(userInfo){
@@ -39,6 +45,22 @@ ngOnInit(): void {
     (err) => console.log('error')
     
   );
+
+  ///get number for invoice
+
+  this.adminService.getNumberOfBookedTrips().subscribe((res)=>{
+    this.invoiceNum=res
+    console.log('hi')
+  },
+(err)=>{
+  console.log('error :' +err)
+})
   
+}
+
+
+goToMyBookings(){
+
+  this.router.navigate(['user/myBookings'])
 }
 }

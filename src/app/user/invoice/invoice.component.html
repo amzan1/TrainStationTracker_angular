@@ -5,11 +5,11 @@
             <div class="success-icon">✔️</div>
             <h2>Booking Confirmed!</h2>
             <p>Your trip has been successfully booked.</p>
-            <!-- <button (click)="goToMyBookings()" class="btn-primary">View My Bookings</button> -->
+            <button (click)="goToMyBookings()" class="btn-primary">View My Bookings</button>
         </div>
         <br>
         <div class="invoice-header">
-          <img src="assets/logo.png" alt="Company Logo" class="company-logo" />
+          <img src="../assets/image/Train_icon.jpg" alt="Logo" class="nav-logo">
           <h1>Train Trip Invoice</h1>
         </div>
       
@@ -20,25 +20,26 @@
               <p> {{user.username}} </p>
               <p> {{user.email}} </p>
             </div>
-            <div *ngIf="trip" class="col">
+            <div  class="col">
               <h2>Invoice Details</h2>
-              <p>Invoice #:  {{trip.tripid}} </p>
-              <p>Date:  {{trip.departuretime | date}} </p>
+              <p>Invoice #:  {{invoiceNum}} </p>
+              <p>Date:  {{currentDate | date:'short'}} </p>
             </div>
           </div>
       
           <div class="row">
             <div *ngIf="trip" class="col">
               <h2>Journey Details</h2>
-              <p>From: {{trip.originstationid}} </p>
-              <p>To:  {{trip.destinationstationid}} </p>
+              <p>From: {{trip.originstation}} </p>
+              <p>To:  {{trip.destinationstation}} </p>
               <p>Date:  {{trip.departuretime | date}} </p>
+            </div>
+            <div *ngIf="trip" class="invoice-summary">
+              <h3>Total Amount Paid:  {{trip.price}}$ </h3>
             </div>
         </div>
     </div>
 
-  <div class="invoice-summary">
-    <h3>Total Amount Paid:  totalFare | currency </h3>
-  </div>
+  
 </div>
       

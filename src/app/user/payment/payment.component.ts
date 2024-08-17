@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { BookingService } from 'src/app/Services/booking.service';
 import { Trip } from 'src/app/Services/admin.service';
 import { Route, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-payment',
@@ -21,7 +22,7 @@ export class PaymentComponent implements OnInit {
 
   trip: Trip|undefined;
 
-  constructor(private fb: FormBuilder, private bookingService:BookingService, private router:Router, private toastr:ToastrService) {
+  constructor(private fb: FormBuilder, private bookingService:BookingService, private spinner:NgxSpinnerService, private toastr:ToastrService) {
     this.paymentForm = this.fb.group({
       name: ['', [Validators.required]],
     });
@@ -41,12 +42,13 @@ async ngOnInit() {
   const id=this.bookingService.IdTrip;
   this.bookingService.getTripById(id).subscribe(
     (res: Trip) => this.trip = res,
-    (err) => console.log('error')
+    (err) => console.log('error: '+err)
     
   );
   }
 
   async handlePayment() {
+    this.spinner.show();
     if (this.stripe && this.card) {
       const result = await this.stripe.createToken(this.card);
   
@@ -70,7 +72,6 @@ async ngOnInit() {
         console.log('Payment response:', data);
 
         if (data.success) {
-          this.toastr.success('Payment successful!');
           //create booking
           const userInfo = localStorage.getItem('user');
           let UserId : any;
@@ -82,18 +83,8 @@ async ngOnInit() {
             tripid:this.trip?.tripid,
             paymentstatus: 'Paid'
           };
-          this.bookingService.createBooking(body).subscribe(
-            (res:any)=> {
-              this.toastr.success('Booking Sucessfully');
-              this.router.navigate(['user/invoice'])
-
-            },
-            err=>{
-              console.log('error: '+err)
-              this.toastr.error('Booking failed. Please try again.');
-            }
-            );
-
+          this.bookingService.createBooking(body)
+          this.spinner.hide();
         } else {
           this.toastr.error('Payment failed. Please try again.');
         }
