@@ -49,7 +49,6 @@ async ngOnInit() {
 
   async handlePayment() {
     this.spinner.show();
-    this.bookingService.InvoiceNumber();
     if (this.stripe && this.card) {
       const result = await this.stripe.createToken(this.card);
   

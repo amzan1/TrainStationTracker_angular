@@ -17,7 +17,6 @@ export class BookingService {
   }
   
   getTripById(id: number): Observable<Trip>{
-    //return this.http.get<Trip>(`https://localhost:7159/api/Trips/GetTripById/${id}`);
     return forkJoin({
       tripByID:this.http.get<Trip>(`https://localhost:7159/api/Trips/GetTripById/${id}`),
       stations: this.http.get<any[]>('https://localhost:7159/api/TrainStation/GetAllTrainStations')
@@ -57,9 +56,4 @@ export class BookingService {
     );
   }
 
-  public count:number = 0;
-
-  InvoiceNumber():number{
-    return this.count++;
-  }
 }
