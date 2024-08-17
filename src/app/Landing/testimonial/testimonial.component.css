@@ -1,122 +1,13 @@
-/* .testimonial_section {
-  width: 100%;
-  float: left;
-  background-color: #333;
-  height: auto;
-  padding: 90px 0px 150px 0px;
-  background-size: 100%;
+.testimonials-section {
+  border-radius: 14px;
+}
+.testimonial-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.testimonial_taital {
-  width: 100%;
-  float: left;
-  font-size: 40px;
-  color: #ffffff;
-  text-align: center;
-  font-weight: bold;
-  font-family: 'Poppins', sans-serif;
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
-.client_name_text {
-  width: 100%;
-  font-size: 20px;
-  font-weight: bold;
-  color: #ffffff;
-  text-align: left;
-  text-transform: uppercase;
-}
-
-.textimonial_text {
-  width: 100%;
-  background-color: #ffffff;
-  padding: 40px;
-  color: #0d0d0d;
-  margin: 0px;
-  text-align: left;
-  border-radius: 4px;
-}
-
-#costum_slider a.carousel-control-next {
-  right: -60px;
-  left: 0px;
-  top: 500px;
-}
-
-#costum_slider a.carousel-control-prev {
-  left: -60px;
-  right: 0px;
-  top: 500px;
-  color: #fff;
-  background-color: #fda417;
-}
-
-#costum_slider .carousel-control-next,
-#costum_slider .carousel-control-prev {
-  width: 55px;
-  height: 55px;
-  background: #ffffff;
-  opacity: 1;
-  font-size: 30px;
-  color: #252525;
-  margin: 0 auto;
-  text-align: center;
-  border-radius: 100px;
-}
-
-#costum_slider .carousel-control-next:focus,
-#costum_slider .carousel-control-next:hover,
-#costum_slider .carousel-control-prev:focus,
-#costum_slider .carousel-control-prev:hover {
-  color: #fff;
-  background-color: #fda417;
-}
-
-
-testimonial section end  */
-.testimonial-slider {
-  position: relative;
-  width: 80%;
-  margin: auto;
-  overflow: hidden;
-  width: 400px;
-}
-
-.testimonial {
-  display: none;
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.5s ease-in-out;
-}
-
-.testimonial.active {
-  display: block;
-}
-
-.testimonial-text {
-  font-size: 1.2em;
-  margin-bottom: 100px;
-}
-
-.testimonial-author {
-  font-size: large;
-  font-weight: bold;
-}
-
-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0,0,0,0.5);
-  color: white;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-}
-
-button.prev {
-  left: 0;
-}
-
-button.next {
-  right: 0;
-}
-

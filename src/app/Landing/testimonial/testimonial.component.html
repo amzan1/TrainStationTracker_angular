@@ -35,11 +35,16 @@
   
  <!-- testimonial section end -->
 
- <div class="testimonial-slider">
-  <div class="testimonial" *ngFor="let testimonial of testimonials; let i = index" [class.active]="i === activeIndex">
-    <p class="testimonial-text">{{ testimonial.username }}</p>
-    <p class="testimonial-author">{{ testimonial.content }}</p>
+ <div class="container testimonials-section py-5 ">
+  <h2 class="mb-5">What Our Customers Say</h2>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let testimonial of testimonials">
+      <div class="card testimonial-card mb-4">
+        <div class="card-body">
+          <p class="card-text">"{{testimonial.content}}"</p>
+          <p class="testimonial-author font-weight-bold">- {{testimonial.username}}</p>
+        </div>
+      </div>
+    </div>
   </div>
-  <button class="prev" (click)="prevSlide()">&#10094;</button>
-  <button class="next" (click)="nextSlide()">&#10095;</button>
 </div>

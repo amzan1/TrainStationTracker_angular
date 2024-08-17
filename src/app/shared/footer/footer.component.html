@@ -1,4 +1,4 @@
-<footer class="text-center py-4">
+<!-- <footer class="text-center py-4">
     <div class="container" *ngFor="let contact of home.contact">
         <p>
             <i class="fa fa-map-marker"></i> {{contact.address}}<br>
@@ -7,4 +7,12 @@
         </p>
     <p>&copy; 2024 Your Company. All rights reserved.</p>
     </div>
-    </footer>
+    </footer> -->
+
+    <div class="footer-section bg-dark text-white py-3 text-center" *ngFor="let contact of home.contact">
+        <p> <i class="fa fa-map-marker"></i> {{contact.address}}<br>
+            <i class="fa fa-phone"></i> {{contact.phone}}<br>
+            <i class="fa fa-envelope"></i> {{contact.email}}</p>
+        <p>&copy; 2024 TravelEasy. All rights reserved.</p>
+      </div>
+    

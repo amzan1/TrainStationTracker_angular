@@ -8,6 +8,7 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { MangeHomeComponent } from './mange-home/mange-home.component';
 import { MangeAboutusComponent } from './mange-aboutus/mange-aboutus.component';
 import { MangeContactusComponent } from './mange-contactus/mange-contactus.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path:'trainstation',
     component:TrainStationsComponent
+  },
+  {
+    path:'profile',
+    component:ProfileComponent
   }
 ];
 

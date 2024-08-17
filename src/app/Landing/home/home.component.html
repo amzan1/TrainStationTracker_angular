@@ -1,51 +1,48 @@
-<app-navbar></app-navbar>
+<app-navbar (scrollToSection)="onScrollToSection($event)"></app-navbar>
 
-<header class="hero-section text-center" *ngIf="homeContent"
-        [ngStyle]="{
+<header class="hero-section text-center" *ngIf="homeContent" [ngStyle]="{
           'background-image': 'url(assets/image/' + homeContent.image + ')',
           'background-repeat': 'no-repeat',
           'background-position': 'center center',
           'background-size': 'cover'
         }">
-  <div class="container" >
+  <div class="container">
     <h1 class="hero-title">{{homeContent.title}}</h1>
 
     <p class="hero-subtitle">{{homeContent.content}}</p>
-    <a  routerLink="/about"  class="btn btn-primary btn-lg">Learn More</a>
-    </div>
-    </header>
-     
-<div class="about-content py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6" *ngIf="aboutContent">
-                <h2 class="about-title">{{aboutContent.title}}</h2>
-                <p class="about-text">{{aboutContent.content}}</p>
-            </div>
-            <div class="col-md-6">
-                <img src="../assets/image/{{aboutContent.image}}" alt="" class="about-image">
-            </div>
-        </div>
-        
-    </div>
+    <a routerLink="/about" class="btn btn-primary btn-lg">Learn More</a>
   </div>
-<app-testimonial></app-testimonial> 
+</header>
 
-<section class="contact py-5">
-    <div class="container">
-      <h2 class="contact-title text-center">Contact Us</h2>
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="contact-info" *ngIf="contactContent">
-            <p><strong>ADDRESS:</strong>{{contactContent.address}} </p>
-            <p><strong>Email:</strong> {{contactContent.email}}</p>
-            <p><strong>PHONE:</strong>{{contactContent.phone}} </p>
-          </div>
+<section #aboutSection class="about-content py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6" *ngIf="aboutContent">
+        <h2 class="about-title">{{aboutContent.title}}</h2>
+        <p class="about-text">{{aboutContent.content}}</p>
+      </div>
+      <div class="col-md-6">
+        <img src="../assets/image/{{aboutContent.image}}" alt="" class="about-image">
+      </div>
+    </div>
+
+  </div>
+</section>
+<app-testimonial></app-testimonial>
+
+<section id="contact-section" #contactSection class="contact py-5">
+  <div class="container">
+    <h2 class="contact-title text-center">Contact Us</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="contact-info" *ngIf="contactContent">
+          <p><strong>ADDRESS:</strong>{{contactContent.address}} </p>
+          <p><strong>Email:</strong> {{contactContent.email}}</p>
+          <p><strong>PHONE:</strong>{{contactContent.phone}} </p>
         </div>
       </div>
     </div>
-  </section>
-  
+  </div>
+</section>
+
 <app-footer></app-footer>
-   
- 
