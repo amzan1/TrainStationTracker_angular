@@ -99,8 +99,26 @@
   .btn-primary:hover {
     background-color: #45a049;
   }
+  .btn-download {
+    margin-top: 15px;
+    background: none;
+    color: #45a049;
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: inherit;
+  }  
+  .btn-download:hover {
+    color: #145b18;
+  }
   .nav-logo{
     width: 100px;
     border-radius: 10%;
+  }
+
+  #invoice{
+    padding-left: 40px;
+    padding-right: 40px;
   }
   

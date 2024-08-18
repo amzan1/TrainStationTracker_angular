@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService, Trip, User } from 'src/app/Services/admin.service';
 import { BookingService } from 'src/app/Services/booking.service';
@@ -62,5 +64,27 @@ ngOnInit(): void {
 goToMyBookings(){
 
   this.router.navigate(['user/myBookings'])
+}
+
+downloadInvoiceAsPDF(invoice:string){
+  const data = document.getElementById(invoice);
+
+  if(data){
+    html2canvas(data).then(canvas => 
+      {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+
+        const imgWidth = 210;
+        const pageHeight = 295;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        let heightLeft = imgHeight;
+
+        let position = 0;
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        pdf.save('Invoice.pdf')
+      });
+  }
+
 }
 }

@@ -1,12 +1,16 @@
 <app-signed-navbar></app-signed-navbar>
-    <div class="invoice-container">
+    <div class="invoice-container" >
         <div  class="success-message">
             <div class="success-icon">✔️</div>
             <h2>Booking Confirmed!</h2>
             <p>Your trip has been successfully booked.</p>
             <button (click)="goToMyBookings()" class="btn-primary">View My Bookings</button>
+            <br>
+            <button (click)="downloadInvoiceAsPDF('invoice')" class="btn-download">    Download Invoice as PDF</button>
+
         </div>
         <br>
+    <div id="invoice">
         <div class="invoice-header">
           <img src="../assets/image/Train_icon.jpg" alt="Logo" class="nav-logo">
           <h1>Train Trip Invoice</h1>
@@ -36,6 +40,7 @@
             <div *ngIf="trip" class="invoice-summary">
               <h3>Total Amount Paid:  {{trip.price}}$ </h3>
             </div>
+        </div>
         </div>
     </div>
     <div>
