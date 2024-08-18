@@ -44,7 +44,7 @@ export class BookingService {
   }
 
   createBooking(body:any): void{
-    this.http.post('https://localhost:7011/api/Booking/BookTrip',body,{ responseType: 'text' }).subscribe(
+    this.http.post('https://localhost:7159/api/Booking/BookTrip',body,{ responseType: 'text' }).subscribe(
       (res: any) => {
         this.toastr.success(res);
         this.router.navigate(['user/invoice']);
