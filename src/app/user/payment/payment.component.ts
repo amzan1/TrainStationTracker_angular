@@ -22,7 +22,7 @@ export class PaymentComponent implements OnInit {
 
   trip: Trip|undefined;
 
-  constructor(private fb: FormBuilder, private bookingService:BookingService, private spinner:NgxSpinnerService, private toastr:ToastrService) {
+  constructor(private fb: FormBuilder, private bookingService:BookingService, private spinner:NgxSpinnerService, private toastr:ToastrService, private router:Router) {
     this.paymentForm = this.fb.group({
       name: ['', [Validators.required]],
     });
@@ -53,6 +53,8 @@ async ngOnInit() {
       const result = await this.stripe.createToken(this.card);
   
       if (result?.error) {
+        this.spinner.hide();
+
         console.error('Payment error:', result.error);
       } else if (result?.token) {
         console.log('Payment token:', result.token);
@@ -86,9 +88,14 @@ async ngOnInit() {
           this.bookingService.createBooking(body)
           this.spinner.hide();
         } else {
+          this.spinner.hide();
           this.toastr.error('Payment failed. Please try again.');
         }
       }
     }
+  }
+
+  goBack(){
+    this.router.navigate(['user/trips'])
   }
 }
