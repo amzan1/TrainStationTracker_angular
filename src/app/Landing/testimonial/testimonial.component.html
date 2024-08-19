@@ -35,7 +35,7 @@
   
  <!-- testimonial section end -->
 
- <div class="container testimonials-section py-5 ">
+ <div class="container testimonials-section py-5 "*ngIf="testimonials.length> 0">
   <h2 class="mb-5">What Our Customers Say</h2>
   <div class="row">
     <div class="col-md-4" *ngFor="let testimonial of testimonials">
