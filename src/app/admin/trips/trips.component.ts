@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AdminService, Trip } from 'src/app/Services/admin.service';
 import { CreateTripsComponent } from '../create-trips/create-trips.component';
+import { OwlDateTime } from '@danielmoncada/angular-datetime-picker/lib/date-time/date-time.class';
 
 @Component({
   selector: 'app-trips',
@@ -35,6 +36,11 @@ export class TripsComponent implements OnInit {
   stations1:any;
   filteredStationsForOrigin: any = [];
   filteredStationsForDestination: any = [];
+
+  @ViewChild('picker') dateTimePicker: OwlDateTime<any> | undefined;
+
+  public date = new Date();
+
   ngOnInit(): void {
     this.AdminService.getTrips().subscribe(data => {
       this.Upcoming = data.filter(trip => new Date(trip.departuretime) > new Date());
