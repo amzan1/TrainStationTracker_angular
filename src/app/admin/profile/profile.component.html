@@ -1,92 +1,91 @@
-<div class="container rounded bg-white mt-5 mb-5">
-    <div class="row" *ngIf="profile">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"></div>
-        </div>
-        <div class="col-md-5 border-right">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h2 class="text-right">Profile </h2>
-                </div>
-                <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">First Name</label><input type="text"
-                        readonly  class="form-control" [(ngModel)]="profile.firstname" value=""></div>
-                    <div class="col-md-6"><label class="labels">Last Name</label><input type="text" readonly class="form-control"
-                            [(ngModel)]="profile.lastname" value=""></div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-12"><label class="i">Email</label><input type="text" class="form-control"
-                        readonly [(ngModel)]="profile.email" value=""></div>
-                    <div class="col-md-12"><label class="labels">User Name</label><input type="text"
-                        readonly  class="form-control" [(ngModel)]="profile.username" value=""></div>
-                    <div class="col-md-12"><label class="labels">Password</label><input type="password"
-                        readonly  class="form-control" [(ngModel)]="profile.password" value=""></div>
-                </div>
-
-                <div class="mt-5 text-center"><button class="btn btn-primary"
-                        (click)="openUpdateDailog(profile)" type="button">Update
-                        Profile</button>
-                        
-                    </div>
-                    <div class="mt-5 text-center">
-                        <button class="btn btn-primary"
-                        routerLink="/admin/dashboard"type="button">Back to Dashboard</button>
-                    </div>
+<div class="container-fluid page-body-wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row" *ngIf="profile">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"></div>
             </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h2 class="text-right">Profile </h2>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">First Name</label><input type="text" readonly
+                                class="form-control" [(ngModel)]="profile.firstname" value=""></div>
+                        <div class="col-md-6"><label class="labels">Last Name</label><input type="text" readonly
+                                class="form-control" [(ngModel)]="profile.lastname" value=""></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label class="i">Email</label><input type="text" class="form-control"
+                                readonly [(ngModel)]="profile.email" value=""></div>
+                        <div class="col-md-12"><label class="labels">User Name</label><input type="text" readonly
+                                class="form-control" [(ngModel)]="profile.username" value=""></div>
+                        <div class="col-md-12"><label class="labels">Password</label><input type="password" readonly
+                                class="form-control" [(ngModel)]="profile.password" value=""></div>
+                    </div>
+
+                    <div class="mt-5 text-center"><button class="btn btn-primary" (click)="openUpdateDailog(profile)"
+                            type="button">Update
+                            Profile</button>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
-
     </div>
+
+
+    <ng-template #updateDialog>
+        <div mat-dialog-content>
+            <h2 mat-dialog-title> Update Profile </h2>
+            <form class="example-form" [formGroup]="upForm">
+                <mat-form-field class="example-full-width">
+                    <mat-label>First Name</mat-label>
+                    <input type="text" matInput formControlName="firstname" [(ngModel)]="pData.firstname">
+                    <mat-error *ngIf="upForm.controls['firstname'].hasError('required')">
+                        First Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Last Name</mat-label>
+                    <input type="text" matInput formControlName="lastname" [(ngModel)]="pData.lastname">
+                    <mat-error *ngIf="upForm.controls['lastname'].hasError('required')">
+                        Last name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="text" matInput formControlName="email" [(ngModel)]="pData.email">
+                    <mat-error *ngIf="upForm.controls['email'].hasError('required')">
+                        Email is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>User Name</mat-label>
+                    <input type="text" matInput formControlName="username" [(ngModel)]="pData.username">
+                    <mat-error *ngIf="upForm.controls['username'].hasError('required')">
+                        User Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password" [(ngModel)]="pData.password">
+                    <mat-error *ngIf="upForm.controls['password'].hasError('required')">
+                        Password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </form>
+
+            <mat-dialog-actions align="center">
+                <button mat-button mat-dialog-close>Cancel</button>
+                <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updateProfile()">Update</button>
+            </mat-dialog-actions>
+        </div>
+    </ng-template>
 </div>
-
-
-<ng-template #updateDialog>
-    <div mat-dialog-content>
-        <h2 mat-dialog-title> Update Profile </h2>
-        <form class="example-form" [formGroup]="upForm">
-            <mat-form-field class="example-full-width">
-                <mat-label>First Name</mat-label>
-                <input type="text" matInput formControlName="firstname" [(ngModel)]="pData.firstname">
-                <mat-error *ngIf="upForm.controls['firstname'].hasError('required')">
-                    First Name is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width">
-                <mat-label>Last Name</mat-label>
-                <input type="text" matInput formControlName="lastname" [(ngModel)]="pData.lastname">
-                <mat-error *ngIf="upForm.controls['lastname'].hasError('required')">
-                    Last name is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width">
-                <mat-label>Email</mat-label>
-                <input type="text" matInput formControlName="email" [(ngModel)]="pData.email">
-                <mat-error *ngIf="upForm.controls['email'].hasError('required')">
-                    Email is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width">
-                <mat-label>User Name</mat-label>
-                <input type="text" matInput formControlName="username" [(ngModel)]="pData.username">
-                <mat-error *ngIf="upForm.controls['username'].hasError('required')">
-                    User Name is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width">
-                <mat-label>Password</mat-label>
-                <input type="password" matInput formControlName="password" [(ngModel)]="pData.password">
-                <mat-error *ngIf="upForm.controls['password'].hasError('required')">
-                    Password is <strong>required</strong>
-                </mat-error>
-            </mat-form-field>
-        </form>
-
-        <mat-dialog-actions align="center">
-            <button mat-button mat-dialog-close>Cancel</button>
-            <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updateProfile()">Update</button>
-        </mat-dialog-actions>
-    </div>
-</ng-template>
