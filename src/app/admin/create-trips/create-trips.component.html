@@ -29,22 +29,18 @@
   
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Trip Depature</mat-label>
-        <!-- <input  placeholder="Date Time" matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" formControlName="departuretime">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker> -->
+
         <input matInput [(ngModel)]="date" [owlDateTime]="picker" placeholder="Date Time"  formControlName="departuretime">
         <owl-date-time #picker></owl-date-time>
         <span [owlDateTimeTrigger]="picker" class="trigger">
           <i class="fa fa-calendar"></i>
         </span>
         
-        <!-- <owl-date-time [pickerType]="'both'" [(ngModel)]="selectedDate"></owl-date-time>
-        <owl-date-time-inline [(ngModel)]="selectedDate"></owl-date-time-inline> -->
+
         <mat-error *ngIf="updateForm.controls['departuretime'].hasError('required')">
           Trip Depature Time is <strong>required</strong>
         </mat-error>
       </mat-form-field>
-      <!-- <h2>{{date | json}}</h2> -->
   
       <mat-form-field class="example-full-width">
         <mat-label>Trip Duration</mat-label>

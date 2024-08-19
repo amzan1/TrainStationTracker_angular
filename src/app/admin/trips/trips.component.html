@@ -85,7 +85,7 @@
                                       <td>{{ trip.departuretime | date:'short' }}</td>
                                       <td>{{ trip.arrivalTime | date:'short' }}</td>
                                       <td>{{ trip.availableseats }}</td>
-                                      <td>{{ trip.price }} $</td>
+                                      <td>{{ trip.price}} $</td>
                                       <td>
                                         <button class="btn btn-primary me-2" (click)="openDeleteDialog(trip.tripid)">Delete</button>
                                         <button class="btn btn-danger" (click)="openUpdateDailog(trip)">Update</button>
@@ -214,13 +214,24 @@
           </mat-error>
         </mat-form-field>
   
+        
+
+        <!--  -->
         <mat-form-field class="example-full-width">
-          <mat-label>Trip Duration</mat-label>
-          <input type="text" matInput formControlName="duratointime" [(ngModel)]="pData.duratointime">
-          <mat-error *ngIf="updateForm.controls['duratointime'].hasError('required')">
+          <mat-label>Trip Depature</mat-label>
+  
+          <input type="text" matInput [(ngModel)]="pData.duratointime" [owlDateTime]="picker" placeholder="Date Time"  formControlName="departuretime">
+          <owl-date-time #picker></owl-date-time>
+          <span [owlDateTimeTrigger]="picker" class="trigger">
+            <i class="fa fa-calendar"></i>
+          </span>
+          
+  
+          <mat-error *ngIf="updateForm.controls['departuretime'].hasError('required')">
             Trip Duration Time in minutes is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+        <!--  -->
   
         <mat-form-field class="example-full-width">
           <mat-label>Trip Available Seats</mat-label>
