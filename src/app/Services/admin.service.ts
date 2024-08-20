@@ -275,17 +275,31 @@ console.log(this.users);
       users: this.http.get<any[]>(this.getAllUsersUrl)
     }).pipe(
       map(({ testimonials, users }) => {
-        // Create a map of userId to username
+        // Create a map of userId to username using 'userid'
         const userMap = users.reduce((acc, user) => {
-          acc[user.id] = user.username; // Assuming the user object has a 'username' field
+          if (!user.userid) {
+            console.warn('User object is missing userid:', user); // Debugging: Log user with missing userid
+          } else {
+            acc[user.userid] = user.username; // Assuming the user object has a 'username' field
+          }
           return acc;
         }, {});
   
+        console.log('UserMap:', userMap); // Debugging: Check the userMap content
+  
         // Map through testimonials to add username
-        return testimonials.map(testimonial => ({
-          ...testimonial,
-          username: userMap[testimonial.userId] || 'Unknown'
-        }));
+        return testimonials.map(testimonial => {
+          const username = userMap[testimonial.userid] || 'Unknown';
+          if (username === 'Unknown') {
+            console.warn(`No matching user found for testimonial ${testimonial.testimonialid} with userId ${testimonial.userid}`);
+          } else {
+            console.log(`Mapping testimonial ${testimonial.testimonialid} to username ${username}`);
+          }
+          return {
+            ...testimonial,
+            username: username
+          };
+        });
       })
     );
   }
@@ -295,20 +309,36 @@ console.log(this.users);
       users: this.http.get<any[]>(this.getAllUsersUrl)
     }).pipe(
       map(({ testimonials, users }) => {
-        // Create a map of userId to username
+        // Create a map of userId to username using 'userid'
         const userMap = users.reduce((acc, user) => {
-          acc[user.id] = user.username; // Assuming the user object has a 'username' field
+          if (!user.userid) {
+            console.warn('User object is missing userid:', user); // Debugging: Log user with missing userid
+          } else {
+            acc[user.userid] = user.username; // Assuming the user object has a 'username' field
+          }
           return acc;
         }, {});
   
+        console.log('UserMap:', userMap); // Debugging: Check the userMap content
+  
         // Map through testimonials to add username
-        return testimonials.map(testimonial => ({
-          ...testimonial,
-          username: userMap[testimonial.userId] || 'Unknown'
-        }));
+        return testimonials.map(testimonial => {
+          const username = userMap[testimonial.userid] || 'Unknown';
+          if (username === 'Unknown') {
+            console.warn(`No matching user found for testimonial ${testimonial.testimonialid} with userId ${testimonial.userid}`);
+          } else {
+            console.log(`Mapping testimonial ${testimonial.testimonialid} to username ${username}`);
+          }
+          return {
+            ...testimonial,
+            username: username
+          };
+        });
       })
     );
   }
+  
+  
   approveTestimonial(id: number): Observable<any> {
     return this.http.put(this.acceptTestimonialUrl + id, {});
   }
