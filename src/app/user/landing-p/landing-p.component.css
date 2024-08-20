@@ -227,7 +227,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #424242;
+    background-color: #0b305a;
     border-radius: 30px;
     z-index: -1;
   }
@@ -239,7 +239,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #FB8C00;
+    background-color: #2e8efc;
     border-radius: 30px;
     transform: rotate(-7deg);
     z-index: -2;
@@ -265,11 +265,13 @@
     letter-spacing: 1px;
     line-height: 30px;
     margin-bottom: 20px;
+    color: #F2EFE8;
+
   }
   
   .testimonial .testimonial-title a {
     display: inline-block;
-    color: #FB8C00;
+    color: #F2EFE8;
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 1px;

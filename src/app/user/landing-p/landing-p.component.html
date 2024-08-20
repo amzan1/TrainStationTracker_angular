@@ -76,10 +76,10 @@
       </div>
     </div>
   
-    <div class="container" *ngIf="testimonials.length > 0">
+    <div class="container" *ngIf="currentTestimonials.length > 0">
       <h2 class="mb-5 text-center">What Our Customers Say</h2>
       <div id="testimonial-slider" class="owl-carousel">
-        <div class="item" *ngFor="let testimonial of testimonials">
+        <div class="item" *ngFor="let testimonial of currentTestimonials">
           <div class="testimonial">
             <div class="testimonial-content">
               <p>"{{ testimonial.content }}"</p>
@@ -91,6 +91,8 @@
         </div>
       </div>
     </div>
+    
+    
     
     
     
