@@ -178,6 +178,7 @@ uploadAttachments(img: FormData) {
     this.http.post(this.createTripUrl, body).subscribe(res => {
       console.log("Created");
       this.toastr.success('Create successful!');
+      window.location.reload();
 
 
     },
