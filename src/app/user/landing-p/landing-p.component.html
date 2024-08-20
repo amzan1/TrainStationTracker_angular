@@ -76,18 +76,24 @@
       </div>
     </div>
   
-    <div class="container services-section py-5 " *ngIf="testimonials.length > 0">
-      <h2 class="mb-5">What Our Customers Say</h2>
-      <div class="row">
-        <div class="col-md-4" *ngFor="let testimonial of testimonials">
-          <div class="card testimonial-card mb-4">
-            <div class="card-body">
-              <p class="card-text">"{{testimonial.content}}"</p>
-              <p class="testimonial-author font-weight-bold">- {{testimonial.username}}</p>
+    <div class="container" *ngIf="testimonials.length > 0">
+      <h2 class="mb-5 text-center">What Our Customers Say</h2>
+      <div id="testimonial-slider" class="owl-carousel">
+        <div class="item" *ngFor="let testimonial of testimonials">
+          <div class="testimonial">
+            <div class="testimonial-content">
+              <p>"{{ testimonial.userid }}"</p>
             </div>
+            <h3 class="testimonial-title">
+              <a>{{ testimonial.username || 'Anonymous' }}</a>
+            </h3>
           </div>
         </div>
       </div>
-    </div>  
+    </div>
+    
+    
+    
+      
     <app-footer></app-footer>
   
