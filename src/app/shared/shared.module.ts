@@ -16,13 +16,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
+import { TestimonialComponent } from './testimonial/testimonial.component';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    TestimonialComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +60,8 @@ import { MatTableModule } from '@angular/material/table';
     MatToolbarModule,
     MatMenuModule,
     MatListModule,
-    MatTableModule
+    MatTableModule,
+    TestimonialComponent
   ]
 
 })

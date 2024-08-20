@@ -1,28 +1,23 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {  Component, OnDestroy, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/Services/admin.service';
-import { interval, Subscription } from 'rxjs';
-
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription, interval } from 'rxjs';
 @Component({
-  selector: 'app-landing-p',
-  templateUrl: './landing-p.component.html',
-  styleUrls: ['./landing-p.component.css']
+  selector: 'app-testimonial',
+  templateUrl: './testimonial.component.html',
+  styleUrls: ['./testimonial.component.css']
 })
-export class LandingPComponent implements OnInit, OnDestroy {
+export class TestimonialComponent implements OnInit, OnDestroy {
   testimonials: any[] = [];
   currentTestimonials: any[] = [];
   currentIndex = 0;
   displayCount = 3; // Number of testimonials to display at a time
-  homepage: any;
-  stations: any;
-  searchQuery = '';
   private subscription: Subscription = new Subscription();
 
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
     this.loadTestimonials();
-    this.loadHomeContent();
-    this.loadAllTrainStations();
   }
 
   private loadTestimonials() {
@@ -30,20 +25,6 @@ export class LandingPComponent implements OnInit, OnDestroy {
       this.testimonials = res;
       this.updateCurrentTestimonials();
       this.startTestimonialRotation();
-    });
-  }
-
-  private loadHomeContent() {
-    this.adminService.getHomeContent().subscribe(data => {
-      if (data && data.length > 0) {
-        this.homepage = data[0]; // Assuming the API returns an array with one item
-      }
-    });
-  }
-
-  private loadAllTrainStations() {
-    this.adminService.getAllTrainStation().subscribe(res => {
-      this.stations = res;
     });
   }
 

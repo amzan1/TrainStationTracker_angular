@@ -30,10 +30,11 @@
       <div class="col-md-6">
         <mat-form-field class="full-width">
           <mat-label>Departure Date</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="departuretime">
+          <input matInput [matDatepicker]="picker" [min]="minDate" formControlName="departuretime">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
+        
       </div>
     </div>
   </form>
