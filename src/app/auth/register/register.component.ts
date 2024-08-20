@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/Services/user.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    public userService: UserService
+    public userService: UserService,
+    private router:Router
   ) {
     this.firstFormGroup = this._formBuilder.group({
       firstname: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
@@ -49,6 +51,7 @@ export class RegisterComponent implements OnInit {
             .subscribe(
               response => {
                 console.log('Registration successful:', response);
+                this.router.navigate(['/login']);
                 // Optionally, you can redirect to another page or show a success message
               },
               error => {
