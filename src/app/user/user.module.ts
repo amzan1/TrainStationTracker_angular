@@ -18,7 +18,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { InvoiceComponent } from './invoice/invoice.component';
-import { TestimonialComponent } from '../Landing/testimonial/testimonial.component';
 
 
 @NgModule({

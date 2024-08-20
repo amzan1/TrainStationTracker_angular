@@ -17,11 +17,11 @@ export class TripsSearchComponent implements OnInit {
   stations1: any;
   trips: any;
   filteredTrips: any = [];
-
+  minDate = new Date();
   constructor(private adminService: AdminService, private bookingService:BookingService, private router: Router) {
     this.BookingForm = new FormGroup({
-      originstationid: new FormControl('', [Validators.required]),
-      destinationstationid: new FormControl('', [Validators.required]),
+      originstationid: new FormControl(''),
+      destinationstationid: new FormControl(''),
       departuretime: new FormControl('', [Validators.required])
     });
   }
