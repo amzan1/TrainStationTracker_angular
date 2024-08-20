@@ -180,7 +180,7 @@
   }
   
   .search-input:focus {
-    border-color: #007bff; /* Primary color */
+    border-color: #0b305a; /* Primary color */
     box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
     outline: none;
   }
@@ -190,7 +190,7 @@
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
-    color: #007bff; /* Primary color */
+    color: #0b305a; /* Primary color */
     font-size: 1.2em;
   }
   
